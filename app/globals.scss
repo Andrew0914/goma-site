@@ -14,7 +14,7 @@ main {
   color: var($--text);
   font-family: var(--font-work-sans);
   height: fit-content;
-  min-height: calc(100vh - 140px);
+  min-height: 100vh;
 }
 
 body {

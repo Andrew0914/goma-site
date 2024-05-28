@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { GitHub, X, Home, Work, Coffee, Book, Menu as MenuIcon } from "@mui/icons-material";
 import { ListItemIcon, ListItemText, alpha, styled } from '@mui/material';
 import styles from "./styles.module.scss";
+import { useTranslations } from 'next-intl';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -23,6 +24,8 @@ export default function BasicMenu() {
       minWidth: 200,
     },
   }));
+
+  const t = useTranslations('thenavbar');
 
   return (
     <div className={styles.themobilenavbar}>
@@ -49,39 +52,27 @@ export default function BasicMenu() {
           <ListItemIcon>
             <Home fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Home</ListItemText>
+          <ListItemText>{t("home")}</ListItemText>
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Book fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Blog</ListItemText>
+          <ListItemText>{t("projects")}</ListItemText>
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Work fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Projects</ListItemText>
+          <ListItemText>{t("blog")}</ListItemText>
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Coffee fontSize="small" />
           </ListItemIcon>
-          <ListItemText>About</ListItemText>
+          <ListItemText>{t("about")}</ListItemText>
         </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <GitHub fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Github</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <X fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Twitter</ListItemText>
 
-        </MenuItem>
       </StyledMenu>
     </div>
   );

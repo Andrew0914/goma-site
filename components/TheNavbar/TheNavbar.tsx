@@ -4,9 +4,11 @@ import styles from "./styles.module.scss";
 import { GitHub, X, DarkMode, LightMode } from "@mui/icons-material";
 import classNames from "classnames";
 import TheMobileNav from "./TheMobileNav"
+import { useTranslations } from "next-intl";
+
 
 export default function TheNavbar() {
-
+  const t = useTranslations('thenavbar');
   const navbarRef = useRef(null);
   const topRef = useRef(null);
   const [isAtTop, setAtTop] = useState(true);
@@ -37,14 +39,14 @@ export default function TheNavbar() {
       <nav className={styles.thenavbar} ref={navbarRef}>
         <div className={navbarContentClasses}>
           <h4 className="heading--4">
-            <a href="/">☔ Andrew</a>
+            <a href="/">{t('title', { emoji: '☔' })}</a>
           </h4>
           <div className={styles.thenavbar_navigation}>
             <ul className="text--content">
-              <li><a href="/">Home</a></li>
-              <li><a href="/about">Blog</a></li>
-              <li><a href="/contact">Projects</a></li>
-              <li><a href="/about">About</a></li>
+              <li><a href="/">{t("home")}</a></li>
+              <li><a href="/about">{t("projects")}</a></li>
+              <li><a href="/contact">{t("blog")}</a></li>
+              <li><a href="/about">{t("about")}</a></li>
             </ul>
             <div className={styles.thenavbar_icons}>
               <LightMode />
