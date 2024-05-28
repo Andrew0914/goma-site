@@ -1,0 +1,79 @@
+@import "@/styles/colors";
+.thenavbar {
+  align-items: center;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  background-color: var($--background);
+  width: 100%;
+  z-index: 100;
+  &_content {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 16px;
+    transition: 0.3s ease-in-out;
+    width: 100%;
+    max-width: 1080px;
+    box-sizing: border-box;
+    background-color: var($--background);
+    z-index: 100;
+    margin: 0 auto;
+  }
+
+  & a {
+    color: var($--text);
+
+    &:hover {
+      color: var($--primary);
+    }
+  }
+
+  &_navigation {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+
+    & ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &_icons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    & a {
+      height: 20px;
+    }
+  }
+}
+
+.thenavbar_top {
+  border-bottom: 1px solid var($--text-muted);
+  padding-block: 8px;
+  margin-bottom: 8px;
+  z-index: 100;
+}
+
+.top_referece {
+  height: 1px;
+  background-color: var($--background);
+}
+
+.themobilenavbar {
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+
+  &_menu {
+    width: 300px;
+  }
+}

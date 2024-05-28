@@ -1,0 +1,27 @@
+// Variable names 🍕
+$--text-muted: --text-muted;
+$--text: --text;
+$--background: --background;
+$--primary: --primary;
+$--active: --active;
+$--contrast: --contrast;
+
+// Default theme
+$theme-map-light: (
+  $--text-muted: #5c5c5c,
+  $--text: #121212,
+  $--background: #fdfdfd,
+  $--primary: #194db5,
+  $--active: #488dfd,
+  $--contrast: #ffff
+);
+
+// Override the default light theme
+$theme-map-dark: (
+  $--text-muted: #999999,
+  $--text: #f3f3f3,
+  $--background: #121212,
+  $--primary: #459ff6,
+  $--active: #aac7ff,
+  $--contrast: #000
+);

@@ -1,0 +1,98 @@
+@use "sass:list";
+%content-font {
+  font-family: var(--font-work-sans), sans-serif;
+}
+
+%heading-font {
+  font-family: var(--font-crimson-pro), serif;
+}
+
+$heading-sizes: (
+  --1: (
+    48px,
+    58px,
+    700
+  ),
+  --2: (
+    42px,
+    52px,
+    700
+  ),
+  --3: (
+    38px,
+    48px,
+    700
+  ),
+  --4: (
+    34px,
+    44px,
+    700
+  )
+);
+
+$text-content-sizes: (
+  --xl: (
+    20px,
+    32px,
+    normal
+  ),
+  --content: (
+    16px,
+    24px,
+    normal
+  ),
+  --sm: (
+    12px,
+    20px,
+    normal
+  ),
+  --xl-bold: (
+    20px,
+    32px,
+    700
+  ),
+  --content-bold: (
+    16px,
+    24px,
+    700
+  ),
+  --sm-bold: (
+    12px,
+    20px,
+    700
+  )
+);
+
+@mixin make-text-size-classes($prefix, $sizes) {
+  @each $variant, $font-values in $sizes {
+    .#{$prefix}#{$variant} {
+      @if $prefix == "heading" {
+        @extend %heading-font;
+        margin: 0;
+      } @else {
+        @extend %content-font;
+      }
+      font-size: list.nth($font-values, 1);
+      line-height: list.nth($font-values, 2);
+      font-weight: list.nth($font-values, 3);
+    }
+  }
+}
+
+@include make-text-size-classes("heading", $heading-sizes);
+@include make-text-size-classes("text", $text-content-sizes);
+
+.text--muted {
+  color: var(--text-muted);
+}
+
+.text--link,
+a {
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  &:hover {
+    color: var($--active);
+  }
+}

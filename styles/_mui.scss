@@ -1,0 +1,12 @@
+.MuiPaper-root {
+  background-color: var($--contrast) !important;
+}
+
+.MuiTypography-root {
+  font-family: var(--font-work-sans) !important;
+  color: var($--text);
+}
+
+.MuiSvgIcon-root {
+  color: var($--text);
+}
