@@ -6,6 +6,12 @@ import classNames from "classnames";
 import TheMobileNav from "./TheMobileNav"
 import { useTranslations } from "next-intl";
 
+function getCurrentEmoji() {
+  const currentMontIndex = new Date().getMonth();
+  const monthlyEmojis = ['👑', '💖', '🌼', '🐣', '🌷', '🌞', '🌴', '📚', '🌵', '🎃', '💀', '🎅🏼'];
+
+  return monthlyEmojis[currentMontIndex];
+}
 
 export default function TheNavbar() {
   const t = useTranslations('thenavbar');
@@ -39,7 +45,7 @@ export default function TheNavbar() {
       <nav className={styles.thenavbar} ref={navbarRef}>
         <div className={navbarContentClasses}>
           <h4 className="heading--4">
-            <a href="/">{t('title', { emoji: '☔' })}</a>
+            <a href="/">{t('title', { emoji: getCurrentEmoji() })}</a>
           </h4>
           <div className={styles.thenavbar_navigation}>
             <ul className="text--content">
