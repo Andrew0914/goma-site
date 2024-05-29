@@ -1,5 +1,3 @@
-## The navbar
+## Home
 
-- [ ] Put the correct routes and pages
-- [ ] Optimize menu items rendering programatically
-
+- [ ] Research for design
