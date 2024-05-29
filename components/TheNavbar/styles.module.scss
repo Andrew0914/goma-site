@@ -2,22 +2,25 @@
 .thenavbar {
   align-items: center;
   position: sticky;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   background-color: var($--background);
-  width: 100%;
+  width: calc(100%);
   z-index: 100;
+  margin-top: 24px;
   &_content {
     display: flex;
-    justify-content: space-between;
     padding-block: 16px;
-    transition: 0.3s ease-in-out;
+    transition: 0.4s ease-in-out;
     width: 100%;
     max-width: 1080px;
     box-sizing: border-box;
     background-color: var($--background);
     z-index: 100;
     margin: 0 auto;
+    padding: 8px 24px;
+    border-radius: 4px;
+    justify-content: space-between;
   }
 
   & a {
@@ -30,40 +33,34 @@
 
   &_navigation {
     display: flex;
-    gap: 24px;
     align-items: center;
+    gap: 24px;
+  }
 
-    & ul {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
+  &_extras {
+    display: flex;
+    align-items: center;
+  }
+
+  &_menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 24px;
 
     @media screen and (max-width: 768px) {
       display: none;
     }
   }
-
-  &_icons {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    & a {
-      height: 20px;
-    }
-  }
 }
 
 .thenavbar_top {
-  border-bottom: 1px solid var($--text-muted);
-  padding-block: 8px;
   margin-bottom: 8px;
-  z-index: 100;
+  background-color: var($--contrast-2);
+  filter: drop-shadow(0px 4px 4px var($--drop-shadow));
 }
 
-.top_referece {
+.top_reference {
   height: 1px;
   background-color: var($--background);
 }

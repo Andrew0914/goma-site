@@ -5,6 +5,8 @@ $--background: --background;
 $--primary: --primary;
 $--active: --active;
 $--contrast: --contrast;
+$--contrast-2: --contrast-2;
+$--drop-shadow: --drop-shadow;
 
 // Default theme
 $theme-map-light: (
@@ -13,7 +15,9 @@ $theme-map-light: (
   $--background: #fdfdfd,
   $--primary: #194db5,
   $--active: #488dfd,
-  $--contrast: #ffff
+  $--contrast: #ffff,
+  $--contrast-2: #f3f3f3,
+  $--drop-shadow: rgba(0, 0, 0, 0.1)
 );
 
 // Override the default light theme
@@ -23,5 +27,7 @@ $theme-map-dark: (
   $--background: #121212,
   $--primary: #459ff6,
   $--active: #aac7ff,
-  $--contrast: #000
+  $--contrast: #000,
+  $--contrast-2: #1f1f1f,
+  $--drop-shadow: rgba(75, 75, 75, 0.2)
 );

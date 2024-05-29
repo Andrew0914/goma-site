@@ -1,10 +1,11 @@
 'use client';
 import { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
-import { GitHub, X, DarkMode, LightMode } from "@mui/icons-material";
 import classNames from "classnames";
 import TheMobileNav from "./TheMobileNav"
 import { useTranslations } from "next-intl";
+import { IconButton } from "@mui/material";
+import ThemeSelector from "../ThemeSelector/ThemeSelector";
 
 function getCurrentEmoji() {
   const currentMontIndex = new Date().getMonth();
@@ -41,26 +42,28 @@ export default function TheNavbar() {
 
   return (
     <>
-      <div ref={topRef} className={styles.top_referece} />
+      <div ref={topRef} className={styles.top_reference} />
       <nav className={styles.thenavbar} ref={navbarRef}>
         <div className={navbarContentClasses}>
           <h4 className="heading--4">
             <a href="/">{t('title', { emoji: getCurrentEmoji() })}</a>
           </h4>
           <div className={styles.thenavbar_navigation}>
-            <ul className="text--content">
+            <ul className={`${styles.thenavbar_menu} text--content`}>
               <li><a href="/">{t("home")}</a></li>
               <li><a href="/about">{t("projects")}</a></li>
               <li><a href="/contact">{t("blog")}</a></li>
               <li><a href="/about">{t("about")}</a></li>
             </ul>
-            <div className={styles.thenavbar_icons}>
-              <LightMode />
+            <div className={styles.thenavbar_extras}>
+              <ThemeSelector />
+              <TheMobileNav />
             </div>
           </div>
-          <TheMobileNav />
+
         </div>
-      </nav>
+
+      </nav >
     </>
 
   )

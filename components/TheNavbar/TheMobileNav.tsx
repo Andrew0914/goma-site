@@ -6,6 +6,7 @@ import { GitHub, X, Home, Work, Coffee, Book, Menu as MenuIcon } from "@mui/icon
 import { ListItemIcon, ListItemText, alpha, styled } from '@mui/material';
 import styles from "./styles.module.scss";
 import { useTranslations } from 'next-intl';
+import ThemeSelector from '../ThemeSelector/ThemeSelector';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -35,6 +36,7 @@ export default function BasicMenu() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        style={{ minWidth: '40px' }}
       >
         <MenuIcon fontSize='large' />
       </Button>

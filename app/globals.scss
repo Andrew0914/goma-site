@@ -6,8 +6,7 @@
 @import "@/styles/mui";
 
 html,
-body,
-main {
+body {
   scrollbar-color: var($--text);
   scrollbar-width: thin;
   background-color: var($--background);
@@ -18,7 +17,6 @@ main {
 }
 
 body {
-  padding: 24px;
   box-sizing: border-box;
   color: var($--text);
   font-family: var(--font-work-sans);
@@ -29,6 +27,7 @@ main {
   width: 100%;
   box-sizing: border-box;
   margin: 0 auto;
+  padding: 24px;
 }
 
 h1,
