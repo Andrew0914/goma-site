@@ -1,21 +1,31 @@
+'use client'
 import Button from '@mui/material/Button';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
-import { GitHub, X, Home, Work, Coffee, Book, Menu as MenuIcon } from "@mui/icons-material";
+import React, { useState } from 'react';
+import { Home, Work, Coffee, Book, Menu as MenuIcon } from "@mui/icons-material";
 import { ListItemIcon, ListItemText, alpha, styled } from '@mui/material';
 import styles from "./styles.module.scss";
 import { useTranslations } from 'next-intl';
-import ThemeSelector from '../ThemeSelector/ThemeSelector';
+import { useRouter } from 'next/navigation'
 
-export default function BasicMenu() {
+interface RouteOption {
+  icon: React.ReactNode
+  text: string
+  route: string
+}
+
+export default function TheMobileNav() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const router = useRouter();
+
+  const handleClose = (route: string) => {
     setAnchorEl(null);
+    router.push(route)
   };
 
   const StyledMenu = styled((props: MenuProps) => (<Menu {...props} />))(({ theme }) => ({
@@ -27,6 +37,15 @@ export default function BasicMenu() {
   }));
 
   const t = useTranslations('thenavbar');
+
+
+  const routesOptions: RouteOption[] = [
+    { icon: <Home fontSize="small" />, text: t("home"), route: '/' },
+    { icon: <Book fontSize="small" />, text: t("work"), route: '/work' },
+    { icon: <Work fontSize="small" />, text: t("blog"), route: '/blog' },
+    { icon: <Coffee fontSize="small" />, text: t("about"), route: '/about' }
+  ]
+
 
   return (
     <div className={styles.themobilenavbar}>
@@ -44,36 +63,21 @@ export default function BasicMenu() {
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
         className={styles.themobilenavbar_menu}
       >
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Home fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>{t("home")}</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Book fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>{t("projects")}</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Work fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>{t("blog")}</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Coffee fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>{t("about")}</ListItemText>
-        </MenuItem>
+
+        {routesOptions.map((option, index) => (
+          <MenuItem key={`mobilenav-opt-${index}`} onClick={() => handleClose(option.route)}>
+            <ListItemIcon>
+              {option.icon}
+            </ListItemIcon>
+            <ListItemText>{option.text}</ListItemText>
+          </MenuItem>
+        ))}
+
 
       </StyledMenu>
     </div>

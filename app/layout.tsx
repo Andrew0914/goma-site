@@ -1,29 +1,28 @@
 import "./globals.scss";
-import { crimsonPro, workSans } from "./fonts";
 import type { Metadata } from "next";
+import { crimsonPro, workSans } from "./fonts";
 import TheNavbar from "@/components/TheNavbar/TheNavbar";
-import { NextIntlClientProvider } from 'next-intl';
+import { NextIntlClientProvider, } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
-
+import MyThemeProvider from "@/components/ThemeProvider/ThemeProvider";
 
 export default async function RootLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
-  const locale = await getLocale();
+  const locale = await getLocale()
+  const messages = await getMessages({ locale })
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
-  const messages = await getMessages();
   return (
     <html lang="en" className={`${crimsonPro.variable} ${workSans.variable}`}>
-
       <body className="light">
-        <NextIntlClientProvider messages={messages}>
-          <TheNavbar />
-          <main> {children} </main>
-        </NextIntlClientProvider>
+        <MyThemeProvider>
+          <NextIntlClientProvider messages={messages}>
+            <TheNavbar />
+            <main> {children} </main>
+          </NextIntlClientProvider>
+        </MyThemeProvider>
       </body>
     </html>
   );

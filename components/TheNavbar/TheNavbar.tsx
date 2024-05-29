@@ -4,8 +4,8 @@ import styles from "./styles.module.scss";
 import classNames from "classnames";
 import TheMobileNav from "./TheMobileNav"
 import { useTranslations } from "next-intl";
-import { IconButton } from "@mui/material";
 import ThemeSelector from "../ThemeSelector/ThemeSelector";
+import Link from "next/link";
 
 function getCurrentEmoji() {
   const currentMontIndex = new Date().getMonth();
@@ -14,11 +14,13 @@ function getCurrentEmoji() {
   return monthlyEmojis[currentMontIndex];
 }
 
+
 export default function TheNavbar() {
   const t = useTranslations('thenavbar');
   const navbarRef = useRef(null);
   const topRef = useRef(null);
   const [isAtTop, setAtTop] = useState(true);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -50,10 +52,10 @@ export default function TheNavbar() {
           </h4>
           <div className={styles.thenavbar_navigation}>
             <ul className={`${styles.thenavbar_menu} text--content`}>
-              <li><a href="/">{t("home")}</a></li>
-              <li><a href="/about">{t("projects")}</a></li>
-              <li><a href="/contact">{t("blog")}</a></li>
-              <li><a href="/about">{t("about")}</a></li>
+              <li><Link href="/">{t("home")}</Link></li>
+              <li><Link href="/work">{t("work")}</Link></li>
+              <li><Link href="/blog">{t("blog")}</Link></li>
+              <li><Link href="/about">{t("about")}</Link></li>
             </ul>
             <div className={styles.thenavbar_extras}>
               <ThemeSelector />
