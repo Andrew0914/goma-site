@@ -1,3 +1,4 @@
+import { DarkMode, LightMode } from "@mui/icons-material";
 import { IconButton, useColorScheme } from "@mui/material"
 import React, { useEffect, useState } from "react";
 
@@ -23,7 +24,7 @@ export default function ThemeSelector(props: ThemeSelectorProps) {
 
   return (
     <IconButton color="info" onClick={changeTheme} className={props.className}>
-      {isLightMode ? "🌞" : "🌚"}
+      {isLightMode ? <DarkMode /> : <LightMode />}
     </IconButton >
   )
 }

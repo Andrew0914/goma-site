@@ -6,6 +6,7 @@ import TheMobileNav from "./TheMobileNav"
 import { useTranslations } from "next-intl";
 import ThemeSelector from "../ThemeSelector/ThemeSelector";
 import Link from "next/link";
+import { usePathname } from 'next/navigation'
 
 function getCurrentEmoji() {
   const currentMontIndex = new Date().getMonth();
@@ -14,12 +15,25 @@ function getCurrentEmoji() {
   return monthlyEmojis[currentMontIndex];
 }
 
+interface Route {
+  path: string,
+  name: string
+
+}
 
 export default function TheNavbar() {
   const t = useTranslations('thenavbar');
   const navbarRef = useRef(null);
   const topRef = useRef(null);
   const [isAtTop, setAtTop] = useState(true);
+  const pathname = usePathname();
+  const routes: Route[] = [
+    { path: '/', name: t("home") },
+    { path: '/work', name: t("work") },
+    { path: '/blog', name: t("blog") },
+    { path: '/about', name: t("about") }
+
+  ]
 
 
   useEffect(() => {
@@ -52,10 +66,13 @@ export default function TheNavbar() {
           </h4>
           <div className={styles.thenavbar_navigation}>
             <ul className={`${styles.thenavbar_menu} text--content`}>
-              <li><Link href="/">{t("home")}</Link></li>
-              <li><Link href="/work">{t("work")}</Link></li>
-              <li><Link href="/blog">{t("blog")}</Link></li>
-              <li><Link href="/about">{t("about")}</Link></li>
+              {routes.map((route, index) => (
+                <li key={index}>
+                  <Link href={route.path} className={pathname === route.path ? styles.routeActive : ''}>
+                    {route.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
             <div className={styles.thenavbar_extras}>
               <ThemeSelector />

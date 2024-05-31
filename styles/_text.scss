@@ -96,3 +96,16 @@ a {
     color: var($--active);
   }
 }
+
+.text--active {
+  color: var(--active) !important;
+  font-weight: 600;
+}
+
+.text--super {
+  background: linear-gradient(45deg, #6558cc, #dc7689, #f9af39);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  // text-fill-color: transparent;
+}

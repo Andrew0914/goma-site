@@ -1,3 +1,10 @@
-.main {
-  margin-top: 16px;
+.home {
+  text-align: center;
+  width: 75%;
+  max-width: 810px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  gap: 32px;
+  padding-top: 48px;
 }
