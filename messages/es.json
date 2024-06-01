@@ -4,6 +4,24 @@
     "home": "Inicio",
     "about": "Acerca de mí",
     "work": "Mi trabajo",
-    "blog": "Blog"
+    "blog": "Blog",
+    "festivities": {
+      "0": "Enero es el mes de los Reyes Magos 👑",
+      "1": "Feliz día de San Valentín 💝",
+      "2": "Es primabera🌻!",
+      "3": "EN méxico se celebran las pascuas 🐰",
+      "4": "Mayo es el mes del día de la madre 👩🏽💕",
+      "5": "Es verano ⛱️!",
+      "6": "Vamos a la playa! 😎",
+      "7": "En Agosto en México los niños vuelven a clases 👓",
+      "8": "Septiembre es el mes patrio en México 🌶️ y el cumpleaños del creador de esta página 🎉🎂",
+      "9": "Feliz hallowen 🦇🧟🧛🏽!",
+      "10": "Mes del día de los muertos 💀",
+      "11": "Feliz navidad y prospero año nuevo ⭐🎅🏼❄️☃️"
+    }
+  },
+  "home": {
+    "title": "Hola! Soy <span>Andrew González</span>, ingeniero en informática, <span>programador apasionado</span>, y líder Front-End en mi trabajo actual.",
+    "more": "Me apasiona crear experiencias a través del código y liberar mi creatividad. También disfruto de los videojuegos y la comida."
   }
 }

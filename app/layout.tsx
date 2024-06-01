@@ -16,7 +16,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${crimsonPro.variable} ${workSans.variable}`}>
-      <body className="light">
+      <body className="dark">
         <MyThemeProvider>
           <NextIntlClientProvider messages={messages}>
             <TheNavbar />

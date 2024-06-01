@@ -4,7 +4,6 @@
   position: sticky;
   top: 0;
   left: 0;
-  background-color: var($--background);
   width: calc(100%);
   z-index: 100;
   margin-top: 24px;
@@ -15,7 +14,6 @@
     width: 100%;
     max-width: 1080px;
     box-sizing: border-box;
-    background-color: var($--background);
     z-index: 100;
     margin: 0 auto;
     padding: 8px 24px;
@@ -57,12 +55,11 @@
 .thenavbar_top {
   margin-bottom: 8px;
   background-color: var($--contrast-2);
-  filter: drop-shadow(0px 4px 4px var($--drop-shadow));
 }
 
 .top_reference {
   height: 1px;
-  background-color: transparent;
+  //background-color: transparent;
 }
 
 .themobilenavbar {
@@ -76,6 +73,8 @@
 }
 
 .routeActive {
-  border-bottom: 1px solid var($--active);
-  padding-bottom: 4px;
+  color: var($--active) !important;
+  & span {
+    color: var($--active) !important;
+  }
 }

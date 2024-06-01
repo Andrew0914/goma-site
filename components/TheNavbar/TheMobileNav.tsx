@@ -7,7 +7,7 @@ import { Home, Work, Coffee, Book, Menu as MenuIcon } from "@mui/icons-material"
 import { ListItemIcon, ListItemText, alpha, styled } from '@mui/material';
 import styles from "./styles.module.scss";
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 interface RouteOption {
   icon: React.ReactNode
@@ -46,6 +46,7 @@ export default function TheMobileNav() {
     { icon: <Coffee fontSize="small" />, text: t("about"), route: '/about' }
   ]
 
+  const pathname = usePathname();
 
   return (
     <div className={styles.themobilenavbar}>
@@ -67,6 +68,7 @@ export default function TheMobileNav() {
           'aria-labelledby': 'basic-button',
         }}
         className={styles.themobilenavbar_menu}
+        onClose={() => setAnchorEl(null)}
       >
 
         {routesOptions.map((option, index) => (
@@ -74,7 +76,7 @@ export default function TheMobileNav() {
             <ListItemIcon>
               {option.icon}
             </ListItemIcon>
-            <ListItemText>{option.text}</ListItemText>
+            <ListItemText className={pathname === option.route ? styles.routeActive : ''}>{option.text}</ListItemText>
           </MenuItem>
         ))}
 

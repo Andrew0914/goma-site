@@ -7,6 +7,7 @@ $--active: --active;
 $--contrast: --contrast;
 $--contrast-2: --contrast-2;
 $--drop-shadow: --drop-shadow;
+$--highligh-gradient: --highligh-gradient;
 
 // Default theme
 $theme-map-light: (
@@ -17,7 +18,8 @@ $theme-map-light: (
   $--active: #488dfd,
   $--contrast: #ffff,
   $--contrast-2: #f3f3f3,
-  $--drop-shadow: rgba(0, 0, 0, 0.1)
+  $--drop-shadow: rgba(0, 0, 0, 0.1),
+  $--highligh-gradient: linear-gradient(45deg, #6558cc, #dc7689, #f9af39)
 );
 
 // Override the default light theme
@@ -29,5 +31,6 @@ $theme-map-dark: (
   $--active: #aac7ff,
   $--contrast: #000,
   $--contrast-2: #1f1f1f,
-  $--drop-shadow: rgba(75, 75, 75, 0.2)
+  $--drop-shadow: rgba(75, 75, 75, 0.2),
+  $--highligh-gradient: linear-gradient(45deg, #9b59b6, #e74c3c, #f39c12)
 );

@@ -1,3 +1,4 @@
 ## Home
 
-- [ ] Agregar title a los iconos por mes explicando la razon del icono
+- [ ] Poner los mensajes de los meses en locales
+- [ ] Crear el footer

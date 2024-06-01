@@ -8,13 +8,10 @@ import ThemeSelector from "../ThemeSelector/ThemeSelector";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 
-function getCurrentEmoji() {
-  const currentMontIndex = new Date().getMonth();
-  const monthlyEmojis = ['👑', '💖', '🌼', '🐣', '🌷', '🌞', '🌴', '📚', '🌵', '🎃', '💀', '🎅🏼'];
-
-  return monthlyEmojis[currentMontIndex];
+interface Festivity {
+  icon: string
+  detail: string
 }
-
 interface Route {
   path: string,
   name: string
@@ -34,7 +31,7 @@ export default function TheNavbar() {
     { path: '/about', name: t("about") }
 
   ]
-
+  const navbarContentClasses = classNames(styles.thenavbar_content, { [styles.thenavbar_top]: isAtTop });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,7 +51,18 @@ export default function TheNavbar() {
     };
   }, []);
 
-  const navbarContentClasses = classNames(styles.thenavbar_content, { [styles.thenavbar_top]: isAtTop });
+
+
+  function getCurrentFestivity(): Festivity {
+    const currentMontIndex = new Date().getMonth();
+    const monthlyEmojis = ['👑', '💖', '🌼', '🐣', '🌷', '🌞', '🌴', '📚', '🌵', '🎃', '💀', '🎅🏼'];
+
+    return {
+      icon: monthlyEmojis[currentMontIndex],
+      detail: t(`festivities.${currentMontIndex}`)
+    }
+  }
+
 
   return (
     <>
@@ -62,7 +70,7 @@ export default function TheNavbar() {
       <nav className={styles.thenavbar} ref={navbarRef}>
         <div className={navbarContentClasses}>
           <h4 className="heading--4">
-            <a href="/">{t('title', { emoji: getCurrentEmoji() })}</a>
+            <a href="/" title={getCurrentFestivity().detail}>{t('title', { emoji: getCurrentFestivity().icon })}</a>
           </h4>
           <div className={styles.thenavbar_navigation}>
             <ul className={`${styles.thenavbar_menu} text--content`}>

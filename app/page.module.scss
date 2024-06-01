@@ -7,4 +7,21 @@
   flex-flow: column;
   gap: 32px;
   padding-top: 48px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+    padding-top: 24px;
+  }
+
+  h1 {
+    font-size: 36px;
+    line-height: 46px;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
 }

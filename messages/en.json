@@ -4,6 +4,24 @@
     "home": "Home",
     "about": "About",
     "work": "Work",
-    "blog": "Blog"
+    "blog": "Blog",
+    "festivities": {
+      "0": "January is the month of Three kings' Day in Mexico",
+      "1": "Happy Valentine's Day 💝",
+      "2": "It's Spring 🌻",
+      "3": "April is the month of Easter 🐰",
+      "4": "May is the month of Mother's day in Mexico 👩🏽",
+      "5": "It's Summer ⛱️",
+      "6": "Let' go to the beach! 😎",
+      "7": "August is the month of Back to School in Mexico 👓",
+      "8": "September is the month of Mexican independence day 🌶️",
+      "9": "Happy Halloween 🦇🧟🧛🏽!",
+      "10": "November is the month of Day of the Dead in Mexico 💀",
+      "11": "Merry Christmas 🎅🏼💫☃️"
+    }
+  },
+  "home": {
+    "title": "Hi! I'm <span>Andrew Gonzalez</span>, a dedicated IT engineer, <span>passionated developer</span>, and the Front-End Lead at work.",
+    "more": "I am passionate about crafting experiences through code and unleashing my creativity. I also enjoy video games and food."
   }
 }
