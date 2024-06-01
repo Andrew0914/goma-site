@@ -8,6 +8,8 @@ $--contrast: --contrast;
 $--contrast-2: --contrast-2;
 $--drop-shadow: --drop-shadow;
 $--highligh-gradient: --highligh-gradient;
+$--up-fade-gradient: --up-fade-gradient;
+$--down-fade-gradient: --down-fade-gradient;
 
 // Default theme
 $theme-map-light: (
@@ -19,7 +21,10 @@ $theme-map-light: (
   $--contrast: #ffff,
   $--contrast-2: #f3f3f3,
   $--drop-shadow: rgba(0, 0, 0, 0.1),
-  $--highligh-gradient: linear-gradient(45deg, #6558cc, #dc7689, #f9af39)
+  $--highligh-gradient: linear-gradient(45deg, #6558cc, #dc7689, #f9af39),
+  $--up-fade-gradient: linear-gradient(0deg, rgba(173, 173, 173, 0.5), rgba(213, 213, 213, 0.5), rgba(253, 253, 253, 0)),
+  $--down-fade-gradient:
+    linear-gradient(0deg, rgba(253, 253, 253, 0.8), rgba(240, 240, 240, 0.9), rgba(235, 235, 235, 1))
 );
 
 // Override the default light theme
@@ -32,5 +37,7 @@ $theme-map-dark: (
   $--contrast: #000,
   $--contrast-2: #1f1f1f,
   $--drop-shadow: rgba(75, 75, 75, 0.2),
-  $--highligh-gradient: linear-gradient(45deg, #9b59b6, #e74c3c, #f39c12)
+  $--highligh-gradient: linear-gradient(45deg, #9b59b6, #e74c3c, #f39c12),
+  $--up-fade-gradient: linear-gradient(0deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
+  $--down-fade-gradient: linear-gradient(0deg, rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9), rgba(9, 9, 9, 1))
 );

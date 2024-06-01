@@ -1,0 +1,16 @@
+.container {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 32px;
+  box-sizing: border-box;
+  @media screen and (max-width: 768px) {
+    padding: 24px 16px;
+  }
+}
+
+.container--sm {
+  width: 70%;
+  max-width: 810px;
+  margin: 0 auto;
+}

@@ -2,7 +2,9 @@
 @import "@/styles/colors";
 @import "@/styles/mixins";
 @import "@/styles/theme";
+@import "@/styles/spacing";
 @import "@/styles/text";
+@import "@/styles/containers";
 @import "@/styles/mui";
 
 html,
@@ -30,7 +32,6 @@ main {
   width: 100%;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 24px;
 }
 
 h1,

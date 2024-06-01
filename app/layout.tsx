@@ -1,10 +1,11 @@
-import "./globals.scss";
+import "@/styles/globals.scss";
 import type { Metadata } from "next";
 import { crimsonPro, workSans } from "./fonts";
-import TheNavbar from "@/components/TheNavbar/TheNavbar";
 import { NextIntlClientProvider, } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import MyThemeProvider from "@/components/ThemeProvider/ThemeProvider";
+import TheNavbar from "@/components/TheNavbar/TheNavbar";
+import TheFooter from "@/components/TheFooter/TheFooter";
 
 export default async function RootLayout({
   children
@@ -21,6 +22,7 @@ export default async function RootLayout({
           <NextIntlClientProvider messages={messages}>
             <TheNavbar />
             <main> {children} </main>
+            <TheFooter />
           </NextIntlClientProvider>
         </MyThemeProvider>
       </body>

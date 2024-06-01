@@ -31,7 +31,7 @@ export default function TheNavbar() {
     { path: '/about', name: t("about") }
 
   ]
-  const navbarContentClasses = classNames(styles.thenavbar_content, { [styles.thenavbar_top]: isAtTop });
+  const navbarClasses = classNames(styles.thenavbar, { [styles.thenavbar_top]: isAtTop });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -67,8 +67,8 @@ export default function TheNavbar() {
   return (
     <>
       <div ref={topRef} className={styles.top_reference} />
-      <nav className={styles.thenavbar} ref={navbarRef}>
-        <div className={navbarContentClasses}>
+      <nav className={navbarClasses} ref={navbarRef}>
+        <div className={`${styles.thenavbar_content} container`}>
           <h4 className="heading--4">
             <a href="/" title={getCurrentFestivity().detail}>{t('title', { emoji: getCurrentFestivity().icon })}</a>
           </h4>

@@ -23,5 +23,9 @@
   "home": {
     "title": "Hi! I'm <span>Andrew Gonzalez</span>, a dedicated IT engineer, <span>passionated developer</span>, and the Front-End Lead at work.",
     "more": "I am passionate about crafting experiences through code and unleashing my creativity. I also enjoy video games and food."
+  },
+  "thefooter": {
+    "follow": "Follow me",
+    "madeWith": "Made with {emoji} by"
   }
 }
