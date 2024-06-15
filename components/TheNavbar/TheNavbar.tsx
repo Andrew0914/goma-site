@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import ThemeSelector from "../ThemeSelector/ThemeSelector";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
+import { Tooltip, Zoom } from "@mui/material";
 
 interface Festivity {
   icon: string
@@ -69,9 +70,11 @@ export default function TheNavbar() {
       <div ref={topRef} className={styles.top_reference} />
       <nav className={navbarClasses} ref={navbarRef}>
         <div className={`${styles.thenavbar_content} container`}>
-          <h4 className="heading--4">
-            <a href="/" title={getCurrentFestivity().detail}>{t('title', { emoji: getCurrentFestivity().icon })}</a>
-          </h4>
+          <Tooltip title={getCurrentFestivity().detail} TransitionComponent={Zoom} leaveDelay={750} arrow>
+            <h4 className="heading--4">
+              <a href="/" >{t('title', { emoji: getCurrentFestivity().icon })}</a>
+            </h4>
+          </Tooltip>
           <div className={styles.thenavbar_navigation}>
             <ul className={`${styles.thenavbar_menu} text--content`}>
               {routes.map((route, index) => (

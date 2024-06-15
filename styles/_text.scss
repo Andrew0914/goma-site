@@ -9,23 +9,23 @@
 
 $heading-sizes: (
   --1: (
-    48px,
-    58px,
+    52px,
+    62px,
     700
   ),
   --2: (
-    42px,
-    52px,
+    44px,
+    54px,
     700
   ),
   --3: (
-    38px,
-    48px,
+    36px,
+    46px,
     700
   ),
   --4: (
-    34px,
-    44px,
+    28px,
+    38px,
     700
   )
 );
@@ -63,6 +63,16 @@ $text-content-sizes: (
   )
 );
 
+$colors: (
+  "primary": var(--primary),
+  "secondary": var(--secondary),
+  "info": var(--info),
+  "active": var(--active),
+  "warning": var(--warning),
+  "danger": var(--danger),
+  "muted": var(--text-muted)
+);
+
 @mixin make-text-size-classes($prefix, $sizes) {
   @each $variant, $font-values in $sizes {
     .#{$prefix}#{$variant} {
@@ -79,8 +89,17 @@ $text-content-sizes: (
   }
 }
 
+@mixin make-text-color-classes($prefix, $colors) {
+  @each $variant, $color in $colors {
+    .#{$prefix}--#{$variant} {
+      color: $color;
+    }
+  }
+}
+
 @include make-text-size-classes("heading", $heading-sizes);
 @include make-text-size-classes("text", $text-content-sizes);
+@include make-text-color-classes("text", $colors);
 
 .text--muted {
   color: var(--text-muted);
@@ -95,11 +114,6 @@ a {
   &:hover {
     color: var($--active);
   }
-}
-
-.text--active {
-  color: var(--active) !important;
-  font-weight: 600;
 }
 
 .text--super {

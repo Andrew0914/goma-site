@@ -13,7 +13,7 @@
   align-items: center;
   margin: 0 auto;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (width <= 820px) {
     flex-flow: column;
     gap: 16px;
   }

@@ -13,7 +13,7 @@ export default function Home() {
     <Grow in={true} timeout={500}>
       <section className={`container--sm ${styles.home}`}>
         <h1 className="heading--1">
-          {t.rich("title", { span: (children) => <span className="text--super">{children}</span> })}
+          {t.rich("title", { span: (children) => <span className="text--super" style={{ display: 'inline-block' }}> &#123; {children} &#125;</span>, div: (children) => <span className="text--super"> {children} </span> })}
         </h1>
         <p className="text--content">
           {t("more")}

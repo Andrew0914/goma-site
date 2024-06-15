@@ -41,7 +41,7 @@
     align-items: center;
     gap: 24px;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (width <= 820px) {
       display: none;
     }
   }
@@ -57,7 +57,7 @@
 }
 
 .themobilenavbar {
-  @media screen and (min-width: 768px) {
+  @media screen and (width > 820px) {
     display: none;
   }
 
