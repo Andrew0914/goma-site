@@ -1,0 +1,39 @@
+@import "@/styles/colors";
+.superImage {
+  position: relative;
+  overflow: hidden;
+
+  &_image {
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.25);
+    }
+  }
+
+  &_caption {
+    position: absolute;
+    bottom: 0px;
+    left: 8px;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &_chip {
+    transform: translateY(64px);
+    transition: transform 0.5s ease-in-out;
+    background-color: var($--white);
+    color: var($--black);
+    opacity: 0.9;
+  }
+
+  &:hover {
+    & > .superImage_caption {
+      opacity: 1;
+
+      & > .superImage_chip {
+        transform: translateY(-8px);
+      }
+    }
+  }
+}

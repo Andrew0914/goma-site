@@ -21,11 +21,83 @@
     }
   },
   "home": {
-    "title": "Hola! Soy <span>Andrew González</span>, ingeniero en informática, <span>programador apasionado</span>, y líder Front-End en mi trabajo actual.",
+    "title": "Hola! Soy <div>Andrew González</div>, ingeniero en informática, <span>programador apasionado </span>, y líder Front-End en mi trabajo actual.",
     "more": "Me apasiona crear experiencias a través del código y liberar mi creatividad. También disfruto de los videojuegos y la comida."
   },
   "thefooter": {
     "follow": "Sígueme",
     "madeWith": "Hecho con {emoji} por"
+  },
+  "about": {
+    "title": "Acerca de mí",
+    "description1": "Soy Andrew, un desarrollador de software de la Ciudad de México 🇲🇽, en estos días, me enfoco en mejorar en el lenguaje Elixir 💧, enriquecer mi portafolio y crear cursos de los cuales otras personas puedan aprender.",
+    "description2": "Durante los últimos 8+ años, he trabajado en diversas áreas del desarrollo de software, incluyendo front-end, back-end y móvil. Estoy orgulloso de haber jugado varios papeles.",
+    "experience": {
+      "title": "Experiencia",
+      "item": {
+        "bunsan": {
+          "position": "Ingeniero de software senior y líder Front end",
+          "company": "Bunsan",
+          "period": "2019 ~ Actualidad"
+        },
+        "myself": {
+          "position": "Desarrollador independiente",
+          "company": "YoMismo",
+          "period": "2019"
+        },
+        "devowrms": {
+          "position": "Desarrollador de software y líder de equipo",
+          "company": "Devowrms",
+          "period": "2018 ~ 2019"
+        },
+        "wellcom": {
+          "position": "Desarrollador Java",
+          "company": "Wellcom",
+          "period": "2017 ~ 2018"
+        },
+        "siweb": {
+          "position": "Desarrollador Java junior",
+          "company": "Siweb",
+          "period": "2016 ~ 2017"
+        }
+      }
+    },
+    "education": {
+      "title": "Educación",
+      "item": {
+        "college": {
+          "title": "Ingeniero en Informática",
+          "description": "Instituto Politécnico Nacional (IPN)",
+          "period": "2012 ~ 2016"
+        },
+        "highschool": {
+          "title": "Técnico en Informática",
+          "description": "Instituto Politécnico Nacional (IPN) - Vocacional",
+          "period": "2009 ~ 2012"
+        },
+        "juniorHighschool": {
+          "title": "Técnico en Computación",
+          "description": "Secundaria Técnica",
+          "period": "2006 ~ 2009"
+        }
+      }
+    },
+    "skills": {
+      "title": "Habilidades",
+      "description": "Projectos {projects} | Cursos {courses}"
+    },
+    "hobbies": {
+      "title": "Hobbies",
+      "gallery": {
+        "videogames": "Me gusta jugar videojuegos 🎮",
+        "oaxaca": "Amo viajar a Oaxaca 🌵",
+        "mexicoCity": "Me encanta la Ciudad de México 📷",
+        "christmas": "Soy el mayor fan de la Navidad ⭐",
+        "museums": "Museo de antroplogia e historia 🏛️",
+        "huatulco": "Huatulco 🌴",
+        "thisIsFine": "This is fine 🔥",
+        "running": "Me gusta csalir a correr las mañanas ☀️🏃🏾"
+      }
+    }
   }
 }

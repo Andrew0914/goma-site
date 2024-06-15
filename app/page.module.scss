@@ -3,17 +3,27 @@
   display: flex;
   flex-flow: column;
   gap: 32px;
-  padding-top: 8%;
+  padding-top: 64px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (width <= 820px) {
     width: 100%;
     max-width: 100%;
-    padding-inline: 16px;
+    padding-top: 24px;
   }
 
   h1 {
     font-size: 36px;
     line-height: 46px;
+    @media screen and (width <= 820px) {
+      font-size: 32px;
+      line-height: 42px;
+    }
+
+    & > span:nth-child(2) {
+      @media screen and (width <= 820px) {
+        display: inline-block;
+      }
+    }
   }
 
   div {

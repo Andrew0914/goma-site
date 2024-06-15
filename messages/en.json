@@ -21,11 +21,83 @@
     }
   },
   "home": {
-    "title": "Hi! I'm <span>Andrew Gonzalez</span>, a dedicated IT engineer, <span>passionated developer</span>, and the Front-End Lead at work.",
+    "title": "Hi! I'm <div>Andrew Gonzalez</div>, a dedicated IT engineer, <span>passionated developer</span>, and the Front-End Lead at work.",
     "more": "I am passionate about crafting experiences through code and unleashing my creativity. I also enjoy video games and food."
   },
   "thefooter": {
     "follow": "Follow me",
     "madeWith": "Made with {emoji} by"
+  },
+  "about": {
+    "title": "About me",
+    "description1": "I am Andrew, a software developer from Mexico City 🇲🇽, These days, I focus on improving at Elixir 💧 language, enrich my portfolio and creating courses from which other people can learn.",
+    "description2": "Over the past 8+ years, I've worked in various areas of software development, including front-end , back end and mobile. I'm proud to have worn many hats.",
+    "experience": {
+      "title": "Expirience",
+      "item": {
+        "bunsan": {
+          "position": "Senior software developer and Front end lead",
+          "company": "Bunsan",
+          "period": "2019 ~ Present"
+        },
+        "myself": {
+          "position": "Freelance developer",
+          "company": "Myself",
+          "period": "2019"
+        },
+        "devowrms": {
+          "position": "Software developer and team leader",
+          "company": "Devowrms",
+          "period": "2018 ~ 2019"
+        },
+        "wellcom": {
+          "position": "Java developer",
+          "company": "Wellcom",
+          "period": "2017 ~ 2018"
+        },
+        "siweb": {
+          "position": "Junior Java developer",
+          "company": "Siweb",
+          "period": "2016 ~ 2017"
+        }
+      }
+    },
+    "education": {
+      "title": "Education",
+      "item": {
+        "college": {
+          "title": "IT Engineer degree",
+          "description": "Instituto Politécnico Nacional (IPN)",
+          "period": "2012 ~ 2016"
+        },
+        "highschool": {
+          "title": "IT Technician",
+          "description": "Instituto Politécnico Nacional (IPN) - High School",
+          "period": "2009 ~ 2012"
+        },
+        "juniorHighschool": {
+          "title": "Computer Technician",
+          "description": "Junior High School",
+          "period": "2006 ~ 2009"
+        }
+      }
+    },
+    "skills": {
+      "title": "Skills",
+      "description": "Projects {projects} | Courses {courses}"
+    },
+    "hobbies": {
+      "title": "Hobbies",
+      "gallery": {
+        "videogames": "I like to play video games 🎮",
+        "oaxaca": "Love to travel to Oaxaca 🌵 and its food",
+        "mexicoCity": "I love spots in Mexico City 📷",
+        "christmas": "I am the biggest fan of Christmas ⭐",
+        "museums": "I enjoy visiting museums 🏛️",
+        "huatulco": "Huatulco beach, the best one in Mexico 🌴",
+        "thisIsFine": "This is fine 🔥",
+        "running": "I like to run  in the mornings ☕"
+      }
+    }
   }
 }
