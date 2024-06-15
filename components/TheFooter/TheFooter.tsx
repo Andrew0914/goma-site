@@ -4,14 +4,14 @@ import { Links } from "@/utils/constants";
 import { useTranslations } from "next-intl";
 
 export default function TheFooter() {
-  const t = useTranslations('thefooter');
+  const t = useTranslations("thefooter");
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className={`${styles.theFooter} text--sm text--muted`}>
       <div className={`${styles.theFooter_content} container`}>
         <div>
-          {t('follow')}
+          {t("follow")}
           <a href={Links.Github} target="_blaak">
             <GitHub fontSize="small" />
           </a>
@@ -24,14 +24,17 @@ export default function TheFooter() {
           <a href={Links.X} target="_blaak">
             <X fontSize="small" />
           </a>
-
         </div>
         <div>
-          <span><Copyright fontSize="small" /> {currentYear}</span>
-          <span>{t("madeWith", { emoji: '💖' })} <a href={Links.Github}>@AndrewGM</a></span>
+          <span>
+            <Copyright fontSize="small" /> {currentYear}
+          </span>
+          <span>
+            {t("madeWith", { emoji: "💖" })}{" "}
+            <a href={Links.Github}>@AndrewGM</a>
+          </span>
         </div>
       </div>
-
     </footer>
-  )
+  );
 }

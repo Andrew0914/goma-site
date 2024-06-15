@@ -1,7 +1,3 @@
 export default function Work() {
-  return (
-    <section>
-      WORK
-    </section>
-  );
+  return <section>WORK</section>;
 }

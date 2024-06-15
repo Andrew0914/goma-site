@@ -1,7 +1,3 @@
 export default function Blog() {
-  return (
-    <section>
-      BLOG
-    </section>
-  );
+  return <section>BLOG</section>;
 }
