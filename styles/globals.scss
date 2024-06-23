@@ -17,8 +17,9 @@ body {
   height: fit-content;
   min-height: 100vh;
   transition:
-    background-color 0.3s,
-    color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    background-color 1s,
+    boder-color 1s,
+    color 1s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 body {

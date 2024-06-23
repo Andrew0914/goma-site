@@ -1,20 +1,12 @@
-import { LocationOn } from "@mui/icons-material";
-import {
-  Avatar,
-  Button,
-  Chip,
-  Grow,
-  Slide,
-  Tooltip,
-  Zoom,
-} from "@mui/material";
+import { Avatar, Chip, Tooltip, Zoom } from "@mui/material";
 import Image from "next/image";
 import styles from "./page.module.scss";
 import { Skill, jobs as jobsMeta, skills as skillsItems } from "./data";
 import { useTranslations } from "next-intl";
 import SuperImage from "@/components/SuperImage/SuperImage";
 import CircleProgress from "@/components/CircleProgress/CircleProgress";
-
+import PageTransition from "@/components/PageTransition/PageTransition";
+import InViewElement from "@/components/InViewElement/InViewElement";
 interface Hobby {
   src: string;
   alt: string;
@@ -76,21 +68,24 @@ function Expirience() {
 function Education() {
   const t = useTranslations("about");
   const items = ["college", "highschool", "juniorHighschool"];
+
   return (
-    <div>
-      <h3 className="heading--3 text--secondary"> {t("education.title")} </h3>
-      {items.map((key, index) => (
-        <div key={`schoolgrade-${index}`}>
-          <p className="text--content-bold">
-            {t(`education.item.${key}.title`)}
-          </p>
-          <p className="text--content">
-            {t(`education.item.${key}.description`)}
-          </p>
-          <time>{t(`education.item.${key}.period`)}</time>
-        </div>
-      ))}
-    </div>
+    <InViewElement tag="div">
+      <>
+        <h3 className="heading--3 text--secondary">{t("education.title")}</h3>
+        {items.map((key, index) => (
+          <div key={`schoolgrade-${index}`}>
+            <p className="text--content-bold">
+              {t(`education.item.${key}.title`)}
+            </p>
+            <p className="text--content">
+              {t(`education.item.${key}.description`)}
+            </p>
+            <time>{t(`education.item.${key}.period`)}</time>
+          </div>
+        ))}
+      </>
+    </InViewElement>
   );
 }
 
@@ -155,31 +150,33 @@ function Hobbies() {
   }, []);
 
   return (
-    <div>
-      <h3 className="heading--3 text--secondary"> {t("hobbies.title")} </h3>
-      <div className={styles.hobbies}>
-        {hobbiesChunks.map((chunk, index) => {
-          return (
-            <div
-              key={`hobbies-chunk-${index}`}
-              className={styles.hobbies_column}
-            >
-              {chunk.map((hobby, index) => {
-                return (
-                  <SuperImage
-                    key={`hobby-${index}`}
-                    src={hobby.src}
-                    alt={hobby.alt}
-                    width={hobby.width}
-                    height={hobby.height}
-                  />
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <InViewElement tag="div">
+      <>
+        <h3 className="heading--3 text--secondary"> {t("hobbies.title")} </h3>
+        <div className={styles.hobbies}>
+          {hobbiesChunks.map((chunk, index) => {
+            return (
+              <div
+                key={`hobbies-chunk-${index}`}
+                className={styles.hobbies_column}
+              >
+                {chunk.map((hobby, index) => {
+                  return (
+                    <SuperImage
+                      key={`hobby-${index}`}
+                      src={hobby.src}
+                      alt={hobby.alt}
+                      width={hobby.width}
+                      height={hobby.height}
+                    />
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </>
+    </InViewElement>
   );
 }
 
@@ -198,54 +195,56 @@ function Skills() {
   };
 
   return (
-    <div>
-      <h4 className="heading--4 text--secondary"> {t("skills.title")} </h4>
-      <div className={styles.skillsList}>
-        {skillsItems.map((skill, index) => {
-          return (
-            <CircleProgress
-              key={`skill-${index}`}
-              value={getSkillValue(skill)}
-              color="info"
-              size={96}
-              thickness={2}
-            >
-              <Tooltip
-                slotProps={{
-                  popper: {
-                    modifiers: [
-                      {
-                        name: "offset",
-                        options: {
-                          offset: [0, 4],
-                        },
-                      },
-                    ],
-                  },
-                }}
-                title={t("skills.description", {
-                  projects: skill.projects,
-                  courses: skill.courses,
-                })}
-                TransitionComponent={Zoom}
-                leaveDelay={750}
-                arrow
+    <InViewElement tag="div">
+      <>
+        <h4 className="heading--4 text--secondary"> {t("skills.title")} </h4>
+        <div className={styles.skillsList}>
+          {skillsItems.map((skill, index) => {
+            return (
+              <CircleProgress
+                key={`skill-${index}`}
+                value={getSkillValue(skill)}
+                color="info"
+                size={96}
+                thickness={2}
               >
-                <div className={styles.skillsList_skillItem}>
-                  <span className="text--sm-bold">{skill.name}</span>
-                  <Image
-                    src={`/images/technologies/${skill.icon}.svg`}
-                    alt={skill.name}
-                    width={24}
-                    height={24}
-                  />
-                </div>
-              </Tooltip>
-            </CircleProgress>
-          );
-        })}
-      </div>
-    </div>
+                <Tooltip
+                  slotProps={{
+                    popper: {
+                      modifiers: [
+                        {
+                          name: "offset",
+                          options: {
+                            offset: [0, 4],
+                          },
+                        },
+                      ],
+                    },
+                  }}
+                  title={t("skills.description", {
+                    projects: skill.projects,
+                    courses: skill.courses,
+                  })}
+                  TransitionComponent={Zoom}
+                  leaveDelay={750}
+                  arrow
+                >
+                  <div className={styles.skillsList_skillItem}>
+                    <span className="text--sm-bold">{skill.name}</span>
+                    <Image
+                      src={`/images/technologies/${skill.icon}.svg`}
+                      alt={skill.name}
+                      width={24}
+                      height={24}
+                    />
+                  </div>
+                </Tooltip>
+              </CircleProgress>
+            );
+          })}
+        </div>
+      </>
+    </InViewElement>
   );
 }
 
@@ -253,37 +252,37 @@ export default function About() {
   const t = useTranslations("about");
 
   return (
-    <Slide in={true} timeout={500} direction="up">
-      <section className={`container ${styles.aboutMe}`}>
-        <h1 className="heading--1">{t("title")}</h1>
+    <PageTransition className={`container ${styles.aboutMe}`}>
+      <h1 className="heading--1">{t("title")}</h1>
 
-        <div className={styles.aboutMe_from}>
-          <Image
-            src="/images/yo_2.png"
-            alt="Andrew Gonzalez"
-            width={120}
-            height={120}
-            className={`circle ${styles.aboutMe_photo}`}
-          />
-          <Chip
-            avatar={<Avatar alt="Mx" src="/images/mx-flag.png" />}
-            label={t("from")}
-          />
-        </div>
+      <div className={styles.aboutMe_from}>
+        <Image
+          src="/images/yo_2.png"
+          alt="Andrew Gonzalez"
+          width={120}
+          height={120}
+          className={`circle ${styles.aboutMe_photo}`}
+        />
 
-        <div className={styles.aboutMe_brief}>
-          <p className="text--content text--primary">{t("description1")}</p>
-          <p className="text--content mt--2">{t("description2")}</p>
-        </div>
+        <Chip
+          avatar={<Avatar alt="Mx" src="/images/mx-flag.png" />}
+          label={t("from")}
+          size="small"
+        />
+      </div>
 
-        <Expirience />
+      <div className={styles.aboutMe_brief}>
+        <p className="text--content text--primary">{t("description1")}</p>
+        <p className="text--content mt--2">{t("description2")}</p>
+      </div>
 
-        <Education />
+      <Expirience />
 
-        <Skills />
+      <Education />
 
-        <Hobbies />
-      </section>
-    </Slide>
+      <Skills />
+
+      <Hobbies />
+    </PageTransition>
   );
 }

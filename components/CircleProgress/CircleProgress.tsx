@@ -3,6 +3,7 @@ import CircularProgress, {
   CircularProgressProps,
 } from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import useInViewElement from "@/hooks/useInViewElement/useInViewElement";
 
 interface CircleProgressProps extends CircularProgressProps {
   value: number;

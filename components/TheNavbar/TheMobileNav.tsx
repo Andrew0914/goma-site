@@ -40,8 +40,12 @@ export default function TheMobileNav() {
         borderRadius: 4,
         marginTop: theme.spacing(1),
         minWidth: 200,
+        backgroundColor: "var(--contrast)",
       },
-    }),
+      "& .MuiList-root": {
+        backgroundColor: "var(--contrast)",
+      },
+    })
   );
 
   const t = useTranslations("thenavbar");
@@ -63,10 +67,11 @@ export default function TheMobileNav() {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        style={{ minWidth: "40px" }}
+        style={{ minWidth: "40px", boxShadow: "none" }}
       >
         <MenuIcon fontSize="large" />
       </Button>
+
       <StyledMenu
         id="basic-menu"
         anchorEl={anchorEl}
