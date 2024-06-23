@@ -13,20 +13,22 @@ const extendedMuiTheme = extendTheme({
   colorSchemes: {
     dark: {
       palette: {
-        primary: { main: "#8b5cf6", contrastText: "#fff" },
-        secondary: { main: "#737db0", contrastText: "#fff" },
-        info: { main: "#d8b4fe", contrastText: "#000" },
-        warning: { main: "#fde047", contrastText: "#000" },
+        primary: { main: "#d62ad0", contrastText: "#fff" },
+        secondary: { main: "#fb7afc", contrastText: "#000" },
+        info: { main: "#fbb4f5", contrastText: "#000" },
+        warning: { main: "#fff455", contrastText: "#000" },
         error: { main: "#ef4444", contrastText: "#fff" },
+        success: { main: "#67ff64", contrastText: "#000" },
       },
     },
     light: {
       palette: {
         primary: { main: "#0369a1", contrastText: "#fff" },
         secondary: { main: "#155e75", contrastText: "#fff" },
-        info: { main: "#2563eb", contrastText: "#fff" },
-        warning: { main: "#facc15", contrastText: "#000" },
+        info: { main: "#487df0", contrastText: "#fff" },
+        warning: { main: "#ffc700", contrastText: "#000" },
         error: { main: "#dc2626", contrastText: "#fff" },
+        success: { main: "#059212", contrastText: "#fff" },
       },
     },
   },

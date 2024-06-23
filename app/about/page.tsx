@@ -1,5 +1,13 @@
 import { LocationOn } from "@mui/icons-material";
-import { Chip, Tooltip, Zoom } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Chip,
+  Grow,
+  Slide,
+  Tooltip,
+  Zoom,
+} from "@mui/material";
 import Image from "next/image";
 import styles from "./page.module.scss";
 import { Skill, jobs as jobsMeta, skills as skillsItems } from "./data";
@@ -149,12 +157,12 @@ function Hobbies() {
   return (
     <div>
       <h3 className="heading--3 text--secondary"> {t("hobbies.title")} </h3>
-      <div className={styles.gallery}>
+      <div className={styles.hobbies}>
         {hobbiesChunks.map((chunk, index) => {
           return (
             <div
               key={`hobbies-chunk-${index}`}
-              className={styles.gallery_column}
+              className={styles.hobbies_column}
             >
               {chunk.map((hobby, index) => {
                 return (
@@ -192,7 +200,7 @@ function Skills() {
   return (
     <div>
       <h4 className="heading--4 text--secondary"> {t("skills.title")} </h4>
-      <div className={styles.aboutMe_skillsList}>
+      <div className={styles.skillsList}>
         {skillsItems.map((skill, index) => {
           return (
             <CircleProgress
@@ -223,7 +231,7 @@ function Skills() {
                 leaveDelay={750}
                 arrow
               >
-                <div className={styles.aboutMe_skillItem}>
+                <div className={styles.skillsList_skillItem}>
                   <span className="text--sm-bold">{skill.name}</span>
                   <Image
                     src={`/images/technologies/${skill.icon}.svg`}
@@ -245,30 +253,37 @@ export default function About() {
   const t = useTranslations("about");
 
   return (
-    <section className={`container ${styles.aboutMe}`}>
-      <div>
+    <Slide in={true} timeout={500} direction="up">
+      <section className={`container ${styles.aboutMe}`}>
         <h1 className="heading--1">{t("title")}</h1>
-        <Image
-          src="/images/yo_2.png"
-          alt="Andrew"
-          width={120}
-          height={120}
-          className={`circle ${styles.photoOfMe}`}
-        />
-        <Chip icon={<LocationOn />} label="Mexico City, Mexico" size="small" />
-      </div>
-      <div className={styles.aboutMe_brief}>
-        <p className="text--content text--info">{t("description1")}</p>
 
-        <p className="text--content mt--2">{t("description2")}</p>
-      </div>
+        <div className={styles.aboutMe_from}>
+          <Image
+            src="/images/yo_2.png"
+            alt="Andrew Gonzalez"
+            width={120}
+            height={120}
+            className={`circle ${styles.aboutMe_photo}`}
+          />
+          <Chip
+            avatar={<Avatar alt="Mx" src="/images/mx-flag.png" />}
+            label={t("from")}
+          />
+        </div>
 
-      <Expirience />
+        <div className={styles.aboutMe_brief}>
+          <p className="text--content text--primary">{t("description1")}</p>
+          <p className="text--content mt--2">{t("description2")}</p>
+        </div>
 
-      <Education />
+        <Expirience />
 
-      <Skills />
-      <Hobbies />
-    </section>
+        <Education />
+
+        <Skills />
+
+        <Hobbies />
+      </section>
+    </Slide>
   );
 }

@@ -30,6 +30,7 @@
   },
   "about": {
     "title": "Acerca de mí",
+    "from": "CDMX, México",
     "description1": "Soy Andrew, un desarrollador de software de la Ciudad de México 🇲🇽, en estos días, me enfoco en mejorar en el lenguaje Elixir 💧, enriquecer mi portafolio y crear cursos de los cuales otras personas puedan aprender.",
     "description2": "Durante los últimos 8+ años, he trabajado en diversas áreas del desarrollo de software, incluyendo front-end, back-end y móvil. Estoy orgulloso de haber jugado varios papeles.",
     "experience": {
@@ -83,7 +84,7 @@
       }
     },
     "skills": {
-      "title": "Habilidades",
+      "title": "Habilidades Destacadas",
       "description": "Projectos {projects} | Cursos {courses}"
     },
     "hobbies": {
@@ -96,7 +97,7 @@
         "museums": "Museo de antroplogia e historia 🏛️",
         "huatulco": "Huatulco 🌴",
         "thisIsFine": "This is fine 🔥",
-        "running": "Me gusta csalir a correr las mañanas ☀️🏃🏾"
+        "running": "Me gusta salir a correr las mañanas ☀️🏃🏾"
       }
     }
   }

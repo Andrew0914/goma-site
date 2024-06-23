@@ -3,41 +3,35 @@
 .aboutMe {
   display: flex;
   flex-flow: column;
-  align-items: flex-start;
-  gap: 56px;
+  align-items: center;
+  gap: 80px;
   padding-top: 64px;
 
   & > div {
     display: flex;
     flex-flow: column;
     gap: 24px;
-    align-items: flex-start;
-    padding: 0px;
+
     & > p {
       margin: 0;
     }
   }
 
   &_brief {
-    max-width: 65%;
+    max-width: 60%;
+    text-align: center;
+    @media screen and (width <= 520px) {
+      max-width: 100%;
+    }
   }
 
-  &_skillsList {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 48px;
+  &_photo {
+    background-image: var($--radial-gradient);
   }
 
-  &_skillItem {
-    display: flex;
-    flex-flow: column;
-    gap: 4px;
+  &_from {
     align-items: center;
   }
-}
-
-.photoOfMe {
-  background-image: var($--radial-gradient);
 }
 
 .jobsExperience {
@@ -75,11 +69,28 @@
   }
 }
 
-.gallery {
+.skillsList {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  gap: 48px;
+
+  @media screen and (width <= 520px) {
+    gap: 24px;
+  }
+  &_skillItem {
+    display: flex;
+    flex-flow: column;
+    gap: 4px;
+    align-items: center;
+  }
+}
+
+.hobbies {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px !important;
-
+  margin-bottom: 24px;
   @media screen and (width <= 520px) {
     grid-template-columns: repeat(1, 1fr);
   }

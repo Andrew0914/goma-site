@@ -30,6 +30,7 @@
   },
   "about": {
     "title": "About me",
+    "from": "Mexico City, Mexico",
     "description1": "I am Andrew, a software developer from Mexico City 🇲🇽, These days, I focus on improving at Elixir 💧 language, enrich my portfolio and creating courses from which other people can learn.",
     "description2": "Over the past 8+ years, I've worked in various areas of software development, including front-end , back end and mobile. I'm proud to have worn many hats.",
     "experience": {
@@ -83,7 +84,7 @@
       }
     },
     "skills": {
-      "title": "Skills",
+      "title": "Top skills",
       "description": "Projects {projects} | Courses {courses}"
     },
     "hobbies": {

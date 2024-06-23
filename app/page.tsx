@@ -1,5 +1,5 @@
 import styles from "./page.module.scss";
-import { Fade, Grow, Slide } from "@mui/material";
+import { Fade, Grow, Slide, Zoom } from "@mui/material";
 import { GitHub, X } from "@mui/icons-material";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -9,7 +9,7 @@ export default function Home() {
   const t = useTranslations("home");
 
   return (
-    <Grow in={true} timeout={500}>
+    <Zoom in={true} timeout={500}>
       <section className={`container--sm ${styles.home}`}>
         <h1 className="heading--1">
           {t.rich("title", {
@@ -36,6 +36,6 @@ export default function Home() {
           </a>
         </div>
       </section>
-    </Grow>
+    </Zoom>
   );
 }
