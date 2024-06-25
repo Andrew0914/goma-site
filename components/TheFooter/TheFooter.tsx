@@ -8,7 +8,7 @@ export default function TheFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={`${styles.theFooter} text--sm text--muted`}>
+    <footer className={`${styles.theFooter} text--sm`}>
       <div className={`${styles.theFooter_content} container`}>
         <div>
           {t("follow")}
