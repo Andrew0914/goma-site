@@ -20,7 +20,7 @@ function Expirience() {
 
   return (
     <div>
-      <h3 className="heading--3 text--secondary"> {t("experience.title")} </h3>
+      <h3 className="heading--3"> {t("experience.title")} </h3>
       <ul className={styles.jobsExperience}>
         {jobs.map((key, index) => (
           <li className={styles.jobsExperience_item} key={`jobitem-${index}`}>
@@ -72,7 +72,7 @@ function Education() {
   return (
     <InViewElement tag="div">
       <>
-        <h3 className="heading--3 text--secondary">{t("education.title")}</h3>
+        <h3 className="heading--3">{t("education.title")}</h3>
         {items.map((key, index) => (
           <div key={`schoolgrade-${index}`}>
             <p className="text--content-bold">
@@ -152,7 +152,7 @@ function Hobbies() {
   return (
     <InViewElement tag="div">
       <>
-        <h3 className="heading--3 text--secondary"> {t("hobbies.title")} </h3>
+        <h3 className="heading--3"> {t("hobbies.title")} </h3>
         <div className={styles.hobbies}>
           {hobbiesChunks.map((chunk, index) => {
             return (
@@ -197,7 +197,7 @@ function Skills() {
   return (
     <InViewElement tag="div">
       <>
-        <h4 className="heading--4 text--secondary"> {t("skills.title")} </h4>
+        <h4 className="heading--4"> {t("skills.title")} </h4>
         <div className={styles.skillsList}>
           {skillsItems.map((skill, index) => {
             return (
@@ -272,7 +272,7 @@ export default function About() {
       </div>
 
       <div className={styles.aboutMe_brief}>
-        <p className="text--content text--primary">{t("description1")}</p>
+        <p className="text--content text--info">{t("description1")}</p>
         <p className="text--content mt--2">{t("description2")}</p>
       </div>
 

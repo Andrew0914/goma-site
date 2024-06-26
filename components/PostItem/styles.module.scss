@@ -1,0 +1,30 @@
+@import "@/styles/colors";
+
+.postItem {
+  display: flex;
+  gap: 16px;
+  flex-flow: column;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--divider);
+  padding: 24px 0;
+
+  & > figure {
+    margin: 0 auto;
+  }
+
+  &_meta {
+    display: flex;
+    flex-flow: column-reverse;
+    gap: 8px;
+  }
+
+  &_avatar {
+    background-image: var($--highligh-gradient);
+  }
+
+  &_author {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+}

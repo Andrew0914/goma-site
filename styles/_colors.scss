@@ -19,6 +19,7 @@ $--radial-gradient: --radial-gradient;
 $--dark-gradient-transparent: --dark-gradient-transparent;
 $--black: --black;
 $--white: --white;
+$--divider: --divider;
 
 // Default theme
 $theme-map-light: (
@@ -49,7 +50,8 @@ $theme-map-light: (
       rgba(253, 253, 253, 0.9),
       rgba(255, 255, 255, 1)
     ),
-  $--radial-gradient: radial-gradient(circle, rgba(80, 157, 231, 1) 31%, rgba(90, 224, 245, 1) 78%)
+  $--radial-gradient: radial-gradient(circle, rgba(80, 157, 231, 1) 31%, rgba(90, 224, 245, 1) 78%),
+  $--divider: #d6d6d6
 );
 
 // Override the default light theme
@@ -74,7 +76,8 @@ $theme-map-dark: (
   $--up-fade-gradient: linear-gradient(0deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
   $--down-fade-gradient:
     linear-gradient(0deg, rgba(18, 18, 18, 0.1), rgba(18, 18, 18, 0.5), rgba(18, 18, 18, 0.9), rgba(9, 9, 9, 1)),
-  $--radial-gradient: radial-gradient(circle, rgba(255, 148, 222, 1) 62%, rgba(255, 128, 200, 1) 78%)
+  $--radial-gradient: radial-gradient(circle, rgba(255, 148, 222, 1) 62%, rgba(255, 128, 200, 1) 78%),
+  $--divider: #232323
 );
 
 $theme-map-universal: (
