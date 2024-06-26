@@ -96,50 +96,50 @@ function Hobbies() {
     {
       src: "/images/hobbies/videogames.png",
       alt: t("hobbies.gallery.videogames"),
-      width: 329,
-      height: 276,
+      width: 235,
+      height: 235,
     },
     {
       src: "/images/hobbies/cdmx.png",
       alt: t("hobbies.gallery.mexicoCity"),
-      width: 377,
-      height: 295,
+      width: 235,
+      height: 250,
     },
     {
       src: "/images/hobbies/oaxaca_2.jpg",
       alt: t("hobbies.gallery.oaxaca"),
-      width: 330,
-      height: 586,
+      width: 235,
+      height: 400,
     },
     {
       src: "/images/hobbies/navidad.png",
       alt: t("hobbies.gallery.christmas"),
-      width: 361,
-      height: 348,
+      width: 235,
+      height: 235,
     },
     {
       src: "/images/hobbies/aztec_stone.jpg",
       alt: t("hobbies.gallery.museums"),
-      width: 330,
-      height: 586,
+      width: 235,
+      height: 400,
     },
     {
       src: "/images/hobbies/huatulco.png",
       alt: t("hobbies.gallery.huatulco"),
-      width: 543,
-      height: 223,
+      width: 235,
+      height: 200,
     },
     {
       src: "/images/hobbies/emotional_state.jpg",
       alt: t("hobbies.gallery.thisIsFine"),
-      width: 330,
-      height: 586,
+      width: 235,
+      height: 400,
     },
     {
       src: "/images/hobbies/running.png",
       alt: t("hobbies.gallery.running"),
-      width: 363,
-      height: 465,
+      width: 235,
+      height: 385,
     },
   ];
 
@@ -252,7 +252,7 @@ export default function About() {
   const t = useTranslations("about");
 
   return (
-    <PageTransition className={`container ${styles.aboutMe}`}>
+    <PageTransition className={`container--sm ${styles.aboutMe}`}>
       <h1 className="heading--1">{t("title")}</h1>
 
       <div className={styles.aboutMe_from}>

@@ -3,9 +3,7 @@
 .aboutMe {
   display: flex;
   flex-flow: column;
-  align-items: center;
   gap: 80px;
-  padding-top: 24px;
 
   & > div {
     display: flex;
@@ -17,20 +15,12 @@
     }
   }
 
-  &_brief {
-    max-width: 60%;
-    text-align: center;
-    @media screen and (width <= 520px) {
-      max-width: 100%;
-    }
-  }
-
   &_photo {
     background-image: var($--radial-gradient);
   }
 
   &_from {
-    align-items: center;
+    align-items: flex-start;
   }
 }
 
@@ -89,7 +79,7 @@
 .hobbies {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px !important;
+  gap: 8px !important;
   margin-bottom: 24px;
   @media screen and (width <= 520px) {
     grid-template-columns: repeat(1, 1fr);
@@ -98,7 +88,7 @@
   &_column {
     display: flex;
     flex-flow: column;
-    gap: 16px;
+    gap: 8px !important;
   }
 
   &_item {
