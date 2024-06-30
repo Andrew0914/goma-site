@@ -252,7 +252,7 @@ export default function About() {
   const t = useTranslations("about");
 
   return (
-    <PageTransition className={`container--sm ${styles.aboutMe}`}>
+    <PageTransition className={`container ${styles.aboutMe}`}>
       <h1 className="heading--1">{t("title")}</h1>
 
       <div className={styles.aboutMe_from}>

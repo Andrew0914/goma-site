@@ -25,28 +25,32 @@ export default function TheMobileNav() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+
     setAnchorEl(event.currentTarget);
   };
   const router = useRouter();
 
-  const handleClose = (route: string) => {
+  const handleClose = (event: React.MouseEvent, route: string) => {
+    event.stopPropagation();
+
     setAnchorEl(null);
     router.push(route);
   };
 
-  const StyledMenu = styled((props: MenuProps) => <Menu {...props} />)(
-    ({ theme }) => ({
-      "& .MuiPaper-root": {
-        borderRadius: 4,
-        marginTop: theme.spacing(1),
-        minWidth: 200,
-        backgroundColor: "var(--contrast)",
-      },
-      "& .MuiList-root": {
-        backgroundColor: "var(--contrast)",
-      },
-    })
-  );
+  const StyledMenu = styled((props: MenuProps) => (
+    <Menu disableScrollLock {...props} />
+  ))(({ theme }) => ({
+    "& .MuiPaper-root": {
+      borderRadius: 4,
+      marginTop: theme.spacing(1),
+      minWidth: 200,
+      backgroundColor: "var(--contrast)",
+    },
+    "& .MuiList-root": {
+      backgroundColor: "var(--contrast)",
+    },
+  }));
 
   const t = useTranslations("thenavbar");
 
@@ -85,7 +89,7 @@ export default function TheMobileNav() {
         {routesOptions.map((option, index) => (
           <MenuItem
             key={`mobilenav-opt-${index}`}
-            onClick={() => handleClose(option.route)}
+            onClick={(e) => handleClose(e, option.route)}
           >
             <ListItemIcon>{option.icon}</ListItemIcon>
             <ListItemText

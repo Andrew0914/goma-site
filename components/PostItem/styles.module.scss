@@ -6,7 +6,13 @@
   flex-flow: column;
   align-items: flex-start;
   border-bottom: 1px solid var(--divider);
-  padding: 24px 0;
+  padding: 24px 64px;
+  box-sizing: border-box;
+
+  @media screen and (width <= 820px) {
+    width: 100%;
+    padding: 16px 8px;
+  }
 
   & > figure {
     margin: 0 auto;

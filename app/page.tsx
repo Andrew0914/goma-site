@@ -8,7 +8,7 @@ export default function Home() {
   const t = useTranslations("home");
 
   return (
-    <PageTransition className={`container--sm ${styles.home}`}>
+    <PageTransition className={`container ${styles.home}`}>
       <h1 className="heading--1">
         {t.rich("title", {
           span: (children) => (

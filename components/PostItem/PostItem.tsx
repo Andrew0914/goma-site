@@ -40,9 +40,9 @@ export default function PostItem({ post }: PostItemProps) {
 
       <p className="text--content">{post.excerpt}</p>
 
-      <Button href={post.slug} variant="outlined" color="inherit">
+      <Link href={`blog/posts/${post.slug}?id=${post.slug}`}>
         Read more &rarr;
-      </Button>
+      </Link>
     </article>
   );
 }

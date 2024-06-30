@@ -41,17 +41,4 @@ export const posts: Post[] = [
       height: 250
     }
   },
-  {
-    title: "My first post",
-    date: new Date(),
-    slug: "my-first-post",
-    excerpt: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eaque veniam reprehenderit quod quisquam corporis autem est. Laudantium eius cum nam quia at. Debitis facilis quia dolorem delectus ipsa illum!",
-    author: meAsAuthor,
-    thumbnail: {
-      src: "/images/hobbies/videogames.png",
-      alt: "I like videogames",
-      width: 250,
-      height: 250
-    }
-  }
 ]

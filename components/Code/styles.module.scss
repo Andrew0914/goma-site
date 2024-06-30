@@ -1,0 +1,77 @@
+@import "@/styles/colors";
+
+.codeBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &_themeSelector {
+    align-self: flex-end;
+  }
+
+  &_codeFrame {
+    border-radius: 8px;
+    box-shadow: 2px 3px 10px var(--drop-shadow);
+
+    & > div:nth-child(2) {
+      border-radius: 0px 0px 8px 8px !important;
+      margin: 0 !important;
+    }
+
+    & > .codebox_topBar {
+      background-color: var(--code-topbar);
+      height: 40px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 8px 8px 0px 0px;
+      box-sizing: border-box;
+      border-bottom: 1px solid var(--code-topbar-border);
+      padding: 8px;
+    }
+  }
+}
+
+.codeBox_topBar_left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  & .codeBox_topBar_circle:nth-child(1) {
+    background-color: var(--danger);
+  }
+
+  & .codeBox_topBar_circle:nth-child(2) {
+    background-color: var(--warning);
+  }
+
+  & .codeBox_topBar_circle:nth-child(3) {
+    background-color: var(--success);
+  }
+}
+
+.codeBox_topBar_circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+
+.codeBox_topBar_optionsDots {
+  color: var(--text-muted) !important;
+}
+
+.codeBox_topBar_options > button {
+  padding: 0;
+}
+
+.codeBox_topBar_optionsMenu {
+  background-color: var(--contrast);
+  border-radius: 8px;
+  border: 1px solid var(--code-topbar-border);
+}
+
+.codeBox_topBar_optionsMenuSelected {
+  background-color: var(--active) !important;
+  color: var(--contrast);
+}

@@ -1,11 +1,11 @@
-import PageTransition from "@/components/PageTransition/PageTransition";
 import { posts } from "./data";
 import PostItem from "@/components/PostItem/PostItem";
-import styles from "./styles.module.scss";
+import styles from "./page.module.scss";
+import PageTransition from "@/components/PageTransition/PageTransition";
 
 export default function Blog() {
   return (
-    <PageTransition className="container--sm">
+    <PageTransition className={`container`}>
       <header className="mb--2">
         <h1 className="heading--1">The blog</h1>
         <p className="text--xl my--2">

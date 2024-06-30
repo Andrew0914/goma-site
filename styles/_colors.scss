@@ -10,7 +10,6 @@ $--active: --active;
 $--warning: --warning;
 $--danger: --danger;
 $--contrast: --contrast;
-$--contrast-2: --contrast-2;
 $--drop-shadow: --drop-shadow;
 $--highligh-gradient: --highligh-gradient;
 $--up-fade-gradient: --up-fade-gradient;
@@ -20,6 +19,8 @@ $--dark-gradient-transparent: --dark-gradient-transparent;
 $--black: --black;
 $--white: --white;
 $--divider: --divider;
+$--code-topbar: --code-topbar;
+$--code-topbar-border: --code-topbar-border;
 
 // Default theme
 $theme-map-light: (
@@ -29,16 +30,15 @@ $theme-map-light: (
 
   $--primary: #0369a1,
   $--secondary: #155e75,
-  $--info: #487df0,
-  $--active: #4f46e5,
+  $--info: #638fee,
+  $--active: #726ce2,
 
   $--warning: #ffc700,
   $--danger: #dc2626,
   $--success: #059212,
 
   $--contrast: #ffff,
-  $--contrast-2: #f3f3f3,
-  $--drop-shadow: rgba(0, 0, 0, 0.15),
+  $--drop-shadow: rgba(0, 0, 0, 0.6),
   $--highligh-gradient: linear-gradient(45deg, #6558cc, #dc7689, #f9af39),
   $--up-fade-gradient:
     linear-gradient(0deg, rgba(173, 173, 173, 0.5), rgba(213, 213, 213, 0.6), rgba(253, 253, 253, 0.2)),
@@ -51,7 +51,9 @@ $theme-map-light: (
       rgba(255, 255, 255, 1)
     ),
   $--radial-gradient: radial-gradient(circle, rgba(80, 157, 231, 1) 31%, rgba(90, 224, 245, 1) 78%),
-  $--divider: #d6d6d6
+  $--divider: #d6d6d6,
+  $--code-topbar: #efe9e9,
+  $--code-topbar-border: #cfcece
 );
 
 // Override the default light theme
@@ -69,15 +71,16 @@ $theme-map-dark: (
   $--danger: #ef4444,
   $--success: #67ff64,
 
-  $--contrast: #201b1b,
-  $--contrast-2: #1f1f1f,
+  $--contrast: #0c0c0c,
   $--drop-shadow: rgba(0, 0, 0, 0.7),
   $--highligh-gradient: linear-gradient(45deg, #9b59b6, #e74c3c, #f39c12),
   $--up-fade-gradient: linear-gradient(0deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
   $--down-fade-gradient:
     linear-gradient(0deg, rgba(18, 18, 18, 0.1), rgba(18, 18, 18, 0.5), rgba(18, 18, 18, 0.9), rgba(9, 9, 9, 1)),
   $--radial-gradient: radial-gradient(circle, rgba(255, 148, 222, 1) 62%, rgba(255, 128, 200, 1) 78%),
-  $--divider: #232323
+  $--divider: #232323,
+  $--code-topbar: #2e2634,
+  $--code-topbar-border: #1d1e22
 );
 
 $theme-map-universal: (
