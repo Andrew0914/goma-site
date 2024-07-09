@@ -100,5 +100,10 @@
         "running": "Corro por las mañanas ☀️🏃🏾"
       }
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Mis experiencias sobre programación, tecnología, mi vida y pensamientos como desarrollador.",
+    "readMore": "Leer más"
   }
 }

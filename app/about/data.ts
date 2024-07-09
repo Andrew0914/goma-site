@@ -107,3 +107,62 @@ export const skills: Skill[] = [
   },
 
 ];
+
+export interface Hobby {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+
+export const hobbies: Hobby[] = [
+  {
+    src: "/images/hobbies/videogames.png",
+    alt: "hobbies.gallery.videogames",
+    width: 363,
+    height: 294,
+  },
+  {
+    src: "/images/hobbies/cdmx.png",
+    alt: "hobbies.gallery.mexicoCity",
+    width: 434,
+    height: 308,
+  },
+  {
+    src: "/images/hobbies/oaxaca_2.jpg",
+    alt: "hobbies.gallery.oaxaca",
+    width: 315,
+    height: 560,
+  },
+  {
+    src: "/images/hobbies/navidad.png",
+    alt: "hobbies.gallery.christmas",
+    width: 434,
+    height: 328,
+  },
+  {
+    src: "/images/hobbies/aztec_stone.jpg",
+    alt: "hobbies.gallery.museums",
+    width: 315,
+    height: 560,
+  },
+  {
+    src: "/images/hobbies/huatulco.png",
+    alt: "hobbies.gallery.huatulco",
+    width: 408,
+    height: 223,
+  },
+  {
+    src: "/images/hobbies/emotional_state.jpg",
+    alt: "hobbies.gallery.thisIsFine",
+    width: 315,
+    height: 560,
+  },
+  {
+    src: "/images/hobbies/running.png",
+    alt: "hobbies.gallery.running",
+    width: 363,
+    height: 450,
+  },
+];

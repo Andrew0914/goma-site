@@ -100,5 +100,10 @@
         "running": "Love to run in the mornings ☀️"
       }
     }
+  },
+  "blog": {
+    "title": "The blog",
+    "description": "My sharing about programming, technology, my life and thoughts as a developer.",
+    "readMore": "Read more"
   }
 }

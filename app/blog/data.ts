@@ -29,7 +29,7 @@ const meAsAuthor: Author = {
 // in memory until 30 posts
 export const posts: Post[] = [
   {
-    title: "My first post",
+    title: "My first post with large title and long text",
     date: new Date(),
     slug: "my-first-post",
     excerpt: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eaque veniam reprehenderit quod quisquam corporis autem est. Laudantium eius cum nam quia at. Debitis facilis quia dolorem delectus ipsa illum!",

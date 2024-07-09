@@ -1,18 +1,18 @@
 import { Avatar, Chip, Tooltip, Zoom } from "@mui/material";
 import Image from "next/image";
 import styles from "./page.module.scss";
-import { Skill, jobs as jobsMeta, skills as skillsItems } from "./data";
+import {
+  Hobby,
+  Skill,
+  hobbies,
+  jobs as jobsMeta,
+  skills as skillsItems,
+} from "./data";
 import { useTranslations } from "next-intl";
 import SuperImage from "@/components/SuperImage/SuperImage";
 import CircleProgress from "@/components/CircleProgress/CircleProgress";
 import PageTransition from "@/components/PageTransition/PageTransition";
 import InViewElement from "@/components/InViewElement/InViewElement";
-interface Hobby {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-}
 
 function Expirience() {
   const t = useTranslations("about");
@@ -92,56 +92,6 @@ function Education() {
 function Hobbies() {
   const HOBBIES_PER_COLUMN = 3;
   const t = useTranslations("about");
-  const hobbies: Hobby[] = [
-    {
-      src: "/images/hobbies/videogames.png",
-      alt: t("hobbies.gallery.videogames"),
-      width: 235,
-      height: 235,
-    },
-    {
-      src: "/images/hobbies/cdmx.png",
-      alt: t("hobbies.gallery.mexicoCity"),
-      width: 235,
-      height: 250,
-    },
-    {
-      src: "/images/hobbies/oaxaca_2.jpg",
-      alt: t("hobbies.gallery.oaxaca"),
-      width: 235,
-      height: 400,
-    },
-    {
-      src: "/images/hobbies/navidad.png",
-      alt: t("hobbies.gallery.christmas"),
-      width: 235,
-      height: 235,
-    },
-    {
-      src: "/images/hobbies/aztec_stone.jpg",
-      alt: t("hobbies.gallery.museums"),
-      width: 235,
-      height: 400,
-    },
-    {
-      src: "/images/hobbies/huatulco.png",
-      alt: t("hobbies.gallery.huatulco"),
-      width: 235,
-      height: 200,
-    },
-    {
-      src: "/images/hobbies/emotional_state.jpg",
-      alt: t("hobbies.gallery.thisIsFine"),
-      width: 235,
-      height: 400,
-    },
-    {
-      src: "/images/hobbies/running.png",
-      alt: t("hobbies.gallery.running"),
-      width: 235,
-      height: 385,
-    },
-  ];
 
   const hobbiesChunks = hobbies.reduce((acc: Hobby[][], _hobby, index) => {
     if (index % HOBBIES_PER_COLUMN === 0)
@@ -165,7 +115,7 @@ function Hobbies() {
                     <SuperImage
                       key={`hobby-${index}`}
                       src={hobby.src}
-                      alt={hobby.alt}
+                      alt={t(hobby.alt)}
                       width={hobby.width}
                       height={hobby.height}
                     />

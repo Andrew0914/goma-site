@@ -45,13 +45,6 @@ const extendedMuiTheme = extendTheme({
         },
       },
     },
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          boxShadow: "1px 1px 1px 0px var(--drop-shadow)",
-        },
-      },
-    },
   },
 });
 

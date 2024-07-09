@@ -13,7 +13,6 @@ export default function Home() {
         {t.rich("title", {
           span: (children) => (
             <span className="text--super" style={{ display: "inline-block" }}>
-              {" "}
               &#123; {children} &#125;
             </span>
           ),

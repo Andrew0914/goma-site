@@ -2,18 +2,27 @@ import { Post } from "@/app/blog/data";
 import Image from "next/image";
 import SuperImage from "../SuperImage/SuperImage";
 import styles from "./styles.module.scss";
-import { Button } from "@mui/material";
 import Link from "next/link";
+import { useFormatter, useTranslations } from "next-intl";
+import { Button } from "@mui/material";
 
 interface PostItemProps {
   post: Post;
 }
 
 export default function PostItem({ post }: PostItemProps) {
+  const formatter = useFormatter();
+  const t = useTranslations("blog");
   return (
     <article className={styles.postItem}>
       <div className={styles.postItem_meta}>
-        <time className="text--sm text--muted">{post.date.toDateString()}</time>
+        <time className="text--sm text--muted">
+          {formatter.dateTime(post.date, {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </time>
         <span className={styles.postItem_author}>
           <Image
             src={post.author.avatar}
@@ -40,9 +49,13 @@ export default function PostItem({ post }: PostItemProps) {
 
       <p className="text--content">{post.excerpt}</p>
 
-      <Link href={`blog/posts/${post.slug}?id=${post.slug}`}>
-        Read more &rarr;
-      </Link>
+      <Button
+        variant="outlined"
+        color="info"
+        href={`blog/posts/${post.slug}?id=${post.slug}`}
+      >
+        {t("readMore")} &rarr;
+      </Button>
     </article>
   );
 }
