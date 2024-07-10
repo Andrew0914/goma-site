@@ -17,35 +17,39 @@ export default function PostItem({ post }: PostItemProps) {
     <article className={styles.postItem}>
       <div className={styles.postItem_meta}>
         <time className="text--sm text--muted">
-          {formatter.dateTime(post.date, {
+          {formatter.dateTime(new Date(post.date), {
             month: "short",
             day: "numeric",
             year: "numeric",
           })}
         </time>
         <span className={styles.postItem_author}>
-          <Image
-            src={post.author.avatar}
-            alt={post.author.name}
-            width={24}
-            height={24}
-            className={`circle ${styles.postItem_avatar}`}
-          />
+          {post.author && (
+            <Image
+              src={post.author.avatar}
+              alt={post.author.name}
+              width={24}
+              height={24}
+              className={`circle ${styles.postItem_avatar}`}
+            />
+          )}
+
           <Link href="/about" className="text--muted text--content">
-            {post.author.name}
+            {post.author?.name}
           </Link>
         </span>
       </div>
 
       <h3 className="heading--3">{post.title}</h3>
-
-      <SuperImage
-        className={styles.postItem_thumbnail}
-        src={post.thumbnail.src}
-        alt={post.thumbnail.alt}
-        width={post.thumbnail.width}
-        height={post.thumbnail.height}
-      />
+      {post.thumbnail && (
+        <SuperImage
+          className={styles.postItem_thumbnail}
+          src={post.thumbnail.src}
+          alt={post.thumbnail.alt}
+          width={post.thumbnail.width}
+          height={post.thumbnail.height}
+        />
+      )}
 
       <p className="text--content">{post.excerpt}</p>
 
