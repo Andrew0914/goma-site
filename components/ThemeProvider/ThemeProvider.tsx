@@ -23,10 +23,16 @@ const extendedMuiTheme = extendTheme({
     },
     light: {
       palette: {
-        primary: { main: "#0369a1", contrastText: "#fff" },
+        primary: {
+          main: "#0369a1",
+          contrastText: "#fff",
+        },
         secondary: { main: "#155e75", contrastText: "#fff" },
         info: { main: "#487df0", contrastText: "#fff" },
-        warning: { main: "#ffc700", contrastText: "#000" },
+        warning: {
+          main: "#ffc700",
+          contrastText: "#000",
+        },
         error: { main: "#dc2626", contrastText: "#fff" },
         success: { main: "#059212", contrastText: "#fff" },
       },
@@ -42,6 +48,40 @@ const extendedMuiTheme = extendTheme({
         },
         arrow: {
           color: "var(--contrast)",
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        containedInfo: {
+          ":hover": {
+            color: "var(--white)",
+          },
+        },
+        containedPrimary: {
+          ":hover": {
+            color: "var(--white)",
+          },
+        },
+        containedSecondary: {
+          ":hover": {
+            color: "var(--text)",
+          },
+        },
+        containedSuccess: {
+          ":hover": {
+            color: "var(--white)",
+          },
+        },
+        containedError: {
+          ":hover": {
+            color: "var(--white)",
+          },
+        },
+        containedWarning: {
+          ":hover": {
+            color: "var(--white)",
+          },
         },
       },
     },

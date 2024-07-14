@@ -2,7 +2,7 @@
 .superImage {
   position: relative;
   overflow: hidden;
-
+  border-radius: 2px;
   &_image {
     transition: transform 0.3s ease-in-out;
     &:hover {

@@ -1,0 +1,243 @@
+# Anatomía de una prueba unitaria
+## Unit testing, principios, prácticas y patrones | Resumen
+
+
+**¿Cómo escribir una prueba unitara?** A lo largo de este post conoceremos la estructura de una prueba unitaria, usualmente está representada por las fases de: arrange, act y assert (AAA), se abordarán las buenas prácticas para estructurar tus pruebas y para nombrarlas, por último veremos como sacar provecho al framewrok de pruebas que estés utilizando.
+
+### ¿Cómo estructurar una prueba unitaria?
+#### Usando el patrón AAA
+El patrón AAA tiene como objetivo dividir cada una de las pruebas en 3 fases: arrange, act y assert, que en español sería: organizar, actuar y verficar, comencemos con un ejemplo para explicar cada una de estas partes:
+
+> Los ejemplos en este post están escritos en javascript usando el framewrok de pruebas JEST.
+
+```javascript
+//SUT
+class Calculator {
+    sum(first, second){
+        return first + second
+    }
+}
+it('Sum of twn numbers 🧪', () => {
+    // Arrange
+    const calculator = new Calculator()
+    const first = 10
+    const second = 20
+    // Act
+    const result = calculator.sum(first , second)
+    // Assert
+    expect(result).toBe(30)
+})
+```
+
+En el ejemplo anterior podemos ver que se está probando el método de una clase que realiza la suma de dos números, y la prueba unitaria esta escrita con el patrón AAA, unas de las mayores ventajas de escribir tus pruebas de esta manera, es que les puedes dar uniformidad a tus pruebas, y una vez que te acostumbras, tus pruebas se vuelven muy fáciles de entender.
+
+La estructura es como sigue:
+
+* **🛠️ Arrange**: es donde se organiza, inicializa y prepara el sistema bajo pruebas y sus dependencia para tenerlo en el estado mas conveniente para nuestra prueba.
+* **⚙️ Act**: Es donde se ejecuta el método o la acción que va a producir el resultado que vamos a verificar.
+* **✅ Assert**: esta es la fase de verificación, donde se va a confirmar que el resultado obtenido o generado en la fase anterior sea el resultado esperado.
+
+Existe un patrón homologo llamada **Give-When-Then**, que prácticamente es lo mismo, cada una de las fases corresponde a cada una del patrón AAA, la única difrencia es que es más legible para personas no técnicas, escribamos un enunciado de la prueba del ejemplo anterior siguiendo este patrón:
+
+> **Dado(given/arrange 🛠)** que tenemos un calculator y los numeros 10 y 20, **cuando(when/act ⚙)** sumemos ambos numeros, **entonces (then/assert ✅)** el resultado debe ser 30.
+
+En general es común iniciar una prueba por la fase de arrange, sin embargo, aunque al final el orden si debe conservarse, puedes comenzar a escribir la fase de assert primero si estás utilizando TDD.
+
+> [TDD(test driven developement)](https://es.wikipedia.org/wiki/Desarrollo_guiado_por_pruebas) o desarrollo dirigido por pruebas: es una metodología de desarrollo que consiste en escribir primero la prueba empezando por el resultado que deseas obtener y basado en eso escribir solo el código de producción necesario para satisfacer dicha prueba.
+
+### Evita tener más de una fase de cada tipo
+
+Debemos evitar tener mas de una de cada una de las fases del patrón, en específico tener mas de una fase **Act** nos indica que se están verificando más de un comportamiento por que se estaría ejecutando más de una acción.
+
+Otra forma de tener multiples fases, es cuando tenemos una fase de **Act** donde se ejecuta una acción y en seguida una fase **Arrange** que utiliza el resultado obtenido anteriormente, de esta manera lo que estamos generando es una prueba de integracion, ya que estamos verificando varios comportamientos relacionados.
+
+Como ya discutimos en posts pasados, una prueba unitaria verifica una única unidad de comportamiento, por eso, lo mejor es que si nos encontramos en estos casos, se debe separar esa prueba con múltiples fases en pruebas individuales que verifiquen un comportamiento a la vez.
+
+![Evita tener mas de 1 fase de cada tipo](/images/posts/unit_test_phases_avoid.png)
+<small>Evita tener mas de 1 fase de cada tipo</small>
+
+### Evita usar sentencias if dentro de las pruebas
+Similar a tener muchas fases de **AAA**, podemos encontrarnos una prueba unitaria con una sentencia `if` dentro, pero esto es un atipatrón, ya que una prueba unitaria debe ser una secuencia simple de pasos sin ramificaciones de casos.
+
+Una sentencia `if` indica que se estan verificando más de un comportamiento a la vez, cuando nos encontremos en esta situación, debemos dividir esa prueba en múltiples pruebas que verifiquen cada caso de manera individual.
+
+A diferencia del punto anterior sobre utilizar multiples fases **AAA**, que está permitido en pruebas de integración, el uso de `if` dentro de pruebas unitarias y de integración no es correcto, ya que no trae ningún beneficio, al contrario, aumenta el costo de mantenimiento y se vuelven mas difíciles de entender.
+
+
+### ¿Cuán larga debe ser cada sección o fase de una prueba unitaria?
+
+Podríamos preguntarnos cual debería ser la extensión de cada una de las fases de nuestra prueba, y que tanto debemos incluir en cada una de las fases.
+
+**La fase de Arrange usualmente es la mas larga** de todas las fases, porqué contiene toda la configuración inicial que le vas a dar a tu sistema bajo pruebas antes de verificarlo, sin embargo, si llega a ser muy extensa, siempre puedes extraer las configuraciones a métodos privados y mandarlos a llamar, o si estas utilizando muchos objectos/estructuras de prueba “text fixtures”, también siempre puedes extraerlos y ponerlos en clases o métodos factory.
+
+**Cuidado ⚠️ con que en tu fase de Act incluyas mas de una línea de ejecución**, el tener más de una línea de ejcución en esta fase indica que estás probando más de un comportamiento a la vez; aunque si puede presentarse el caso donde nesecitas ejecutar más de una línea por que es necesario para probar un solo comportamiento, en este caso nos econtramos con un problema de diseño ya que esas dos o más lineas deberían estar encapsuladas en un método que ejecute el comportamientio.
+
+Ejemplo:
+
+```javascript
+it("Successfull purchase when is enough 💵", () => {
+  //Arrange 🛠
+  const inventory = new Inventory();
+  inventory.add(Product.Beer, 10);
+  const customer = new customer();
+  //Act ⚙️  these two lines should be ecapsulate in a method
+  const success = customer.purchase(inventory, Product.Beer, 5);
+  inventory.remove(success, Product.Beer, 5);
+  //Assert ✅
+  expect(success).toBeTruthy();
+  expect(inventory.get(Product.Beer)).toEqual(5);
+});
+```
+
+Podemos ver que en el ejemplo anterior dentro de la fase Act hay 2 líneas que efectuan una compra, primero realiza la compra y después disminuye el inventario, pero esto es un error de diseño, porqué usar estas líneas de manera separada pueden llevar nuestro sistema a un estado inconsistente.
+
+**¿Cuántas verificaciones debe haber en la fase Assert?** Dada la definición que hemos manejado de que una prueba unitaria verifica un único comportamiento de manera individual, podemos llegar a pensar que debemos tener una única verificación, incluso es una idea muy común que suelen tener muchos desarrolladores.
+
+Pero dado que estamos verificando una unidad de comportamiento, este puede exhibir más de una salida que nesecite ser veirficada, por tanto mientras se esté probando el mismo comportamiento puedes tener una o más verificaciones en la fase de Assert.
+
+### La cuarta fase de las pruebas unitarias
+
+Existe una cuarta fase para las pruebas unitarias no incluida en los ejemplos anteriores, se llama : **“teardown phase“,** o la fase de destrucción o limpieza.
+
+Esta fase se utiliza para destrucir o deshacer los cambios generados tras la ejecución de una prueba unitaria, puede haber una fase de teardown por cada prueba o una fase para un set de pruebas, sin embargo si nosotros estamos creando adecuadamente nuestras pruebas, eliminando dependencias compartidas que generalmente son dependencias out-of-process, estamos elimando posibles side-effects que neseciten ser limpiados.
+
+Con todo lo anterior, la mayor parte del tiempo no es necesaria esta fase de teardown.
+
+### Estructurar bien la prueba unitaria
+
+Para tener identificado perfectamente cada una de las partes de una prueba unitaria es recomendable primero identificar fácilmente el sistema bajo pruebas o el método bajo prueba que estás verificando, ya que este ocupa uno de los roles más importantes dentro de la prueba, para ello puedes nombrar este sistema bajo pruebas con la variable sut, ejemplo:
+
+```javascript
+it("Successfull purchase when is enough 💵", () => {
+  //Arrange 🛠
+  const inventory = new Inventory();
+    const sut = new customer();
+    ...
+});
+```	
+
+En el ejemplo de arriba la clase que se va a verificar es la clase Customer, por tanto, es una buena práctica nombrar la variable **sut** para tenerla identificada.
+
+Otra buena práctica para tener identificada cada una de las fases en una prueba unitaria, es separar las fases por un espacio o etiquetar con comentarios cada fase, personalmente prefiero esta última, y es así como estan los ejemplos en este post, de esta manera puedes ocupar saltos de linea y separar las fases de manera sencilla.
+
+```javascript	
+it("A unit test 🧪, () => {
+  //Arrange 🛠
+  //Act ⚙️
+  //Assert ✅
+});
+```
+
+### Buenas prácticas, utilizando tu framewrok de pruebas favorito
+
+Sin importar el framewrok que utilizamos, para el lenguaje que sea, existen ciertas buenas prácticas que en la mayoría de ellos se pueden adoptar, y el framewrok en sí te da herramientas para implementarlas.
+
+La primera es usar y reutilizar adecuandamente los llamados [test fixtures](https://en.wikipedia.org/wiki/Test_fixture).
+
+Generalmente solemos crear estos objetos o tests fixtures en la fase de Arrange de las pruebas para poder verificar el caso que se está probando, sin embargo, muchas veces ocupamos esos objetos en más de una prueba, hay que tener en consideración lo siguinete:
+
+Si nostros generamos estos test fixtures en una fase inicial de todo el set de pruebas, como un único método setup o un constructor, podríamos estar creando un dependencia compartida para las pruebas, al estar más de una de ellas utilizando la misma instancia de un objeto, ejemplo:
+
+```javascript
+let inventory;
+
+beforeAll(() => {
+  inventory = new Inventory();
+});
+
+it("Successfull purchase when is enough 💵", () => {
+  //Arrange 🛠
+  ...
+  const customer = new customer();
+  //Act ⚙️ 
+  customer.purchase(inventory, Product.Beer, 5);
+  ...
+});
+```
+
+En el ejemplo anterior estamos generando una única instancia del inventario para todas las pruebas, por tanto cada prueba que utilice esa instancia, estaría compartiendo y modificando el estado del inventario, generando un alto nivel de acoplamiento entre pruebas, pudiendo afectar el resultado de otras
+
+En este caso, lo que se recomienda es tener clases factory u objetos madre que construyan y devuelvan instancias neuvas de estos test fixtures, de esta manera, podemos reutilizar la creación de estos sin utilizar las mismas instancias.
+
+Otra desventaja de tener test fixtures compartidas para las pruebas y creados en el setup inicial, es que las pruebas se vuelven menos legibles al reducir la fase de arrange usando un setup inicial, ya que tendrías qie buscar fuera de la prueba como es que está configurado el estado inicial de la misma.
+
+### Nombrando tus pruebas unitarias.
+
+Depende el framework que utilices, tiene distintas maneras de nombrar cada una de tus pruebas unitarias, por ejemplo para java utilizando Junit, tienes que crear una clase para tu set de pruebas generalmente nombrada igual que la clase bajo pruebas con el sufijo test, ejemplo: `Customer -> CustomerTest`
+
+```java
+public CustomerTest{
+  @Test
+  metodoBajoPruebas_escenario_resultadoEsperado(){
+      ...
+  }
+}
+```	
+Y cada método es una prueba y el nombre de ese método es lo que describe la prueba, existen formas clásicas pero muy rígidas de darles nombre, sin embargo en este post les comparto una pequeña guía más practica y que le da más significado a tus pruebas.
+
+Este tema en particular es la razón por la cual elegí para este post utilizar javascript y Jest, ya que te permite escribir frases normales para nombrar tus pruebas.
+
+La forma clásica de nombrar una prueba es: `MetodoBajoPruebas_Scenario_ResultadoEsperado` en lenguajes como java, esto hace que se tenga una rejilla o estructura muy rígida que no le de el sentido adecuado, veamos un ejemplo utilizando js y el enfoque tradicional; supongamos que tenemos una clase Calculator con un método que suma 2 números:
+
+```javascript
+class Calculator {
+  sum(first, second){
+      return first + second
+  }
+}
+// Test 🧪
+it('sum two numbers return sum', () => {...})
+```
+	
+Podrá parecer lógico para un programador, pero para una persona no ténica se vuelve algo complicada de leer, incluso para alguien nuevo en el proyecto puede costarle entender ya que no domina el sistema.
+
+Una mejor forma de nombrar tus pruebas unitarias es utilizar frases simples y planas en inglés o en el idioma que prefieras, aquí la forma de escribir pruebas en JEST nos ayuda, transformemos el ejemplo anterior usando este enfoque:
+
+```javascript
+// Test 🧪
+it('Sum of tow numbers', () => {...})
+```
+
+Ahora es mucho más sencillo de leer,pero ¿Qué reglas debo seguir para considerar que he nombrado bien una prueba?, comparto la siguiente guía obtenida de libro:
+
+* ✅ No seguir una estructura rígida en donde tengamos que embonar la descripción de un comportamiento complejo, sientanse libres de escribir una frase con más significado.
+* ✅ Nombra la prueba como si se la estuvieras explicando a alguien no técnico/programador.
+* ✅ No pongas el nombre de lo que estás probando, mas bien describe el comportamiento que estás verificando en una frase sencilla.
+* ✅ Recuerda que cada prueba verifica un comportamiento, que es un hecho, por tanto esribelas denotando lo que es y no lo que podría o se desearía que fuera.
+
+**Ejemplo**: supongamos que tenemos un método que recibe una edad de una persona y te devuelve si esta es mayor de edad (+18 años), si queremos realizar una prueba unitaria de este método y nombrarla siguiendo la guía anterior, quedaría :
+
+```javascript
+// Test ✅
+it('A person under 18 is a minor', () => {...})
+// Test ❌
+it('A person under the age of 18 should be a minor', () => {...})
+```
+
+### Más buenas prácticas importantes
+
+En la gran mayoría de frameworks, existe forma de parametrizar tus pruebas, esto es, escribes una única prueba que puede recibir parametros y estar verificando distintos casos, branches o comportamientos por cada conjunto de parametros, asi que es una buena opción aprovechar esta característica si tu framework la ofrece.
+
+Otra característica importante es el aprovechamiento máximo de la librería de assertions que ofrezca el framework, las assertions son los métodos que ocupamos para verificar o comparar el resultado esperado, estos se usan en la fase Assert, ejemplo(tomando JEST como base):
+
+```javascript	
+it('A unit test', () => {
+  //  Arrange
+  // Act
+  // Assert
+  expect(somnething).toBe(value)
+  expect(somnething).toHaveBeenCalled()
+  expect(somnething).toHaveReturned()
+  expect(somnething).toBeFalsy()
+  expect(somnething).toBeGreaterThan(number | bigint)
+  expect(somnething).toBeLessThan(number | bigint)
+  expect(somnething).toBeNull()
+  expect(somnething).toBeTruthy()
+})
+```
+
+La gran mayoría de los framewroks cuentan con poderosas librerías de assertions para verificar tus pruebas unitarias, desde assertions por valor, numerícas, de tipo, etcétera, aquí pueden ver todas las que tiene JEST.
+
+Entraré en más detalle en próximos capítulos de este post que es un resumen y mi entendimiento del libro: 
+
+[📖 Unit testing: principles, pratices and patterns” por Vladimir Khorikov de la editorial Manning](https://www.manning.com/books/unit-testing).

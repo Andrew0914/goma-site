@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useFormatter, useTranslations } from "next-intl";
 import { Button } from "@mui/material";
+import Code from "../Code/Code";
 
 interface PostItemProps {
   post: Post;
@@ -51,15 +52,23 @@ export default function PostItem({ post }: PostItemProps) {
         />
       )}
 
+      {post.code && (
+        <Code
+          children={post.code.code}
+          language={post.code.language}
+          className={`language-${post.code.language}`}
+          customStyle={{ fontSize: "12px" }}
+        />
+      )}
+
       <p className="text--content">{post.excerpt}</p>
 
-      <Button
-        variant="outlined"
-        color="info"
+      <Link
         href={`blog/posts/${post.slug}?id=${post.slug}`}
+        className={`${styles.postItem_more}`}
       >
         {t("readMore")} &rarr;
-      </Button>
+      </Link>
     </article>
   );
 }

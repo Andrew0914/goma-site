@@ -5,6 +5,7 @@ import { SyntaxHighlighterProps, Prism } from "react-syntax-highlighter";
 import styles from "./styles.module.scss";
 import CodeThemeMenu, { codeThemes } from "./CodeThemeMenu";
 import { useColorScheme } from "@mui/material";
+import Image from "next/image";
 
 interface CodeProps extends SyntaxHighlighterProps {
   className?: string;
@@ -29,7 +30,6 @@ export default function Code({ className, ...props }: CodeProps) {
     },
     [setTheme, muiMode]
   );
-
   return match ? (
     <div className={styles.codeBox}>
       <div className={styles.codeBox_codeFrame}>
@@ -50,9 +50,18 @@ export default function Code({ className, ...props }: CodeProps) {
           showLineNumbers={true}
           showInlineLineNumbers={true}
         />
+
+        <Image
+          className={styles.codebox_languageIcon}
+          src={`/images/technologies/${match[1]}.svg`}
+          alt={match[1]}
+          title={match[1]}
+          width={20}
+          height={20}
+        />
       </div>
     </div>
   ) : (
-    <code className={`${className} text--content`} {...props} />
+    <code className={`${className} text--content text--code`} {...props} />
   );
 }

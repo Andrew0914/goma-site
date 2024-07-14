@@ -3,7 +3,7 @@ SELECT p.post_title AS alt, p.guid AS src, 100 AS width, 100 AS height
 FROM cp_posts AS p
 WHERE
     p.ID IN (
-        SELECT pm.meta_value
+        SELECT pm.meta_valuegit
         FROM `cp_postmeta` AS pm
         WHERE
             pm.meta_key LIKE '%thumbnail%'

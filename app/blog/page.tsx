@@ -11,6 +11,12 @@ export default function Blog() {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .map((post) => ({ ...post, author: meAsAuthor }));
 
+  const postsColumn1 = orderedPosts.slice(
+    0,
+    Math.ceil(orderedPosts.length / 2)
+  );
+  const postsColumn2 = orderedPosts.slice(Math.ceil(orderedPosts.length / 2));
+
   return (
     <PageTransition className={`container`}>
       <header className="mb--3">
@@ -20,9 +26,16 @@ export default function Blog() {
       </header>
 
       <div className={styles.blog_posts}>
-        {orderedPosts.map((post, index) => (
-          <PostItem key={`${index}-${post.slug}`} post={post} />
-        ))}
+        <div className={styles.blog_posts_column}>
+          {postsColumn1.map((post, index) => (
+            <PostItem key={`${index}-${post.slug}`} post={post} />
+          ))}
+        </div>
+        <div className={styles.blog_posts_column}>
+          {postsColumn2.map((post, index) => (
+            <PostItem key={`${index}-${post.slug}`} post={post} />
+          ))}
+        </div>
       </div>
     </PageTransition>
   );
