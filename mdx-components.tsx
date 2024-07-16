@@ -3,6 +3,7 @@ import Image, { ImageProps } from "next/image";
 import Code from "@/components/Code/Code";
 import { Button } from "@mui/material";
 import { GitHub as GithubIcon } from "@mui/icons-material";
+import VideoPreview from "@/components/VideoPreview/VideoPreview";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -23,6 +24,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <a className="text--link text--underline" target="_blank" {...props} />
     ),
     small: (props) => <small className="text--sm text--primary" {...props} />,
-    GithubIcon,
+    GithubIcon: () => <GithubIcon fontSize="small" />,
+    VideoPreview,
   };
 }

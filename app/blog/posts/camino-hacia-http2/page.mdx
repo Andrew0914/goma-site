@@ -1,0 +1,222 @@
+# El camino hacia HTTP/2, ¿Cómo funciona?
+## Un poco de historia, ¿cómo funciona? y su importancia
+
+
+HTTP por sus siglas en inglés **Hypertext Transfer Protocol**, es el protocolo genérico más utilizado para el intercambio de información cliente servidor.
+
+![Protocolo HTTP ](/images/posts/HTTP.png)
+
+### ¿Cuales son sus características principales?
+
+* La comunicación consiste en una petición y una respuesta.
+* Se utiliza para la transferencia de hipertexto, js, css, datos e hipermedia.
+* Utiliza verbos para que el cliente pueda realizar peticiones.
+* Cada objeto intercambiado se clasifica por su tipo MIME.
+* Es “Stateless”, cada petición es independiente.
+* “Not connection-oriented”, no necesita datos previos para iniciar una transmisión.
+* Cada recurso al que se le aplican los verbos está **identificado** por un URL.
+* Corre en la capa de aplicación.
+
+### Un poco de historia
+
+En la década de 1930 el ingeniero estadounidense **Vannebar Bush** tuvo la idea que seria precursora de la **world wide web**, era un sistema llamado **MEMEX**, que en teoría serviría para almacenar conocimiento en documentos que tuvieran asociaciones contextuales entre sí.
+
+Para el año de **1965 Ted Nelson** tomando como base las ideas de Vannebar acuñó el primer concepto de hypertexto:
+
+> Material escrito o pictórico interconectado de una manera compleja que no lo hace conveniente para escribirlo en papel. Puede contener índices o mapas de su contenido y sus interrelaciones;  puede contener anotaciones, adiciones y notas a pie de página.
+
+Para el año **1989 Tim Berners Lee**, quien era un ingeniero del [CERN](https://home.cern/), creó el protocolo de HTTP que utilizamos hoy en día y se liberó la primer versión **HTTP 0.9** que consistía en un intercambio simple de una petición **GET(solo esa existía)** y una respuesta en texto plano.
+
+![Esquema del funcionamiento de HTTP 0.9](/images/posts/http_09.png)
+<small>Esquema del funcionamiento de HTTP 0.9</small>
+
+Rápidamente el uso del protocolo se extendió y para 1995 ya estaba siendo utilizado en mas de 18000 servidores, lo cual generó necesidades nuevas y para 1996 se libero la versión de [HTTP 1.0](https://tools.ietf.org/html/rfc1945) que paso a ser una herramientas mas robusto a diferencia de su predecesor que era muy simple.
+
+Esta nueva versión agregó mas verbos(**POST, PUT, DELETE …**), el uso de encabezados, pero no paso mucho para que se requiriera una nueva actualización y para 1997 se libero la versión de **HTTP 1.1** que entre otras cosas trajo una mejora significativa en el performance al evitar tener que reconectar tras recibir una respuesta.
+
+![Esquema de HTTP 1.1](/images/posts/http_1_1.png)
+<small>Esquema de HTTP 1.1</small>
+
+
+**Con la versión de HTTP 1.1 duramos poco más de 20 años 😱** antes de que apareciera la siguiente versión, durante este tiempo la web jamás se detuvo, siempre con tendencia a más: más memoria, más objetos en los sitios web, mas complejidad y mas intercambio de datos; sin embargo el protocolo si se estancó por muchos años en la misma versión, dando así paso a una suerte de muchas técnicas y expertos que intentaban optimizar las aplicaciones y sitios web para lo que podía ofrecer esta versión.
+
+
+### SPDY “SPeeDY”
+
+La duración que tuvo la versión de HTTP 1.1 por más de 20 años, no quiere decir que no hubo muchos intentos de mejorar o iniciativas para crear una nueva versión, solo que la mayoría era desechada o no era apoyada por la comunidad.
+
+En el año de 2009 surge **SPDY** tras varios experimentos por parte del equipo de **google chrome**, fue el intento de mejorar el protocolo más aceptado, tanto que estaba encaminado a convertirse en el nuevo estándar siendo aceptado por varios navegadores y proveedores de servicios.
+
+Fue diseñado para minimizar la latencia con flujos multiplexados, priorización de solicitudes y compresión de encabezado HTTP; en sus primeros experimentos se cargaron páginas un 55% más rápido.
+
+### ¿Por qué no se convirtió en el estándar?
+
+* Google decidió no darle más soporte por que ya se estaba trabajando en HTTP2.
+* Su algoritmo de compresión de encabezados fue victima del ataque [CRIME](https://es.wikipedia.org/wiki/CRIME)
+* Sin embargo SPDY estableció todas las bases para lo que sería HTTP 2
+
+### HTTP2
+[HTTP 2](https://tools.ietf.org/html/rfc7540) es el cambio de versión que necesitaba el protocolo, se liberó en 2015 oficialmente, lo cual nos dice que lleva ya 5 años a la fecha que se escribe este blog, y aun todavía muchos desarrolladores, aplicaciones y algunos frameworks no lo implementan; las motivaciones principales de HTTP 2 son:
+
+* Multiplexación de peticiones y respuestas.
+* Compresión de encabezados para minimizar el overhead.
+* Priorización de peticiones.
+* Push de servidor.
+
+Como vimos en la explicación de SPDY podemos apreciar que realmente este último estableció el punto de partida para lo que sería HTTP 2.
+
+En general lo que busca HTTP 2 es mejorar el performance, a través de distintas características de 7 características clave.
+
+## ¿Por qué HTTP 2 y no HTTP 1.2 ?
+Descubriremos con mas detalle el por que, pero de manera general es que HTTP 2 se comunica en formato binario, mientras que HTTP 1.1 en texto plano, lo cual hace evidente la incompatibilidad para comunicarse y es denotado por el cambio de versión.
+
+ ![HTTP2 VS HTTP 1.](/images/posts/http2_vs_http1.png)
+<small>HTTP2 VS HTTP 1.2</small>
+
+#### 1. Capa de enmarcado binario
+La base de todas las mejoras del protocolo es la nueva forma de encapsular y enviar los mensajes en una capa de enmarcado binario, que a diferencia de las versiones anteriores que los mensajes eran enviados en texto plano, ahora se envían pequeñas unidades conocidas como __“frames”__ en formato binario, estas pequeñas unidades son fragmentos que componen un mensaje mas grande ya sea una petición o una respuesta.
+
+![Enmarcado binario](/images/posts/enmarcado_binario.png)
+<small>Fuente: [capa_de_enmarcado_binario](https://developers.google.com/web/fundamentals/performance/http2#capa_de_enmarcado_binario)</small>
+
+#### 2. Transmisiones mensajes y frames
+Hay que conocer 3 conceptos base para entender como funciona la capa de enmarcado binario y como se establece la comunicación :
+
+* **Stream**: es un flujo bidireccional de bytes dentro de una conexión establecida.
+* **Mensaje**: es un mensaje HTTP lógico, es decir un “request” o un “response”.
+* **Frame**: Es la unidad mínima de comunicación y contiene la data a transportar.(HTTP 2 utiliza varios tipos de frame con un objetivo especifico que sirven para transportar determinado tipo de información)
+
+![Transmisiones, mensajes y frames](/images/posts/binary_frame.png)
+<small>Fuente: [Transmisiones, mensajes y frames](https://developers.google.com/web/fundamentals/performance/http2#transmisiones_mensajes_y_marcos)</small>
+
+#### 3. Multiplexación de transmisiones
+Antes de la versión de HTTP 2, es decir, en la versión de HTTP 1.1 si tu querías realizar solicitudes paralelas tenías que abrir tantas conexiones como solicitudes desearas hacer y cada una de esas conexiones no puede ser usada hasta que no haya una respuesta a la solicitud enviada a través de ella.
+
+Ahora con HTTP 2 las transmisiones son multiplexadas, y gracias al enmarcado binario, dividir la información transmitida en pequeñas unidades (frames) estos pueden ser enviados de manera multiplexada e intercalada, logrando así poder estar realizando varias peticiones y recibiendo respuestas al mismo tiempo a través de una conexión.
+
+![Multiplexación de transmisiones](/images/posts/http_multiplexor.png)
+<small>Fuente:  [Multiplexación de transmisiones](https://developers.google.com/web/fundamentals/performance/http2#transmisiones_mensajes_y_marcos)</small>
+
+
+
+#### 4. Priorización de transmisiones
+En un sitio web o aplicación web es casi seguro que haya recursos mas críticos que otros, por ejemplo: el js que le da funcionamiento a toda la aplicación es más importante que una imagen al pie de página.
+
+HTTP 2 tiene un mecanismo para poder indicar prioridades de los recursos mas críticos para tu sitio web o aplicación, que es representada a través de un árbol de prioridad que se expresa en unos [frames especiales con información de dicha priorización](https://tools.ietf.org/html/rfc7540#section-6.3).
+
+![árbol de priodirdad](/images/posts/arbol_prioridad.png)
+<small>Representación de un árbol de prioridad. </small>
+
+La prioridad de una transmisión esta en función de la dependencia que tengan entre sí y de un peso asociado que expresa mayor o menor importancia, deberán primero cubrirse las dependencias y luego tomar en cuenta los pesos.
+
+> Cabe aclarar que varias de las características mencionadas, lo que hace HTTP 2 es ofrecer el mecanismo para comunicar, por ejemplo: la priorización, pero la implementación de tomar en cuenta o no esta prioridad es del cliente(web browser por ejemplo) o el servidor.
+
+#### 5. Una conexión por origen
+En la versión pasada, HTTP 1.1 uno era necesario abrir una conexión por cada petición y esperar a que fuera respondida para poder utilizar esa conexión para realizar otra petición.
+
+Dado las ventajas que ofrece la forma de enviar los mensajes en pequeños fragmentos y la multiplexación completa de las transmisiones, no es necesario estar abriendo tantas conexiones como peticiones, si no que por el contrario se establece una única conexión persistente que dura toda la sesión.
+
+![Estableciendo conexiones HTTP 1.1 vs HTTP 2](/images/posts/http_connection.png)
+<small>Estableciendo conexiones HTTP 1.1 vs HTTP 2</small>
+
+#### 6. Control de flujo
+
+Un control de flujo en general dentro de un sistema es un mecanismo para evitar que se abrume al receptor con datos que no nesecita, no quiere o no pueda procesar.
+
+HTTP 2 ofrece un mecanismo para poder comunicar dicho control de flujo, esto es importante por ejemplo para la característica de “Push de servidor” que ofrece también el protcolo.
+
+De nuevo como ya expliqué HTTP 2 solo ofrece el mecanismo para comunicar el control de flujo pero no el algoritmo que lo determina.
+
+El control de flujo aplica solo para un tipo específico de frame, el tipo [DATA](https://tools.ietf.org/html/rfc7540#section-6.1) y se comunica a través de los frames de tipo [SETTINGS](https://tools.ietf.org/html/rfc7540#section-6.5) al inicio o se va actualizando con los frames de tipo [WINDOW_UPDATE](https://tools.ietf.org/html/rfc7540#section-6.9).
+
+El control de flujo consiste en actualizar un valor conocido como “tamaño de ventana” este determina que tanto flujo puede aceptar el receptor, quien recibe es quien indica su propio tamaño de ventana y este control de flujo se aplica para cada stream y por toda la conexión.
+
+![Flujo de control](/images/posts/flow_control.png)
+
+> ¡Es muy importante (incluso crítico) en muchos sistemas prevenir la sobrecarga! ⚠
+
+#### 7. Push de servidor
+Otra de las características más relevantes es que HTTP 2 tiene el poder de enviar más de una respuesta para una solicitud del cliente, pudiendo así enviar recursos adicionales de manera pro activa al cliente a través de un mecanismos conocido como PUSH de servidor, esto sin que el cliente lo pida explicita mente.
+
+Cuando el cliente solicita algo, por ejemplo, el servidor puede ya conocer con esa petición que el cliente necesitará otro recurso como un javascript o un css, sin embargo, no se hace PUSH solo por hacerlo si no que existe una serie de pautas para esto.
+
+Primero el servidor tuvo que haber mandado un frame de tipo [PROMISE](https://tools.ietf.org/html/rfc7540#section-6.6) avisando al cliente que le mandará un PUSH, en este frame viene toda la información para que el cliente determine si lo acepta o no.
+
+Los criterios necesarios para determinar a que recursos se le hacen push pueden ser diversos y serán determinados por el servidor, así mismo los criterios del cliente para aceptarlo o declinar lo también, por ejemplo aquí puede influir el control de flujo o la prioridad.
+
+Los recursos que son mandadnos en un PUSH se van directamente al caché del cliente y no existen APIs o callbacks para determinar si llegó algo.
+
+![Push de servidor](/images/posts/server_push.png)
+
+<small>Fuente: [Server push](https://developers.google.com/web/fundamentals/performance/http2?hl=es#servidor_push)</small>
+
+#### 8. Compresión de encabezados
+Cada transferencia de un mensaje HTTP viene acompañada de un conjunto de encabezados, en versiones pasadas del protocolo estos encabezados venían en texto plano, ahora vienen en un frame de tipo [HEADERS](https://tools.ietf.org/html/rfc7540#section-6.2).
+
+Como ya dije, antes estos encabezados se enviaban en texto plano agregando un overhead de entre 500 y 800 bytes por cada mensaje, ahora estos encabezados son comprimidos y a través de unas tablas que sirven para almacenar, rastrear y reutilizar encabezados que ya hayan sido enviados previamente, la transferencia de estos metadatos es optimizada.
+
+De esta manera los encabezados se van heredando entre peticiones y solo se agrega el overhead de los nuevos encabezados, ya que muchos de estos suelen ser repetitivos, además se les aplica el algoritmo de compresión que los hace todavía más ligeros.
+
+![Compresión de encabezados](/images/posts/header_compression.png)
+
+<small>Fuente: [Compresión de encabezados](https://developers.google.com/web/fundamentals/performance/http2?hl=es#compresi%C3%B3n_de_encabezado)</small>
+
+### Datos para programadores 🧑‍💻
+Ya hemos visto las características generales del protocolo, conocimos un poco de sus historia y su evolución y finalmente entendimos a detalle cuales son sus principales características de esta nueva versión, pero quien escribe este post es un programador y probablemente al igual que a mi les surgen muchas preguntas.
+
+#### ¿HTTP 2 elimina la necesidad de los [Web sockets](https://developer.mozilla.org/es/docs/Web/API/WebSockets_API)?
+Podemos llegar a pensar que como HTTP 2 mantiene una conexión persistente y se pueden enviar los PUSH de servidor es así, pero recordemos que los PUSH de servidor solo sirven para enviar recursos que van directamente a caché y no hay manera de pre procesarlos, un [API](https://www.redhat.com/es/topics/api/what-are-application-programming-interfaces) o un [callback](https://es.wikipedia.org/wiki/Callback_(inform%C3%A1tica)) que nos de una notificación
+
+Un web socket también mantiene una conexión persistente, pero en la mayoría de lenguajes y frameworks si existen APIs o librerías que te permiten notificar el envió de un push o broadcast por parte del websocket, por lo cual los websockets pueden ser utilizados para el envió de datos de aplicación, como un json, e interactuar con un API remota a través de esa conexión.
+
+![HTTP vs WS](/images/posts/http_vs_ws.png)
+
+#### ¿Pero siguen funcionando los web sockets con HTTP 2?
+Si, ya que anteriormente para establecer una conexión a un web socket se enviaba una petición de tipo GET y se recibía un código 101 indicando el éxito y cambio de protocolo.
+
+Ahora lo que se realiza es una petición de tipo CONNECT y se responde un código 200 indicado el cambio exitoso de protocolo.
+
+#### ¿Beneficia a las APIS de servicio web?
+Sí, por lo menos a las más populares : [REST](https://bbvaopen4u.com/es/actualidad/api-rest-que-es-y-cuales-son-sus-ventajas-en-el-desarrollo-de-proyectos), [GRAPHQL](https://graphql.org/) y [SOAP](https://es.wikipedia.org/wiki/Simple_Object_Access_Protocol), en general las primeras dos al estar basadas en la semántica de HTTP el cambio de protocolo es totalmente transparente y se ven beneficiadas por todas las mejoras.
+
+Para las apis de tipo SOAP si es que se comunican con el protocolo HTTP 2 también serán beneficiadas.
+
+
+#### ¿Cuales serían las buenas prácticas con este protocolo?
+He realizado un pequeño benchmark que demuestra como algunas viejas buenas prácticas ya se vuelven anti patrones para esta versión del protocolo.
+
+Este benchmark lo pueden ver explicado en el vídeo adjunto del final de este post, por ahora les dejo la diapositiva con el listado de buenas prácticas y anti patrones:
+
+![Buenas prácticas y anti patrones](/images/posts/good_practices_http.png)
+
+#### ¿Lo soportan todos los navegadores?
+Si, prácticamente todos los más usados: https://caniuse.com/http2
+
+#### Algunos frameworks que lo soportan
+
+![Frameworks que soportan HTTP 2](/images/posts/http2_frameworks.png)
+<small>Frameworks que soportan HTTP </small>
+
+#### Referencias:
+
+* [Introducción a HTTP/2](https://developers.google.com/web/fundamentals/performance/http2)
+* [¿Que es el protocolo TCP?](https://es.ccm.net/contents/281-protocolo-tcp#que-es-el-protocolo-tcp)
+* [Video: El algoritmo Huffman](https://www.youtube.com/watch?v=hWCjkZ04NWE)
+* [HTTP y sus generalidades](https://developer.mozilla.org/es/docs/Web/HTTP/Overview)
+* [RFC1945](https://tools.ietf.org/html/rfc1945)
+* [RFC7540](https://tools.ietf.org/html/rfc7540)
+* [RFC2616](https://tools.ietf.org/html/rfc2616)
+* [¿Qué es HTTP/2?](https://somostechies.com/que-es-http2/)
+* [HTTP/2 is here, let’s optimize! – Velocity SC 2015](https://docs.google.com/presentation/d/1r7QXGYOLCh4fcUq0jDdDwKJWNqWK1o4xMtYpKZCJYjM/edit#slide=id.gfd0e3427_2_119)
+* [HTTP resource-inlining](https://hpbn.co/http1x/#resource-inlining)
+* [Blog post oficial de SPDY](https://blog.chromium.org/2009/11/2x-faster-web.html)
+* [WebSockets, HTTP/2, and SSE](https://medium.com/axiomzenteam/websockets-http-2-and-sse-5c24ae4d9d96)
+* [Understanding REST, SOAP, RPC AND GRAPHQL APIS](https://apisyouwonthate.com/blog/understanding-rpc-rest-and-graphql)
+* [HTTP/2 WebSockets](https://medium.com/@pgjones/http-2-websockets-81ae3aab36dd)
+* [The right way to bundle your assets](https://medium.com/@asyncmax/the-right-way-to-bundle-your-assets-for-faster-sites-over-http-2-437c37efe3ff)
+* [Performance best practices HTTP 2](https://deliciousbrains.com/performance-best-practices-http2/)
+* [Learning HTTP guide for beginners](https://www.amazon.com/Learning-HTTP-Practical-Guide-Beginners/dp/1491962445)
+* 📖 https://g.co/kgs/Vbxz5r
+* 📖 https://g.co/kgs/C2tDcg
+
+<VideoPreview videoId="CvVCMq2Q3Es"  height={320}/>

@@ -1,0 +1,231 @@
+# ¿Por qué hacer pruebas de integración?
+## Unit testing, principios, prácticas y patrones | Resumen
+
+Nunca podremos confiar que un sistema funciona en su totalidad, solo con pruebas unitarias, aunque estas son eficientes para verificar la lógica de negocios no es suficiente.
+
+Se debe verificar como diferentes partes del sistema de integran entre sí y con elementos externos, como una base de datos y para ello tenemos las pruebas de integración.
+
+Las pruebas de integración juegan un papel importante en nuestra suite de pruebas, como ya dijimos en el post ¿Qué es una prueba unitaria? 🧪 las pruebas unitarias deben cumplir los siguientes criterios:
+
+* 🧩 Debe verificar una pieza de comportamiento
+* ⚡ Debe hacerlo rápido
+* 📦 Debe hacerlo de manera aislada una prueba de otra
+
+Si alguna de las anteriores no se cumple, entonces cae en la categoría de prueba de integración, en general una prueba de integración verifica como tu sistema se integra con dependencias out-of-process.
+
+Recordando el diagrama que utilizamos en el post anterior, el cuadrante que le corresponde es el siguiente:
+
+![donde van las pruebas de integración](/images/posts/integration_tests_position.png)
+
+Como sabemos las pruebas unitarias deben enfocarse en la lógica de negocios o los modelos, mientras que las pruebas de integración se enfocan en los controladores donde se orquestan las interacciones de la lógica de negocios con otras dependencias.
+
+Todavía se pueden realizar pruebas unitarias sobre los controladores, haciendo mocks de todas las dependencias, pero hay dependencias que solo son visibles para tu sistema, estas últimas no deben ser reemplazadas por mocks y se verifican a través de las pruebas de integración.
+
+Por último el cuadrante de código trivial no vale la pena ser probado, mientras que el del código super complicado debe ser refactorizado para separarlo en modelos y controladores, como vimos en el capítulo anterior, donde hicimos un ejemplo de este refactor en video 📹.
+
+### Revisando la pirámide de pruebas
+
+Es necesario tener un balance entre los 2 tipos de pruebas, ya que trabajar con dependencias out-of-process en la pruebas de integración puede hacer las pruebas lentas y menos mantenibles, ya que:
+
+* 💻 Se crea la necesidad de mantener vivas o corriendo dichas dependencias.
+* 🤡 Como no se hacen menos mocks hay una alta cantidad de colaboradores.
+
+Por otro lado las pruebas de integración ejecutan una gran cantidad de código, código propio así como el código de librerías, por lo cual nos ofrecen una alta protección contra regresiones.
+
+La cantidad de pruebas de integración y unitarias va a depender del tipo de proyecto, pero la regla general es que se busque cubrir la mayor parte de la lógica de negocios con pruebas unitarias, y utilizar las pruebas de integración para verificar un **happy path** y un **edge case** que no pueda ser verificado con las pruebas unitarias.
+
+> **Happy path:** Es un flujo o camino de ejecución exitoso de tu programa.
+
+> **Edge case:** Es un camino de ejecución que resulta en un error
+
+Esto nos indica que el mayor peso lo tienen las pruebas unitarias, lo cual baja los costos de mantenimiento, pero siempre es necesario tener pruebas de integración que aseguren el correcto funcionamiento del sistema como un todo.
+
+![Pirámide de pruebas](/images/posts/piramide_pruebas.png)
+
+La regla general se expresa con la pirámide de la imagen anterior, aunque como ya dije dependiendo el sistema, puede ser un sistema simple con muy poca lógica de negocio, pero como ya expresé siempre son necesarias las pruebas de integración, quizá podamos terminar con la siguiente distribución:
+
+![Rectangulo de pruebas](/images/posts/rectangle_pruebas.png)
+
+### Pruebas de integración vs [Fail-fast](https://en.wikipedia.org/wiki/Fail-fast)
+
+Las pruebas de integración deben verificar al menos el happy path más largo que abarque todas las interacciones con dependencias out-of-process, si no hay un camino que cubra todo, se pueden añadir más pruebas.
+
+El otro es un edge case que no sea cubierto por las pruebas unitarias, y en adición a eso (aquí es donde entra el versus) si se está aplicando el principio de fail-fast en nuestro sistema nos necesario probar esos casos ya que este principio asegura la ejecución correcta y detección de bugs de manera rápida , automática y desde el principio, por lo cual una prueba de integración que busca respaldar lo mismo no tendría valor.
+
+Ejemplo del uso de este principio:
+
+```javascript
+// Fast-fail principal
+changeEmail(newEmail, company) {
+    const message = this.canChangeEmail();
+    if (message !== null) throw message;
+    // Si falla aqui se detiene la ejecución 🚫 
+    ...
+}
+```
+
+> **Fail-fast** principle: Se trata en el principio de detener la ejecución de un programa tan pronto como ocurra un error inesperado, este principio se puede ver aplicado en los lenguajes que ocupan excepciones.
+
+### ¿Qué dependencias out-of-process se deben probar directamente?
+
+Como ya mencionamos hay las pruebas de integración verifican como tú sistemas se integra con dependencias out-of-process, y hay dos maneras de verificar esté: utilizando las dependencias reales o sustituyendolas con mocks, a continuación explico en que momento se debe hacer cada cosa.
+
+Existen 2 tipos de dependencias:
+
+* 🚙 **Dependencias manejadas**: son dependencias out-of-process de las cuales se tiene total control y solo son accesibles para tu aplicación, un ejemplo común es la base de datos de tu aplicación.
+* 🛰 **Dependencias no manejadas**: son dependencias out-of-process de las cuales no tienes el control al 100% , las interacciones con estas dependencias tienen un efecto secundario externo visible, por ejemplo la conexión a un SMTP para enviar un email.
+
+Las dependencias manejadas son detalles de implementación ya que contribuyen a la obtención de un resultado dentro de tu aplicación, mientras que las no manejadas son parte de un comportamiento observable, por lo cual aqui esta el secreto, las primeras las debemos probar directamente en las pruebas de integración mientras que las segundas deben sustituirse por mocks para ser verificadas sin impactar elementos externos.
+
+### Trabajando con ambos tipos de dependencias
+A veces podemos encontrarnos con dependencias que sean de los 2 tipos al mismo tiempo, un ejemplo claro es una base de datos que inicialmente solo era accesible desde una aplicación para al paso del tiempo más aplicaciones se conecta a la misma base de datos, aún puede conservar partes que son solo visibles para tu aplicación pero otras ya no.
+
+> ⚠️ El integrar sistemas a través de la base de datos, es una forma muy pobre de hacerlo porque acopla mucho los sistemas y complica desarrollos futuros, una mejor opción sería la creación de un API.
+
+**¿Pero qué pasa si ya tenemos esta situación?** Lo que se debe hacer es probar directamente la dependencia cuando el comportamiento solo sea visible para tu aplicación, pero si ese comportamiento ya tiene efecto o es visible para otros sistemas es momento de utilizar un mock.
+
+![Dependencias que manejas y no manejas](/images/posts/both_manage_unmanage.png)
+<small>Dependencias manejadas y no manejadas</small>
+
+
+### Ahora un ejemplo de pruebas de integración
+
+En los 2 post anteriores les mostré una parte práctica en video, para esta ocasión volvemos a los ejemplos anterior
+
+```javascript
+// Imports
+const UserFactory = require("./UserFactory");
+const CompanyFactory = require("./CompanyFactory");
+class UserController {
+  constructor(database, messageBus) {
+    this.database = database;
+    this.messageBus = messageBus;
+  }
+  changeEmail(userId, newEmail) {
+    const data = this.database.getUserById(userId);
+    const user = UserFactory.create(data);
+    const companyData = this.database.getCompany();
+    const company = CompanyFactory.create(companyData);
+    user.changeEmail(newEmail, company);
+    this.database.saveCompany(company);
+    this.database.saveUser(user);
+    user.emailChangedEvents.forEach((event) => {
+      this.messageBus.sendEmailChangedMessage(event.userId, event.email);
+    });
+  }
+}
+```
+
+> El código se ajusta un poco para poder ejemplificar la prueba de integración de manera más sencilla
+
+En este ejemplo que es totalmente explicado: Refactorizando para tener pruebas unitarias valiosas ⭐️, tenemos un pequeño CRM que cumple con los siguientes puntos:
+
+* Se puede cambiar el email de un usuario
+* Si el email cambio se actualiza el número de empleados si es que tiene el dominio de la compañía o no.
+* Si se presenta un cambio en el email esto es notificado al bus de mensajes.
+
+Y específicamente en el ejercicio del post pasado se hizo una refactorización para que la lógica de negocio quedará en el modelo, y las operaciones se orquestaran desde un controlador, para ver el código completo ir a el [repositorio](https://github.com/Andrew0914/refactoring_toward_valuble_tests) <GithubIcon/>.
+
+![change email example](/images/posts/change_email_s.png)
+
+1️⃣ Recordamos que necesitamos abarcar al menos 2 escenarios con nuestras pruebas de integración, el primero es el happy path que interactúe con todas las dependencias out-of-process, el caso sería: **[escenario 1🎪] cuando cambies de un email corporativo a uno no corporativo, ya que eso actualiza el email, la número de empleados y envía una notificación al bus de mensajes**.
+ 
+El edge case que podemos evaluar es: **[escenario 2🎪] cuando no hay cambios en el email**, pero como en nuestro programa estamos aplicando el principio Fail-first no es necesario probar este caso.
+
+2️⃣ Ahora vamos categorizar las dos dependencias out-of-process, la base de datos solo es observable para nuestra aplicación por lo cual podemos verificar su estado de manera directa al ser una dependencia manejada, mientras que el bus mensajes lo que hace es entregar una notificación a un sistema externo por lo cual es una dependencia no manejada que tendremos que verificar a través de un mock.
+
+### ¿Qué hay de las pruebas end to end?
+
+Las pruebas end to end corren deben ejecutarse un ambiente productivo o ya desplegado ya que son pruebas que se ejecutan desde el punto de vista del usuario final, recordemos que son las más lentas y costas y el hacerlas está a discreción.
+
+Ya que las pruebas de integración están probando directamente dependencias out-of-process y haciendo mocks de las dependencias que no son manejadas, ya nos ofrece un buen nivel de protección, por lo cual no sería necesario hacer pruebas end-to-end, quizá si se desea se podría hacer una prueba que siga el camino más largo de ejecución después de un deploy solo para asegurar dicho deploy.
+
+#### Aplicando la primer prueba de integración
+
+```javascript
+const { UserController } = require("../UserController");
+const { Database } = require("../Database");
+describe("Integration tests 🛰", () => {
+  it("Cambiando email corporativo a uno que no es corporativo", () => {
+    // Arrange
+    const database = new Database();
+    const messageBusMock = {
+      sendEmailChangedMessage: jest.fn((userId, newEmail) => {
+        console.log("Message from mock 🤡", { userId, newEmail });
+      })
+    }
+    const sut = new UserController(database, messageBusMock);
+    // Act
+    const result = sut.changeEmail(1, "codelapps@gmail.com");
+    // Assert
+    expect(result).toBe("ok");
+    expect(database.getCompany()[1]).toBe(0);
+    expect(database.getUserById(1)[1]).toBe("codelapps@gmail.com");
+    expect(messageBusMock.sendEmailChangedMessage).toHaveBeenCalledWith(
+      1,
+      "codelapps@gmail.com"
+    );
+  });
+});
+```
+En esta prueba estamos verificando todas las interacciones con dependencias out-of-process: la base de datos y el bus de mensajes, estamos utilizando directamente la dependencia al base de datos lo cual nos ofrece un alto grado de protección contra regresiones y estamos utilizando un mock para el bus de mensajes.
+
+### Usando interfaces para abstraer dependencias
+
+Uno de los más grandes malentendidos en el área de pruebas unitarias es el uso de inerfaces, pero existen razones válidas e inválidas para usarlas.
+
+Muchos desarrolladores utilizan interfaces para dependencias out-of-process incluso aunque solo tengan 1 implementación, las razones por lo general son para bajar el nivel de acoplamiento y poder agregar funcionalidad nueva.
+
+Además estaríamos rompiendo con el principio YAGNI(You aren’t gonna need it) asumiendo que vamos tener funcionalidad nueva, se pierde tiempo y se introduce más código.
+
+Por último, todavía hay un caso en el que si es válido utilizar interfaces con solo una implementación, y esto es para poder habilitar el uso de mocks de una manera sencilla,por lo tanto como vimos los mocks solo se le pueden hacer a las dependencias no manejadas, lo que nos da como conclusión que este tipo de dependencias out-of-process pueden implementar interfaces, en la s pruebas podemos utilizar dichas interfaces para hacer los mocks y no tocar la clase concreta y en el código de producción utilizar la clase concreta.
+
+### Mejores prácticas para pruebas de integración
+
+Existen 3 prácticas generales para ayudar a sacar el máximo provecho a tus pruebas de integración:
+
+* 🚀 Hacer explícitos los límites de nuestro dominio
+* 🍞 Reducir el número de capas en la aplicación
+* 🚮 Eliminar dependencias
+El implementarlas no solo mejora tus pruebas, también tu base de código.
+
+🚀 Siempre trate de tener bien ubicado cual es y donde están tus modelos de domino.
+
+> El **modelo de dominio** es el conjunto de clases o módulos que contienen la lógica principal que resuelven el problema para lo cual está hecho el proyecto
+
+Si nosotros tenemos de manera explícita los límites del modelo y los controladores, podemos determinar rápidamente sobre que hacer pruebas unitarias y sobre que hacer pruebas de integración, estos límites pueden ser marcados con namespaces o una estructura de carpetas adecuada por ejemplo.
+
+🍞 Reducir el número de capas de nuestro sistema es importante, un sistema con un número excesivo de capas vuelve difícil distinguir los límites que hablamos en el punto anterior, hace complejo la abstracción del código para poder ser probado, es decir, no sabes que tomar como objetivo para las pruebas unitarias o de integración y crea una tendencia o necesidad de probar capa por capa generando una pérdida de protección contra regresiones.
+
+![capas](/images/posts/capas_1.png)
+
+Lo mejor es tratar de tener la menor cantidad de capas posibles bien definidas.
+
+🚮 Por último está el tema de dependencias circulares, que es cuando 2 o más módulos dependen una de la otra de manera directa o indirecta, ejemplo:
+
+```javascript
+class CheckoutService {
+  checkout(orderId) {
+    const reportService = new ReportService();
+    reportService.generate(orderId, this);
+    // code ...    
+  }
+}
+class ReportService {
+  generate(orderId, checkoutService) {
+    // llamadas checkoutService
+  }
+}
+```
+Con este tipo de dependencias incrementamos muchismo la carga cognitiva de entender el código, pero también vuelve complejo utilizar o hacer mocks de esas clases en nuestras pruebas.
+
+### Últimas recomendaciones
+
+En general una prueba de integración también se puede dividir en 3 secciones **Arrange-Act-Assert**, también suele ser un mal olor el tener más de una sección de estas dentro de la misma prueba ya que puede indicar la necesidad de hacer más de una prueba, sin embargo hay casos particulares en las pruebas de integración ya que se necesita verificar las dependencias out-of-process y muchas de estas pueden ser difíciles o costosas de manejar , por ejemplo tener un número limitado de accesos a un API, en este caso es posible tener más de una de estas secciones para reducir la cantidad de llamados.
+
+Como último agregado, el libro habla sobre sistemas de logging pero me parece en particular que es especificar mucho sobre este tipo de sistemas, la enseñanza general es que si el log que mandas es parte del proceso de desarrollo/debug este debe ser considerado como un detalle de implementación, pero si el log es de utilidad para algo o alguien externo se vuelve parte de un comportamiento observable que debe ser verificado.
+
+Entraré en más detalle en próximos capítulos de este post que es un resumen y mi entendimiento del libro:
+
+[📖 Unit testing: principles, pratices and patterns” por Vladimir Khorikov de la editorial Manning](https://www.manning.com/books/unit-testing).
+

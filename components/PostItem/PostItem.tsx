@@ -4,8 +4,8 @@ import SuperImage from "../SuperImage/SuperImage";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useFormatter, useTranslations } from "next-intl";
-import { Button } from "@mui/material";
 import Code from "../Code/Code";
+import VideoPreview from "../VideoPreview/VideoPreview";
 
 interface PostItemProps {
   post: Post;
@@ -14,6 +14,30 @@ interface PostItemProps {
 export default function PostItem({ post }: PostItemProps) {
   const formatter = useFormatter();
   const t = useTranslations("blog");
+
+  const MainContent = () => {
+    if (post.videoId) return <VideoPreview videoId={post.videoId} />;
+    if (post.code)
+      return (
+        <Code
+          children={post.code.code}
+          language={post.code.language}
+          className={`language-${post.code.language}`}
+          customStyle={{ fontSize: "12px" }}
+        />
+      );
+    if (post.thumbnail)
+      return (
+        <SuperImage
+          className={styles.postItem_thumbnail}
+          src={post.thumbnail.src}
+          alt={post.thumbnail.alt}
+          width={post.thumbnail.width}
+          height={post.thumbnail.height}
+        />
+      );
+  };
+
   return (
     <article className={styles.postItem}>
       <div className={styles.postItem_meta}>
@@ -42,24 +66,8 @@ export default function PostItem({ post }: PostItemProps) {
       </div>
 
       <h3 className="heading--3">{post.title}</h3>
-      {post.thumbnail && (
-        <SuperImage
-          className={styles.postItem_thumbnail}
-          src={post.thumbnail.src}
-          alt={post.thumbnail.alt}
-          width={post.thumbnail.width}
-          height={post.thumbnail.height}
-        />
-      )}
 
-      {post.code && (
-        <Code
-          children={post.code.code}
-          language={post.code.language}
-          className={`language-${post.code.language}`}
-          customStyle={{ fontSize: "12px" }}
-        />
-      )}
+      <MainContent />
 
       <p className="text--content">{post.excerpt}</p>
 

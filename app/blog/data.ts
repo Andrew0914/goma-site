@@ -24,6 +24,7 @@ export interface Post {
   excerpt: string;
   author?: Author;
   code?: CodeSnippet;
+  videoId?: string;
 }
 
 
@@ -54,14 +55,26 @@ export const posts: Post[] = [
     title: "El camino hacia HTTP/2, ¿Cómo funciona?",
     date: "2020-09-13 12:40:00",
     excerpt: "HTTP por sus siglas en inglés Hypertext Transfer Protocol, es el protocolo genérico más utilizado para el intercambio de información cliente servidor.",
-    slug: "el-camino-hacia-http-2-como-funciona",
-    thumbnail: { "alt": "HTTP", "src": "/images/posts/HTTP.png", "width": 432, "height": 227 },
+    slug: "camino-hacia-http2",
+    videoId: "CvVCMq2Q3Es",
   },
   {
     title: "Anatomía de una prueba unitaria",
     date: "2020-09-30 04:48:10",
     excerpt: "¿Cómo escribir una prueba unitara? A lo largo de este post conoceremos la estructura de una prueba unitaria que usualmente está representada por las fases de: arrange, act y assert (AAA)",
     slug: "anatomia-prueba-unitaria",
+    code: {
+      language: 'javascript',
+      code: `it('Anatomy of unit test 🧪', () => {
+    // Arrange
+    const customer = new Customer()
+    customer.setMoney(1000)
+    // Act
+    customer.spend(100)
+    // Assert
+    expect(customer.moner).toBe(900)
+})`
+    }
   },
   {
     title: "Los 4 pilares de una buena prueba unitaria",
@@ -110,7 +123,7 @@ public class FileContent implements Comparable<FileContent> {
     title: "¿Por qué hacer pruebas de integración?",
     date: "2021-03-05 23:40:47",
     excerpt: "Las pruebas de integración juegan un papel importante en nuestra suite de pruebas, como ya dijimos en el post ¿Qué es una prueba unitaria? 🧪 las pruebas unitarias deben cumplir los siguientes criterios:",
-    slug: "por-que-hacer-pruebas-de-integracion",
+    slug: "porque-hacer-pruebas-integracion",
     thumbnail: { "alt": "integration_tests_position", "src": "/images/posts/integration_tests_position.png", "width": 432, "height": 227 }
   },
   {
