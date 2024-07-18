@@ -22,6 +22,10 @@
   &_from {
     align-items: flex-start;
   }
+
+  &_brief {
+    max-width: 720px;
+  }
 }
 
 .jobsExperience {

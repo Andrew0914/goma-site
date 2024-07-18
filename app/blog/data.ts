@@ -40,7 +40,7 @@ export const posts: Post[] = [
     date: "2020-08-30 22:25:00",
     excerpt:
       "Si bien se dice que hacer pruebas unitarias a tu software mejoran el diseño del mismo, este solo es un buen efecto secundario, realmente lo que se busca con las pruebas unitarias es habilitar el crecimiento sostenible de un proyecto de software.",
-    slug: "la-meta-de-las-pruebas-unitarias",
+    slug: "meta-pruebas-unitarias",
     thumbnail: { "alt": "unitest_tendency", "src": "/images/posts/unitest_tendency.png", "width": 432, "height": 227 },
   },
   {
@@ -80,21 +80,21 @@ export const posts: Post[] = [
     title: "Los 4 pilares de una buena prueba unitaria",
     date: "2020-10-24 17:20:55",
     excerpt: "🛡️ Protección contra las regresiones. 💪 Resistencia al refactoring. ⚡ Rápida retro alimentación 🛠️ Mantenibilidad",
-    slug: "4-pilares-de-una-buena-prueba-unitaria",
+    slug: "4-pilares-pruebas-unitarias",
     thumbnail: { "alt": "4-pilars", "src": "/images/posts/4-pilars.png", "width": 125, "height": 125 }
   },
   {
     title: "Mocks y fragilidad en las pruebas",
     date: "2020-11-25 04:19:30",
     excerpt: "A lo largo de este post conoceremos, más a detalle los mocks y los otros tipos de test doubles, también veremos como los mocks están relacionados con la fragilidad en las pruebas.",
-    slug: "mocks-y-fragilidad-en-las-pruebas",
+    slug: "mocks-fragilidad-en-las-pruebas",
     thumbnail: { "alt": "mocks", "src": "/images/posts/mocks1.png", "width": 150, "height": 150 },
   },
   {
     title: "Estilos de pruebas unitarias",
     date: "2021-01-27 16:31:29",
     excerpt:
-      "Esta vez conoceremos 3 estilos de realizar pruebas unitarias: output-based, state-based y communication-based, es decir, estilo basado en las salidas o resultado, el estilo basado en el estado y el estilo basado en las comunicaciones.",
+      "Esta vez conoceremos 3 estilos de realizar pruebas unitarias: output-based, state-based y communication-based.",
     slug: "estilos-pruebas-unitarias",
     code: {
       language: "java",

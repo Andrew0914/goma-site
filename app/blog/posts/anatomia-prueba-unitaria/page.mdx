@@ -163,7 +163,7 @@ Otra desventaja de tener test fixtures compartidas para las pruebas y creados en
 
 ### Nombrando tus pruebas unitarias.
 
-Depende el framework que utilices, tiene distintas maneras de nombrar cada una de tus pruebas unitarias, por ejemplo para java utilizando Junit, tienes que crear una clase para tu set de pruebas generalmente nombrada igual que la clase bajo pruebas con el sufijo test, ejemplo: `Customer -> CustomerTest`
+Depende el framework que utilices, tiene distintas maneras de nombrar cada una de tus pruebas unitarias, por ejemplo para java utilizando [Junit](https://junit.org/junit5/), tienes que crear una clase para tu set de pruebas generalmente nombrada igual que la clase bajo pruebas con el sufijo test, ejemplo: `Customer -> CustomerTest`
 
 ```java
 public CustomerTest{
@@ -175,7 +175,7 @@ public CustomerTest{
 ```	
 Y cada método es una prueba y el nombre de ese método es lo que describe la prueba, existen formas clásicas pero muy rígidas de darles nombre, sin embargo en este post les comparto una pequeña guía más practica y que le da más significado a tus pruebas.
 
-Este tema en particular es la razón por la cual elegí para este post utilizar javascript y Jest, ya que te permite escribir frases normales para nombrar tus pruebas.
+Este tema en particular es la razón por la cual elegí para este post utilizar javascript y [Jest](https://jestjs.io/), ya que te permite escribir frases normales para nombrar tus pruebas.
 
 La forma clásica de nombrar una prueba es: `MetodoBajoPruebas_Scenario_ResultadoEsperado` en lenguajes como java, esto hace que se tenga una rejilla o estructura muy rígida que no le de el sentido adecuado, veamos un ejemplo utilizando js y el enfoque tradicional; supongamos que tenemos una clase Calculator con un método que suma 2 números:
 

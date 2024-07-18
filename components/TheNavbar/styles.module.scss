@@ -18,7 +18,7 @@
 
   & a {
     color: var($--text);
-
+    text-decoration: none !important;
     &:hover {
       color: var($--primary);
     }

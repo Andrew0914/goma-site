@@ -1,0 +1,182 @@
+# ¿Qué es una prueba unitaria?
+
+## Unit testing, principios, prácticas y patrones | Resumen
+
+
+Hay muchas definiciones de prueba unitaria y varias corrientes o escuelas de como se debe ser una prueba unitaria, a lo largo de este post veremos los distinto enfoques, el significado de una prueba unitaria y las diferencias entre los tipos de pruebas mas comunes.
+
+### Definición
+Una prueba unitaria es una forma automatizada de comprobar pequeños pedazos de código (ó unidades, de ahí que se llame prueba unitaria), esta comprobación debe ser rápida y de manera aislada.
+
+Me gusta agregar la razón de ser de un test unitario y es que este debe contar una historia acerca del problema que resuelve la parte del código que se está probando, esta historia debe ser cohesiva y clara, incluso para alguien que no desarrolle.
+
+En general aunque la definición no es difícil de entender, y los distintos enfoques no suelen tener mayor problema en la mayoría de los puntos del concepto, pero sí difieren mucho en que consiste que una prueba unitaria sea de manera **aislada**.
+
+### El problema del aislamiento: El enfoque de la escuela de Londres
+
+Existe dos corrientes o escuelas más populares que tratan de manera diferente el tema del aislamiento o la manera aislada de correr las pruebas unitarias.
+
+La primera de ellas, **la escuela de Londres**, dice que una prueba es aislada sí el código bajo prueba esta aislado de todos sus colaboradores, es decir, si el código que estas probando tiene colaboradores o dependencias estas deben ser sustituidas por **“tests doubles”** o dobles de prueba.
+
+> Un **test double** o doble de prueba es un objeto que luce y se comporta como su contraparte real, pero de hecho es una versión simplificada que facilita el poder probar un pedazo de código.
+
+![Aislamiento de una clase de sus dependencias con test double](/images/posts/aislamiento_tests_doubles.png)
+<small>Aislamiento de una clase de sus dependencias con test doubles</small>
+
+Algunos de los beneficios de este enfoque son que:
+
+* Si la prueba falla, estamos seguros que lo que falló fue nuestro código.
+* Nos da la habilidad de poder separar el árbol de dependencias que tenga una clase o módulo.
+* Con lo anterior, podemos probar una clase o modulo a la vez, por extensión sin tener que lidiar con las dependencias.
+* También nos permite establecer una estructura simple de nuestra suite de pruebas.
+
+![Facilidad para establecer una estructura en la suite de pruebas.](/images/posts/estructura_suite_pruebas.png)
+<small>Facilidad para establecer una estructura en la suite de pruebas.</small>
+
+Veamos un ejemplo de utilizar este enfoque del aislamiento en una prueba unitaria, primero veamos como lo haríamos de manera tradicional :
+
+```java
+@Test
+public void buyBook_when_enough_inventory(){
+    Store store = new Store();
+    store.add(Product.BOOK, 10);
+    Customer customer = new Customer();
+    customer.buy(store, Product.BOOK, 1)
+    assertEquals(9 , store.howMuchInventory(Product.BOOK))
+}
+```
+
+En la prueba anterior se quiere verificar la acción de comprar un libro si hay suficiente en el inventario, para realizar dicha compra que justamente es efectuada por la clase de Customer, requiere la clase Store para dicha acción lo cual hace la clase Customer el (SUT), el método customer.buy(...) el MUT(method under test) y la clase Store una dependencia.
+
+En esta prueba la clase Customer no está aislada de sus dependencias y esta verificando tanto la clase como sus dependencias, cualquier bug en la clase Store por ejemplo, afectará el éxito de la prueba sobre la clase Customer.
+
+Ahora veamos aplicando el enfoque de aislamiento descrito antes, en este caso consiste aislar el SUT de todos sus colaboradores, para este ejemplo en específico usaremos un **MOCK** que es un tipo de test double o doble de pruebas.
+
+> Un **mock** es un tipo especial de test double que te permite facilitar la interacción entre el SUT y sus colaboradores.
+
+```java	
+@Test
+public void buyBook_when_enough_inventory(){
+    // Realizamos test double(mock) de la clase Store 
+    Store storeMock = mock(Store.class);
+    when(storeMock.howMuchInventory()).thenReturn(9);
+    // De esta manera aislamos solo el comportamiento de la clase Customer
+    Customer cusomer = new Customer();
+    customr.buy(storeMock, Product.BOOK, 1)
+    assertEquals(9 , storeMock.howMuchInventory(Product.BOOK))
+}
+```
+Los ejemplos anteriores son demostrativos y están hechos en java y en base a la librería de JUnit y Mockito, pero el concepto central es independiente al lenguaje, vemos que al controlar el comportamiento de la clase Store haciendo un [MOCK](https://es.wikipedia.org/wiki/Objeto_simulado), nosotros podemos estar seguros de solo estar probando la clase Customer de manera aislada.
+
+También pudimos notar que solo sustituí la clase Store ya que es una dependencia mutable, a diferencia por ejemplo del enumerado Product que solo provee constantes o valores [inmutables](https://es.wikipedia.org/wiki/Inmutabilidad) y por mas veces que lo utilicemos esto no cambia y por tanto no altera el funcionamiento de la prueba.
+
+### El problema del aislamiento: El enfoque tradicional
+
+Como ya expliqué el enfoque que le da la escuela de Londres a el aislamiento consiste en segregar totalmente el código bajo pruebas de sus colaboradores con ayuda de test dobules, especialmente mocks.
+
+Recordemos que hay 3 atributos que definen una prueba unitaria los cuales son:
+
+* Una prueba unitaria verifica una pequeña pieza de código
+* Debe ejecutarse rápido
+* Debe hacerlo de manera aislada
+
+Dependiendo el enfoque que tomes, surge la pregunta de: **¿Qué realmente constituye una pieza o unidad de código?** Si bien en el primer enfoque se puede aislar totalmente una clase de sus colaboradores, es sencillo y común adoptar a una clase o un método individual como unidad; sin embargo, en el enfoque tradicional se puede estar verificando más de una clase en una misma prueba.
+
+En el enfoque clásico o tradicional en lugar de aislar el código bajo pruebas en si mismo , cada una de las pruebas unitarias debe ejecutarse de manera aislada una de la otra, de esta manera las pruebas se pueden ejecutar paralelamente, secuencial mente o en cualquier orden y esto seguirá sin afectar la ejecución de cada prueba individual.
+
+La manera de lograr este aislamiento entre pruebas unitarias es no mantener un estado compartido a través de dependencias compartidas; generalmente una dependencia compartida suele ser una del tipo out-of-process, por ejemplo: la base de datos o el file system.
+
+> Dependencia **out-of-proccess**: Es una dependencia que se ejecuta fuera del proceso de la aplicación, como la conexión a la base de datos, mayormente suelen ser dependencias compartidas, pero no siempre, por ejemplo: puedes estar levantando un contenedor Docker en cada prueba con una instancia distinta de la base de datos.
+
+![Esquema de dependencias compartidas](/images/posts/esquima_dependencias_compartidad.png)
+<small> Esquema de dependencias compartidas</small>
+
+> **Dependencia compartida**: Es una dependencia compartida entre pruebas si esto significa que el uso de dicha dependencia en una prueba en específico, afecta la ejecución o el resultado de otras pruebas, por ejemplo: un campo estático o la base de datos, podemos mutarlos en una prueba y eso afecta lo que espera otra.
+
+Ejemplo:
+
+```java
+@Test
+public void create_new_customer(){
+ //Arrange
+ CustomerController controller = new CustomerBuilder()
+// Act
+ Customer newCustomer = controller.create(1, "Bob")
+// Assert
+ assertTrue(controller.exists(newCustomer))   
+}
+
+@Test
+public void delete_customer(){
+ // Arrange
+ CustomerController controller = new CustomerBuilder()
+// Act
+ Customer deletedCustomer = controller.deleteById(1) 
+// Assert
+ assertFalse(controller.exists(deletedCustomer))   
+}
+```
+
+En un sistema para una tienda, tenemos 2 pruebas, tomando en cuenta que están escritas en el estilo clásico **(AAA)**, la primera crea un cliente nuevo, y la segunda de la misma manera lo elimina, la segunda espera que se haya ejecutado la primera para funcionar, lo cual genera un a dependencia compartida, si nosotros ejecutamos las pruebas en paralelo la segunda prueba interfiere con la primera y esto puede hacer que falle, rompiendo así el aislamiento entre pruebas
+
+> En futuros posts entraré mas a detalle en este estilo de es escribir pruebas unitarias con **(AAA)** por ahora una breve explicación.
+
+>La fase **“Arrange”** es donde creas o preparas todo lo que va a necesitar tu prueba, la fase de **“Act”** es donde ejecutas la acción que va a producir el resultado que quieres verificar y en la fase de “Assert” es donde verificas dicho resultado.
+
+En el enfoque tradicional se siguen utilizando tests doubles pero de una manera más moderada, normalmente para las dependencias compartidas, con objetivo de sustituirlas y poder aislar cada prueba unitaria de la otra
+
+Las dependencias compartidas lo son si son compartidas entre pruebas unitarias no entre las clases o el sistema bajo pruebas, en ese sentido, por ejemplo, una clase [Singleton](https://es.wikipedia.org/wiki/Singleton) o una clase de configuración no lo son por que siempre se puede generar una instancia nueva con el fin de utilizarla en cada prueba, estas últimas 2 más bien son conocidas como dependencias privadas.
+
+> **Dependencia privada:** Es una dependencia no compartida
+
+Otra razón de sustituir las dependencias compartidas es aumentar la velocidad de ejecución de las pruebas, por ejemplo para evitar llamadas a dependencias out-of-process que tengan cierta latencia.
+
+Como hemos visto este enfoque tradicional no limita a una clase o un método a ser la unidad de código, sino que puede ser un grupo de clases, siempre y cuando ninguna de ellas genere un dependencia compartida.
+
+### Manejo de las dependencias en los 2 enfoques
+
+A manera de conclusión para el tema de las dependencias y como lo maneja cada uno de los enfoques que hemos hablado, es que para el enfoque de la escuela de Londres se deben sustituir absolutamente todas las dependencias o colaboradores excepto las que sean inmutables, ya que si su valor no cambia no afecta.
+
+> **Colaborador**: Es una dependencia compartida o mutable que colabora (acciona algo) en el SUT (sistema bajo prueba), un valor o una constante por ejemplo, no es un colaborador por que no cambia su estado ni afecta el uso de este ultimo en otros lados.
+
+Mientras que en el enfoque tradicional (al igual que el autor del libro, es el que uso) se deben sustituir absolutamente todas las dependencias compartidas, por que se pueden mutar y un cambio en estas dependencias alterarán lo esperado por otras pruebas.
+
+También existen distintos tipos de dependencias que ya vimos, y en general algunas están relacionadas entré si, pero una dependencia adquirirá un tipo específico dependiendo el enfoque, el uso y la forma de sustituirla en tus pruebas.
+
+### Contraste entre los dos enfoques
+
+Simplifiquemos en 3 grandes puntos, tomando como referencia el enfoque de la escuela de Londres:
+
+La escuela de Londres busca mejorar la granularidad de las pruebas, probando una clase a la vez (véase clase como unidad mayormente en los lenguajes orientados a objetos), sin embargo, esto solo nos trae algo de fragilidad a las pruebas. por que al separar totalmente el código bajo pruebas de sus colaboradores, lo que se esta probando es la ejecución de un conjunto de lineas y solo se comprueba si no presentan un error en ejecución, pero no nos habla de las posibles fallas cuando hay interacción con sus colaboradores, que al final es lo que sucede en el sistema en el mundo real.
+
+> Una prueba no debe verificar una unidad de código en si mismo, sino mas bien una unidad de comportamiento, que son un conjunto de acciones e interacciones, y aportan más al dominio del problema que resuelve nuestro sistema.
+
+El segundo punto es que si bien el enfoque de la escuela de Londres de hacer mocks de todas las dependencias puede eliminar un complicado árbol de estas, y en el enfoque tradicional podemos vernos en la situación de tener que recrear un complejo árbol de dependencias.
+
+El tener la necesidad de recrear un árbol completamente nos está diciendo que más haya del enfoque utilizado tenemos un problema de diseño, ya que en lugar de estar haciendo mocks de todas las dependencias (solo ocultan el problema real) para romper con un complejo grafo de estás, la solución real es tener un diseño simple para las relaciones entre las clases y sus colaboradores.
+
+Por último, el enfoque tradicional nos puede revelar la localización de bugs de mejor manera, ya que el enfoque de la escuela de Londres nos mostrará bugs de SUT solamente, pero en la realidad están sucediendo interacciones entre clases y módulos, y aporta mas valor una prueba que detecte un bug que desencadena problemas en otros lugares, esto es información mas valiosa.
+
+### Pruebas de integración y pruebas end-to-end
+
+Analizaremos brevemente como se ven estos 2 tipos de pruebas desde los dos enfoques y que son cada una.
+
+Como ya vimos para la escuela de Londres una prueba unitaria prueba una unidad de código, segregando totalmente sus colaboradores, esto nos dice que cualquier prueba a lo que no se le sustituyan sus dependencias o colaboradores para la escuela de Londres esto es ya es una prueba de integración.
+
+Ya definimos las características de lo que hace ser a una prueba unitaria lo que es, vamos a redefinirlo con todo lo que ya hemos aprendido a lo largo de este post y tomando el enfoque tradicional:
+
+* Debe verificar una pieza de comportamiento
+* Debe hacerlo rápido
+* Debe hacerlo de manera aislada una prueba de otra
+
+**Una prueba de integración** en general no sigue los criterios mencionados arriba, puede verificar 2 o más piezas de comportamiento, su interacción entre ellas, hacen uso de dependencias compartidas y/o out-of-process, lo cual también puede hacer más lenta su ejecución, ya que las pruebas de integración prueban la interacción entre las partes del sistema y esto mismo hace que se prueben comportamientos comunicándose entre sí (no aislados).
+
+> Por ejemplo: puedes estar probando que un registro en base de datos se haya guardado con la ejecución de uno de tus métodos y se le hayan efectuado las validaciones correctas.
+
+**Una prueba end-to-end** es generalmente un conjunto de pruebas de integración que hace más uso de dependencias out-of-process, sin embargo la línea para distinguir que tantas dependencias son “más”, o que tan grande debe ser el conjunto de pruebas de integración, a veces es algo difuso; pero también otra forma de diferenciarlas es que suelen ser mas costosas y son pruebas que se realizan desde el punto de vista del usuario final, por ello también suelen ser llamadas pruebas de la UI o pruebas funcionales.
+
+> Por ejemplo: puedes estar probando todo el proceso para que un usuario se registre; la UI, las acciones detrás de la UI, el API, la conexión a la base de datos y la respuesta de vuelta.
+
+Entraré en más detalle en próximos capítulos de este post que es un resumen y mi entendimiento del libro: 
+
+[📖 Unit testing: principles, pratices and patterns” por Vladimir Khorikov de la editorial Manning](https://www.manning.com/books/unit-testing).

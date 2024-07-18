@@ -114,7 +114,7 @@ $colors: (
 .text--link,
 a {
   color: var(--primary);
-  text-decoration: none;
+  text-decoration: underline;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
   &:hover {

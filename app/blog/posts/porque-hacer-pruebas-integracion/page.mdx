@@ -5,7 +5,7 @@ Nunca podremos confiar que un sistema funciona en su totalidad, solo con pruebas
 
 Se debe verificar como diferentes partes del sistema de integran entre sí y con elementos externos, como una base de datos y para ello tenemos las pruebas de integración.
 
-Las pruebas de integración juegan un papel importante en nuestra suite de pruebas, como ya dijimos en el post ¿Qué es una prueba unitaria? 🧪 las pruebas unitarias deben cumplir los siguientes criterios:
+Las pruebas de integración juegan un papel importante en nuestra suite de pruebas, como ya dijimos en el post <Link href="blog/posts/que-es-una-prueba-unitaria">¿Qué es una prueba unitaria? 🧪</Link> las pruebas unitarias deben cumplir los siguientes criterios:
 
 * 🧩 Debe verificar una pieza de comportamiento
 * ⚡ Debe hacerlo rápido
@@ -21,7 +21,7 @@ Como sabemos las pruebas unitarias deben enfocarse en la lógica de negocios o l
 
 Todavía se pueden realizar pruebas unitarias sobre los controladores, haciendo mocks de todas las dependencias, pero hay dependencias que solo son visibles para tu sistema, estas últimas no deben ser reemplazadas por mocks y se verifican a través de las pruebas de integración.
 
-Por último el cuadrante de código trivial no vale la pena ser probado, mientras que el del código super complicado debe ser refactorizado para separarlo en modelos y controladores, como vimos en el capítulo anterior, donde hicimos un ejemplo de este refactor en video 📹.
+Por último el cuadrante de código trivial no vale la pena ser probado, mientras que el del código super complicado debe ser refactorizado para separarlo en modelos y controladores, como vimos en el <Link href="refactorizando-pruebas-unitarias-valiosas">capítulo anterior</Link>, donde hicimos un ejemplo de este refactor en video 📹.
 
 ### Revisando la pirámide de pruebas
 
@@ -118,7 +118,7 @@ class UserController {
 
 > El código se ajusta un poco para poder ejemplificar la prueba de integración de manera más sencilla
 
-En este ejemplo que es totalmente explicado: Refactorizando para tener pruebas unitarias valiosas ⭐️, tenemos un pequeño CRM que cumple con los siguientes puntos:
+En este ejemplo que es totalmente explicado: <Link href="/blog/posts/refactorizando-pruebas-unitarias-valiosas">Refactorizando para tener pruebas unitarias valiosas ⭐</Link>, tenemos un pequeño CRM que cumple con los siguientes puntos:
 
 * Se puede cambiar el email de un usuario
 * Si el email cambio se actualiza el número de empleados si es que tiene el dominio de la compañía o no.

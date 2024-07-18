@@ -1,0 +1,114 @@
+# La meta de las pruebas unitarias
+## Unit testing, principios, prácticas y patrones | Resumen
+
+
+### El estado actual del unit testing.
+
+Por mucho tiempo desde que se impulso la práctica de hacer pruebas unitarias al software, la pregunta era **¿Debemos hacer pruebas unitarias?.**
+
+Sin embargo este empuje tuvo mucho éxito y ahora todo programador que se diga ser profesional o todo aquel que desee serlo debe conocer y practicar el hacer pruebas unitarias a su código, así mismo para las compañías que hacen productos profesionales se volvió obligatorio realizar pruebas unitarias, lo cual convierte esa pregunta inicial a **¿Cómo hacer una buena prueba unitaria?**
+
+### ¿Cuál es el objetivo de las pruebas unitarias?
+
+Si bien se dice que hacer pruebas unitarias a tu software mejoran el diseño del mismo, este solo es un buen efecto secundario, realmente **lo que se busca con las pruebas unitarias es habilitar el crecimiento sostenible de un proyecto de software.**
+
+Por ejemplo: agregar una nueva funcionalidad, o corregir algún bug con la seguridad de que no romperás el resto de cosas en tu sistema.
+
+Estas posibles rupturas son conocidas como “regresiones“, las pruebas unitarias sirven como una red de seguridad y previenen la tendencia del software a deteriorarse.
+
+El no hacer pruebas unitarias provocará que el progreso de tu sistema no sea sostenible, mientras que con pruebas unitarias podemos generar un progreso certero, lo mismo sucede con malas pruebas unitarias, aunque de inicio si disminuyen la velocidad en que tu software se deteriora, al final se comportan como si no realizaras pruebas ya que no respaldan adecuadamente tu sistema.
+
+![Salun de tu sistema con pruebas unitarias](/images/posts/system_progress.png)
+
+### Las métricas de cobertura como medida de una buena calidad de suite de pruebas unitarias
+
+Existen dos métricas de cobertura populares que son el “code coverage” y el “branch coverage”, estas métricas nos indican que tanto de nuestra base código se esta ejecutando a través de las pruebas; la creencia general es que una mayor cobertura es mejor y que estamos teniendo un buen nivel de pruebas unitarias, pero la realidad no es tan simple.
+
+El “code coverage” o “test coverage” es el más popular de los 2, y se determina de la siguiente manera:
+
+**code coverage** = executed lines / total lines
+
+Ejemplo
+
+```java
+/* Test code */
+public void test(){
+    boolean result = isNameLong("abc");
+    assertFalse(result); // esta ejecutando 4/5 (la 8,9,11 y 12) lineas = 80%
+}
+/*Source code*/
+public static boolean isNameLong(String name){
+    if(name.length > 5) //covered by test
+        return true; // no covered
+    return false; //covered by test
+}
+```
+
+Podemos darnos cuenta que se están ejecutando 4/5 (la 8,9,11 y 12) lineas = 80% de líneas con la prueba, pero si nosotros refactorizamos el método bajo prueba algo así:
+
+```java
+/*Source code*/
+public static boolean isNameLong(String name){
+    return name.length > 5 //covered by test
+}
+```
+
+podríamos estar cubriendo 3/3 lineas teniendo así un 100% de code coverage.
+
+Por otro lado el “branch coverage” en lugar de medir la cantidad plana total de lineas ejecutadas, mide la cantidad de ramas que toca en funcion de las estructuras de control como un if/switch.
+
+**branch coverage** = ramas tocadas / total de ramas
+
+```java
+/*Source code*/
+public static boolean isNameLong(String name){
+    return name.length > 5
+}
+
+/* Test code */
+public void test(){
+    boolean result = isNameLong("abc");
+    assertFalse(result);
+}
+```
+En el siguiente diagrama vemos los dos posibles caminos que puede tomar nuestro código bajo prueba:
+
+![Code branches](/images/posts/code_branches.png)
+
+Vemos que hay dos posibilidades de ejecución (2 caminos ó 2 ramas), y en nuestra prueba estamos pasando a través de 1 por lo cual estamos teniendo 1/2 ramas tocas = **50% de branch coverage**.
+
+El problema de tomar las métricas de cobertura como medidas de calidad es que los números o porcentajes arrojados pueden ser engañosos, los ejemplos anteriores son simples, pero si nosotros tuviéramos algo así:
+
+```java
+public static boolean isNameLong(String name){
+    boolean wasNameLong = false
+    if(name.length > 5) {
+        wasNameLong = true; // no guaranteed
+        return true; 
+    }
+    return false; 
+}
+ 
+/* Test code */
+public void test(){
+    boolean result = isNameLong("abcdef");
+    assertFalse(result);
+}
+```
+Vemos que aunque 6/7= 85% líneas están siendo ejecutadas, solamente se esta probando implícitamente la línea con el **return**, no garantizando que por ejemplo wasNameLong tenga el valor correcto, lo mismo para la cantidad de ramas tocadas que en este ejemplo también es 50% ya que solo esta probando cuando la condición del if es verdadera.
+
+Podemos darnos cuenta que si bien son útiles estas métricas **suelen ser un excelente indicador negativo pero un mal indicador positivo de la calidad de tus pruebas,** es decir, si los porcentajes son bajos si puede ser indicador de que tienes muchas parte de tu código sin probar, pero por el contrario el tener un alto porcentaje no indica que tienes una buena suite de pruebas.
+
+Por eso es importante no tener como objetivo un determinado porcentaje de cobertura si no mas bien una buena suite de pruebas que aporten valor a tu sistema y lo respalden de manera adecuada, verificando las partes más importantes o críticas de tu software.
+
+### ¿Qué hace una buena suite de pruebas unitarias?
+
+* Hacer pruebas tiene que ser parte del ciclo de desarrollo.
+* La suite de pruebas debe tener como objetivo las partes mas importantes o críticas de tu sistema.
+* Debe proveer el máximo valor con el mínimo costo de mantenimiento.
+
+En general se tiene que estar realizando pruebas constantemente como parte del ciclo de desarrollo a las partes más críticas de nuestro sistema a medida que las vamos construyendo, las partes críticas suele ser la lógica de negocio, dejando de lado código de infraestructura, condigo o dependencias externas y código de integración, reconociendo si la prueba realmente nos aporta valor o respalda adecuadamente lo que estamos verificando.
+
+Entraré en más detalle en próximos capítulos de este post que es un resumen y mi entendimiento del libro: 
+
+[📖 Unit testing: principles, pratices and patterns” por Vladimir Khorikov de la editorial Manning](https://www.manning.com/books/unit-testing).

@@ -2,12 +2,12 @@
 ## Unit testing, principios, prácticas y patrones
 
 
-En el post 1 La meta de las pruebas unitarias 🧪, definimos cuáles son las tres características que definen a una buena prueba unitaria, la última de ellas: “Deben ofrecer el máximo valor con el mínimo de costo de mantenimiento“, pero para poder lograr esto necesitamos 2 cosas:
+En el post 1 <Link href="/blog/posts/meta-pruebas-unitarias">La meta de las pruebas unitarias 🧪</Link>, definimos cuáles son las tres características que definen a una buena prueba unitaria, la última de ellas: “Deben ofrecer el máximo valor con el mínimo de costo de mantenimiento“, pero para poder lograr esto necesitamos 2 cosas:
 
 * 🧠 Reconocer que es una prueba valiosa y cuál no lo es
 * ✍️ Escribir una prueba unitaria valiosa
 
-En el post Los 4 pilares de una buena prueba unitaria vimos cómo reconocer una prueba unitaria valiosa, pero a lo largo de este post aprenderemos cómo se escriben ese tipo de pruebas, también necesitamos tener habilidades de diseño en nuestro código, ya que sería imposible hacer una prueba valiosa sin poner un poco de esfuerzo en escribir una buena base de código.
+En el post <Link href="/blog/posts/4-pilares-pruebas-unitarias">Los 4 pilares de una buena prueba unitaria</Link> vimos cómo reconocer una prueba unitaria valiosa, pero a lo largo de este post aprenderemos cómo se escriben ese tipo de pruebas, también necesitamos tener habilidades de diseño en nuestro código, ya que sería imposible hacer una prueba valiosa sin poner un poco de esfuerzo en escribir una buena base de código.
 
 Identificar el código a refactorizar
 Es casi imposible el mejorar una suite de pruebas sin refactorizar nuestra base de código mejorandola también, ya que la suite de pruebas está intrínsecamente conectada a esta base de código.
@@ -63,7 +63,7 @@ Para poder probar necesitamos extraer la lógica importante o que tiene signific
 <small className="text--sm text--muted">Patrón humble</small>
 
 
-Podemos ver que ya hemos aplicado este patrón en ejemplos de post anteriores, específicamente: Mocks y fragilidad en las pruebas donde vemos que la arquitectura hexagonal busca separar la lógica de negocios de las comunicaciones con dependencias out-of-process,y en Estilos de pruebas unitarias vemos que la arquitectura funcional va todavía más haya separando la lógica de todas las dependencias o colaboradores no solo las out-of-process, por ello es que esta ultima es muy testeable.
+Podemos ver que ya hemos aplicado este patrón en ejemplos de post anteriores, específicamente: <Link href="/blog/posts/mocks-fragilidad-en-las-pruebas">Mocks y fragilidad en las pruebas</Link> donde vemos que la arquitectura hexagonal busca separar la lógica de negocios de las comunicaciones con dependencias out-of-process,y en <Link href="/blog/posts/estilos-pruebas-unitarias">Estilos de pruebas unitarias</Link> vemos que la arquitectura funcional va todavía más haya separando la lógica de todas las dependencias o colaboradores no solo las out-of-process, por ello es que esta ultima es muy testeable.
 
 ![Ejes de arquitectura](/images/posts/arquitecturas_axis.png)
 <small className="text--sm text--muted">Ejes de arquitectura</small>
