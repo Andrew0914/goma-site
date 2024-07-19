@@ -1,22 +1,62 @@
 import "@/styles/globals.scss";
-import type { Metadata } from "next";
 import { crimsonPro, workSans } from "./fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import MyThemeProvider from "@/components/ThemeProvider/ThemeProvider";
 import TheNavbar from "@/components/TheNavbar/TheNavbar";
 import TheFooter from "@/components/TheFooter/TheFooter";
+import Head from "next/head";
+
+export const metadata = {
+  title: "Andrew Gonzalez's Website",
+  description:
+    "Andrew Gonzalez's personal website, where he shares my thoughts on software development, creativity, and web development.",
+  generator: "Next.js",
+  applicationName: "Andrew Gonzalez's Website",
+  referrer: "origin-when-cross-origin",
+  keywords: [
+    "Next.js",
+    "React",
+    "JavaScript",
+    "TypeScript",
+    "CSS",
+    "HTML",
+    "Web Development",
+    "Creativity",
+    "Developer",
+    "Software Engineer",
+    "Software Development",
+    "Elixir",
+    "Phoenix",
+    "Flutter",
+    "Photoshop",
+    "Vue.js",
+  ],
+  authors: [{ name: "Andrew Gonzalez" }],
+  creator: "Andrew Gonzalez",
+  publisher: "Andrew Gonzalez",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+};
 
 export default async function RootLayout({
   children,
+  meta,
 }: {
   children: React.ReactNode;
+  meta: any;
 }) {
   const locale = await getLocale();
   const messages = await getMessages({ locale });
 
   return (
     <html lang="en" className={`${crimsonPro.variable} ${workSans.variable}`}>
+      <Head>
+        <title>{meta?.title} ccc</title>
+      </Head>
       <body className="light">
         <MyThemeProvider>
           <NextIntlClientProvider messages={messages}>

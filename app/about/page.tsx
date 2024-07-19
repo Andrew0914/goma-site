@@ -198,12 +198,21 @@ function Skills() {
   );
 }
 
+export const metadata = {
+  title: "About",
+  description:
+    "This is a page where I share my experiences, education, skills, and hobbies.",
+};
+
 export default function About() {
   const t = useTranslations("about");
 
   return (
     <PageTransition className={`container ${styles.aboutMe}`}>
-      <h1 className="heading--1">{t("title")}</h1>
+      <h1 className="heading--1">
+        {t("title")}
+        <hr className="divider mt--1" />
+      </h1>
 
       <div className={styles.aboutMe_from}>
         <Image

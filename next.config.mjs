@@ -1,6 +1,8 @@
 import createNextIntlPlugin from "next-intl/plugin";
 import withMDX from "@next/mdx";
 import remarkGfm from 'remark-gfm'
+import remarkFrontmatter from 'remark-frontmatter'
+
 
 const withNextIntl = createNextIntlPlugin("./i18n.ts");
 
@@ -9,10 +11,11 @@ const withNextIntl = createNextIntlPlugin("./i18n.ts");
 const withMDXConfig = withMDX({
   options: {
     remarkPlugins: [
-      remarkGfm
-    ]
-  },
+      remarkGfm,
+      remarkFrontmatter
+    ],
 
+  },
 })
 
 // Compose the plugins correctly

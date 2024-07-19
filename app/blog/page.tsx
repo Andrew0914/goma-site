@@ -4,6 +4,12 @@ import styles from "./page.module.scss";
 import PageTransition from "@/components/PageTransition/PageTransition";
 import { useTranslations } from "next-intl";
 
+export const metadata = {
+  title: "Blog",
+  description:
+    "My blog where I share my thoughts, software development, creativity, and web development and my lived experiences.",
+};
+
 export default function Blog() {
   const t = useTranslations("blog");
 

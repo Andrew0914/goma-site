@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
+  console.log("PostsLaoyout", props);
   return (
     <PageTransition className="container">
       <header className="post--header">
