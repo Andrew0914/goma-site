@@ -22,6 +22,7 @@ $--divider: --divider;
 $--code-topbar: --code-topbar;
 $--code-topbar-border: --code-topbar-border;
 $--table-striped: --table-striped;
+$--photo-gradient: --photo-gradient;
 
 // Default theme
 $theme-map-light: (
@@ -51,11 +52,12 @@ $theme-map-light: (
       rgba(253, 253, 253, 0.9),
       rgba(255, 255, 255, 1)
     ),
-  $--radial-gradient: radial-gradient(circle, rgba(80, 157, 231, 1) 31%, rgba(90, 224, 245, 1) 78%),
+  $--radial-gradient: radial-gradient(circle, rgba(255, 148, 222, 1) 62%, rgba(255, 128, 200, 1) 78%),
   $--divider: #d6d6d6,
   $--code-topbar: #efe9e9,
   $--code-topbar-border: #cfcece,
-  $--table-striped: #e3e3e3
+  $--table-striped: #e3e3e3,
+  $--photo-gradient: linear-gradient(135deg, #638fee 0%, #0369a1 100%)
 );
 
 // Override the default light theme
@@ -83,7 +85,8 @@ $theme-map-dark: (
   $--divider: #232323,
   $--code-topbar: #2e2634,
   $--code-topbar-border: #1d1e22,
-  $--table-striped: #1a1a1a
+  $--table-striped: #1a1a1a,
+  $--photo-gradient: linear-gradient(135deg, #fbb4f5 0%, #d62ad0 100%)
 );
 
 $theme-map-universal: (
