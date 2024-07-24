@@ -2,7 +2,7 @@
   "thenavbar": {
     "title": "{emoji} Andrew",
     "home": "Home",
-    "about": "About",
+    "about": "About me",
     "work": "Work",
     "blog": "Blog",
     "festivities": {
@@ -23,7 +23,8 @@
   "home": {
     "title": "Hi! I'm <div>Andrew Gonzalez</div>, a dedicated IT engineer, <span>passionated developer</span>, and the Front-End Lead at work.",
     "more": "I am passionate about crafting experiences through code and unleashing my creativity. I also enjoy video games and food.",
-    "latestPost": "Latest post"
+    "latestPost": "Latest post",
+    "latestWork": "Latest work"
   },
   "thefooter": {
     "follow": "Follow me",

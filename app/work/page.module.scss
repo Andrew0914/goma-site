@@ -1,0 +1,19 @@
+.work {
+  &_items {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, calc(50% - 32px));
+    gap: 64px;
+    margin-bottom: 48px;
+
+    @media screen and (width <= 820px) {
+      grid-template-columns: 100%;
+    }
+  }
+
+  &_items_column {
+    display: flex;
+    flex-flow: column;
+    gap: 64px;
+  }
+}

@@ -1,0 +1,76 @@
+@import "@/styles/colors";
+
+.jobItem {
+  display: flex;
+  flex-flow: column;
+  gap: 8px;
+  border-radius: 4px;
+  //overflow: hidden;
+  border: 1px solid var(--divider);
+  padding-bottom: 16px;
+  background-color: var(--contrast);
+
+  &_info {
+    padding: 8px 16px;
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+  }
+
+  &_meta {
+    text-transform: uppercase;
+  }
+
+  &_image {
+    border-radius: 4px 4px 0 0;
+    width: 100%;
+    min-height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    & > img {
+      transition: transform 0.33s ease-in-out;
+    }
+
+    &:hover > img {
+      transform: scale(1.4);
+      @media screen and (max-width: 960px) {
+        transform: scale(1.15);
+      }
+    }
+  }
+
+  &_live {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+
+    cursor: pointer;
+
+    & > svg {
+      color: var(--white);
+    }
+
+    &:hover > svg {
+      color: var(--warning);
+    }
+  }
+}
+
+.workblue {
+  background-image: var(--work-blue);
+}
+
+.workred {
+  background-image: var(--work-red);
+}
+
+.workgreen {
+  background-image: var(--work-green);
+}
+
+.workyellow {
+  background-image: var(--work-yellow);
+}

@@ -23,7 +23,8 @@
   "home": {
     "title": "Hola! Soy <div>Andrew González</div>, ingeniero en informática, <span>programador apasionado </span>, y líder Front-End en mi trabajo actual.",
     "more": "Me apasiona crear experiencias a través del código y liberar mi creatividad. También disfruto de los videojuegos y la comida.",
-    "latestPost": "Último post"
+    "latestPost": "Último post",
+    "latestWork": "Último trabajo"
   },
   "thefooter": {
     "follow": "Sígueme",
