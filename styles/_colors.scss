@@ -62,8 +62,8 @@ $theme-map-light: (
   $--code-topbar-border: #cfcece,
   $--table-striped: #e3e3e3,
   $--photo-gradient: linear-gradient(135deg, #638fee 0%, #0369a1 100%),
-  $--work-blue: linear-gradient(135deg, #b3e5fc 0%, #6995e3 100%),
-  $--work-red: linear-gradient(135deg, #ffccbc 0%, #e43b75 100%),
+  $--work-blue: linear-gradient(135deg, #b3e5fc 10%, #3c71cc 100%),
+  $--work-red: linear-gradient(135deg, #ffccbc 0%, #d02e67 100%),
   $--work-green: linear-gradient(135deg, #c8e6c9 0%, #00b110 100%),
   $--work-yellow: linear-gradient(135deg, #ffecb3 0%, #e8da5d 100%)
 );
@@ -95,10 +95,10 @@ $theme-map-dark: (
   $--code-topbar-border: #1d1e22,
   $--table-striped: #1a1a1a,
   $--photo-gradient: linear-gradient(135deg, #fbb4f5 0%, #d62ad0 100%),
-  $--work-blue: linear-gradient(135deg, #dacdf8 0%, #b9a6f2 100%),
+  $--work-blue: linear-gradient(135deg, #dacdf8 10%, #9d7cff 100%),
   $--work-red: linear-gradient(135deg, #ffccbc 0%, #e43b75 100%),
-  $--work-green: linear-gradient(135deg, #a7d7c5 0%, #74b49b 100%),
-  $--work-yellow: linear-gradient(135deg, #fdd6bd 0%, #ffecb3 100%)
+  $--work-green: linear-gradient(135deg, #a7d7c5 0%, #66c985 100%),
+  $--work-yellow: linear-gradient(135deg, #fdd6bd 5%, #e3f57e 100%)
 );
 
 $theme-map-universal: (
