@@ -5,16 +5,20 @@
   flex-flow: column;
   gap: 8px;
   border-radius: 4px;
-  //overflow: hidden;
   border: 1px solid var(--divider);
   padding-bottom: 16px;
   background-color: var(--contrast);
+  text-decoration: none;
 
   &_info {
     padding: 8px 16px;
     display: flex;
     flex-flow: column;
     gap: 8px;
+
+    &:hover > h5 {
+      text-decoration: underline;
+    }
   }
 
   &_meta {
@@ -29,33 +33,19 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    cursor: pointer;
 
     & > img {
       transition: transform 0.33s ease-in-out;
     }
-
-    &:hover > img {
-      transform: scale(1.4);
-      @media screen and (max-width: 960px) {
-        transform: scale(1.15);
-      }
-    }
   }
 
-  &_live {
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
+  &:hover > .jobItem_image > img {
+    transform: scale(1.05);
+  }
 
-    cursor: pointer;
-
-    & > svg {
-      color: var(--white);
-    }
-
-    &:hover > svg {
-      color: var(--warning);
-    }
+  &:hover {
+    box-shadow: 0 0 10px 0 var(--divider);
   }
 }
 

@@ -27,6 +27,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     small: (props) => <small className="text--sm text--primary" {...props} />,
     GithubIcon: () => <GithubIcon fontSize="small" />,
     VideoPreview,
-    Link
+    Link,
   };
 }

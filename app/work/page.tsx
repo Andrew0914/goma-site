@@ -13,8 +13,8 @@ export default function Work() {
 
   const reversedColors = [...colors].reverse();
 
-  const worksColum1: Job[] = [];
-  const worksColum2: Job[] = [];
+  const worksColum1: Job[] = jobs.slice(0, Math.ceil(jobs.length / 2));
+  const worksColum2: Job[] = jobs.slice(Math.ceil(jobs.length / 2));
 
   return (
     <PageTransition className={`container`}>
@@ -31,7 +31,7 @@ export default function Work() {
 
       <div className={styles.work_items}>
         <div className={styles.work_items_column}>
-          {[jobs[0]].map((job, index) => (
+          {worksColum1.map((job, index) => (
             <JobItem
               key={`${index}-${job.slug}`}
               job={job}
@@ -40,7 +40,7 @@ export default function Work() {
           ))}
         </div>
         <div className={styles.work_items_column}>
-          {[jobs[0]].map((job, index) => (
+          {worksColum2.map((job, index) => (
             <JobItem
               key={`${index}-${job.slug}`}
               job={job}

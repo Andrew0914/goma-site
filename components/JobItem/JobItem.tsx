@@ -2,6 +2,7 @@ import { Job } from "@/app/work/data";
 import Image from "next/image";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
+import Link from "next/link";
 
 export interface JobItemProps {
   job: Job;
@@ -15,7 +16,10 @@ export default function JobItem(props: JobItemProps) {
   );
 
   return (
-    <div className={styles.jobItem}>
+    <Link
+      className={styles.jobItem}
+      href={`/work/items/${props.job.slug}?color=${props.color}`}
+    >
       <div className={thumbnailClasses}>
         <Image
           src={props.job.image}
@@ -25,12 +29,12 @@ export default function JobItem(props: JobItemProps) {
         />
       </div>
       <div className={styles.jobItem_info}>
-        <h5 className="heading--5">{props.job.title}</h5>
-        <p className="text--content">{props.job.description}</p>
+        <h5 className="heading--5 text--base">{props.job.title}</h5>
+        <p className="text--content text--base">{props.job.description}</p>
         <p className={`text--muted text--sm ${styles.jobItem_meta}`}>
           {props.job.type} · {props.job.mainTech} · {props.job.date}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -1,3 +1,10 @@
+export interface JobGraphic {
+  src: string
+  alt: string
+  width: number
+  height: number
+}
+
 export interface Job {
   title: string
   image: string
@@ -7,18 +14,24 @@ export interface Job {
   type: string
   mainTech: string
   date: string
-
+  graphic: JobGraphic
 }
 
 export const jobs: Job[] = [
   {
     title: "Refactor/138 reorganize css",
-    image: "/images/works/1.png",
+    image: "/images/works/work1_pr_phoenix.png",
     description: "I sent a PR to phoenix dashboard, Phoenix is the web framework for Elixir.",
     slug: "pr-for-phoenix-live-dashboard",
     url: "https://github.com/phoenixframework/phoenix_live_dashboard/pull/227",
     type: "PR",
     mainTech: "CSS HTML Elixir",
     date: "2020-12-10",
+    graphic: {
+      src: "/images/works/work-1-graphic-phoenix138.png",
+      alt: "Refactor/138 reorganize css",
+      width: 1000,
+      height: 644,
+    },
   }
 ]

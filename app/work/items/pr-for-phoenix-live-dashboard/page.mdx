@@ -1,0 +1,53 @@
+# Refactor/138 Addressing CSS Refactoring in Phoenix Live Dashboard
+In contribution to the Phoenix Live Dashboard repository, I tackled an issue initially described by [José Valim](https://x.com/josevalim), the creator of Elixir. This project provided an excellent opportunity to demonstrate my skills in CSS refactoring and component-based design.
+
+
+## The Challenge
+
+Encouraged by my mentor and colleague [@MachinesAreUs](https://x.com/MachinesAreUs), I set out to resolve a problem highlighted by [José Valim](https://x.com/josevalim):
+
+👉 https://github.com/phoenixframework/phoenix_live_dashboard/issues/138
+![the problem](/images/works/work-1-problem.png)
+
+**The goal** was to refactor the CSS to decouple specific elements from their containers, thereby allowing for more modular and reusable components.
+
+### My Approach
+
+I began by decoupling the classes in color_bar_component, color_bar_legend, and table_component from their parent containers. The aim was to maintain semantic relationships while ensuring each class stood independently. Here’s an example of the restructuring:
+
+👉 [Accepted PR](https://github.com/phoenixframework/phoenix_live_dashboard/pull/227)
+
+```scss
+.color-bar {
+  &-progress {
+    border-radius: 2px;
+    ...
+    &-title {
+      color: $color-gray-700;
+      ...
+    }
+  }
+}
+```
+The output classes were color-bar-progress and color-bar-progress-title.
+
+Additionally, I:
+
+* Split resource_usage.scss into color_bar.scss and color_bar_legend.scss, aligning these files with their respective components (color_bar_component.ex and color_bar_legend.ex).
+* Renamed tabular_page.scss to table.scss, using a phx prefix to avoid clashes with Bootstrap's classes.
+* Moved styles that only override Bootstrap into the extends folder and utility/helper styles into the utils folder.
+
+### Feedback and Finalization
+
+[José Valim](https://x.com/josevalim) reviewed the pull request and provided positive feedback, along with a minor suggestion 😱:
+
+
+![after the review](/images/works/work-1-problem2.png)
+
+I addressed this feedback by refining the class naming strategy, leading to the approval and merging of the PR into the master branch.
+
+Done! 🎉
+
+![after the review](/images/works/work-1-final.png)
+
+This experience was invaluable, allowing me to deepen my understanding of component-based architecture and CSS management in large projects. It’s a great addition to my portfolio, showcasing my ability to **contribute to and improve open-source projects**.

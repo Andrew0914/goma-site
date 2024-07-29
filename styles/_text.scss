@@ -76,7 +76,10 @@ $colors: (
   "warning": var(--warning),
   "danger": var(--danger),
   "muted": var(--text-muted),
-  "success": var(--success)
+  "success": var(--success),
+  "base": var(--text),
+  "white": var(--white),
+  "black": var(--black)
 );
 
 @mixin make-text-size-classes($prefix, $sizes) {
