@@ -17,7 +17,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h5: (props) => <h5 className="heading--5" {...props} />,
     p: (props) => <p className="text--content" {...props} />,
     Image,
-    code: Code,
+    code: (props: any) => (<Code {...props} />) as unknown as any,
     strong: (props) => (
       <strong className="text--content-bold text--info" {...props} />
     ),

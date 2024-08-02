@@ -28,7 +28,7 @@ export default function Code({ className, ...props }: CodeProps) {
     (theme: keyof typeof codeThemes) => {
       setTheme(theme);
     },
-    [setTheme, muiMode]
+    [setTheme]
   );
   return match ? (
     <div className={styles.codeBox}>

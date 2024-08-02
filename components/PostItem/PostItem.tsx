@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useFormatter, useTranslations } from "next-intl";
 import Code from "../Code/Code";
 import VideoPreview from "../VideoPreview/VideoPreview";
+import { CodeOff } from "@mui/icons-material";
 
 interface PostItemProps {
   post: Post;
@@ -20,11 +21,12 @@ export default function PostItem({ post }: PostItemProps) {
     if (post.code)
       return (
         <Code
-          children={post.code.code}
           language={post.code.language}
           className={`language-${post.code.language}`}
           customStyle={{ fontSize: "12px" }}
-        />
+        >
+          {post.code.code}
+        </Code>
       );
     if (post.thumbnail)
       return (
