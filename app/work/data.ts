@@ -20,7 +20,7 @@ export interface Job {
 export const jobs: Job[] = [
   {
     title: "Refactor/138 reorganize css",
-    image: "/images/works/work1_pr_phoenix.png",
+    image: "/images/works/work-1-phoenix138.png",
     description: "I sent a PR to phoenix dashboard, Phoenix is the web framework for Elixir.",
     slug: "pr-for-phoenix-live-dashboard",
     url: "https://github.com/phoenixframework/phoenix_live_dashboard/pull/227",
