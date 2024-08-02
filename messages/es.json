@@ -107,5 +107,10 @@
     "title": "Blog",
     "description": "Mis experiencias sobre programación, tecnología, mi vida y pensamientos como desarrollador.",
     "readMore": "Leer más"
+  },
+  "work": {
+    "title": "Mi trabajo",
+    "description": "Me gusta crear cosas, dale un vistazo a mi trabajo y hagamos algo juntos.",
+    "goToLive": "Ver en vivo"
   }
 }

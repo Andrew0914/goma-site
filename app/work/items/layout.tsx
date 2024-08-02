@@ -8,6 +8,7 @@ import classNames from "classnames";
 import { Job, jobs } from "../data";
 import { Button } from "@mui/material";
 import CallMissedOutgoingRoundedIcon from "@mui/icons-material/CallMissedOutgoingRounded";
+import { useTranslations } from "next-intl";
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const params = useSearchParams();
@@ -23,6 +24,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   const job: Job | undefined = jobs.find(
     (job) => job.slug === name.split("/").pop()
   );
+
+  const t = useTranslations("work");
 
   return (
     <PageTransition>
@@ -48,7 +51,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           className={styles.work_liveButton}
           href={job?.url}
         >
-          Go to Live
+          {t("goToLive")}
         </Button>
       </div>
 

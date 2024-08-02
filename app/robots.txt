@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /private/
+Disallow: /tmp/
+Allow: /public/
+
+Sitemap: https://www.andrew-dev.io/sitemap.xml

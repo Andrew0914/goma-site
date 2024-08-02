@@ -55,7 +55,20 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${crimsonPro.variable} ${workSans.variable}`}>
       <Head>
-        <title>{meta?.title} ccc</title>
+        <title>{meta?.title}</title>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link
+          rel="icon"
+          href="/icon?<generated>"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="/apple-icon?<generated>"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
       </Head>
       <body className="light">
         <MyThemeProvider>
