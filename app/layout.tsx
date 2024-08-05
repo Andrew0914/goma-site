@@ -69,11 +69,7 @@ export default async function RootLayout({
           type="image/<generated>"
           sizes="<generated>"
         />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157092397783632"
-          crossOrigin="anonymous"
-        ></script>
+        <meta name="google-adsense-account" content="ca-pub-8157092397783632" />
       </Head>
       <body className="light">
         <MyThemeProvider>
