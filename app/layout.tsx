@@ -5,7 +5,6 @@ import { getLocale, getMessages } from "next-intl/server";
 import MyThemeProvider from "@/components/ThemeProvider/ThemeProvider";
 import TheNavbar from "@/components/TheNavbar/TheNavbar";
 import TheFooter from "@/components/TheFooter/TheFooter";
-import Head from "next/head";
 
 export const metadata = {
   title: "Andrew Gonzalez's Website",
@@ -54,8 +53,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${crimsonPro.variable} ${workSans.variable}`}>
-      <Head>
-        <title>{meta?.title}</title>
+      <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
           rel="icon"
@@ -69,8 +67,12 @@ export default async function RootLayout({
           type="image/<generated>"
           sizes="<generated>"
         />
-        <meta name="google-adsense-account" content="ca-pub-8157092397783632" />
-      </Head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157092397783632"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body className="light">
         <MyThemeProvider>
           <NextIntlClientProvider messages={messages}>
