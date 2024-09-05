@@ -27,13 +27,14 @@ $--work-blue: --work-blue;
 $--work-red: --work-red;
 $--work-green: --work-green;
 $--work-yellow: --work-yellow;
+$--radial-background: --radial-background;
 
 // Default theme
 $theme-map-light: (
   $--text-muted: #5c5c5c,
   $--text: #0e0e0e,
   $--background: #f6f6f6,
-
+  $--radial-background: radial-gradient(circle at 50% 50%, #ffffff 0%, #e0e0e0 100%),
   $--primary: #0369a1,
   $--secondary: #155e75,
   $--info: #638fee,
@@ -72,8 +73,8 @@ $theme-map-light: (
 $theme-map-dark: (
   $--text-muted: #999999,
   $--text: #f3f3f3,
-  $--background: #121212,
-
+  $--background: #030712,
+  $--radial-background: radial-gradient(circle at 50% 50%, #111530 0%, #030712 100%),
   $--primary: #d62ad0,
   $--secondary: #e199e1,
   $--info: #fbb4f5,
@@ -83,7 +84,7 @@ $theme-map-dark: (
   $--danger: #ef4444,
   $--success: #67ff64,
 
-  $--contrast: #0c0c0c,
+  $--contrast: #030817,
   $--drop-shadow: rgba(0, 0, 0, 0.9),
   $--highligh-gradient: linear-gradient(45deg, #9b59b6, #e74c3c, #f39c12),
   $--up-fade-gradient: linear-gradient(0deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),

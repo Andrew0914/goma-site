@@ -1,4 +1,4 @@
-import { Avatar, Chip, Tooltip, Zoom } from "@mui/material";
+import { Avatar, Button, Tooltip, Zoom } from "@mui/material";
 import Image from "next/image";
 import styles from "./page.module.scss";
 import {
@@ -13,6 +13,8 @@ import SuperImage from "@/components/SuperImage/SuperImage";
 import CircleProgress from "@/components/CircleProgress/CircleProgress";
 import PageTransition from "@/components/PageTransition/PageTransition";
 import InViewElement from "@/components/InViewElement/InViewElement";
+import { GitHub, LinkedIn, X } from "@mui/icons-material";
+import { Links } from "@/utils/constants";
 
 function Expirience() {
   const t = useTranslations("about");
@@ -214,25 +216,43 @@ export default function About() {
         <hr className="divider mt--1" />
       </h1>
 
-      <div className={styles.aboutMe_from}>
-        <Image
-          src="/images/yo_2.png"
-          alt="Andrew Gonzalez"
-          width={120}
-          height={120}
-          className={`circle ${styles.aboutMe_photo}`}
-        />
+      <div className={styles.aboutMe_description}>
+        <div>
+          <div className={styles.aboutMe_photo}>
+            <Image
+              src="/images/yo_2.png"
+              alt="Andrew Gonzalez"
+              width={150}
+              height={150}
+            />
+          </div>
+        </div>
 
-        <Chip
-          avatar={<Avatar alt="Mx" src="/images/mx-flag.png" />}
-          label={t("from")}
-          size="small"
-        />
-      </div>
+        <div className={styles.aboutMe_brief}>
+          <p className="text--content text--info">{t("description1")}</p>
+          <p className="text--content">{t("description2")}</p>
 
-      <div className={styles.aboutMe_brief}>
-        <p className="text--content text--info">{t("description1")}</p>
-        <p className="text--content mt--2">{t("description2")}</p>
+          <div className={styles.aboutMe_contact}>
+            <Button
+              variant="contained"
+              color="error"
+              href="mailto:andrewalangm@gmail.com"
+              className={styles.home_callToAction}
+              size="small"
+            >
+              {t("contactme")}
+            </Button>
+            <a href={Links.Github} target="_blak">
+              <GitHub />
+            </a>
+            <a href={Links.X} target="_blank">
+              <X />
+            </a>
+            <a href={Links.LinkedIn} target="_blank">
+              <LinkedIn />
+            </a>
+          </div>
+        </div>
       </div>
 
       <Expirience />

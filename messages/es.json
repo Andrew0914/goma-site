@@ -21,10 +21,11 @@
     }
   },
   "home": {
-    "title": "Hola! Soy <div>Andrew González</div>, ingeniero en informática, <span>programador apasionado </span>, y líder Front-End en mi trabajo actual.",
+    "title": "Soy <div>Andrew González</div>, ingeniero en informática, <span>programador apasionado </span>, y líder Front-End en mi trabajo actual.",
     "more": "Me apasiona crear experiencias a través del código y liberar mi creatividad. También disfruto de los videojuegos y la comida.",
     "latestPost": "Último post",
-    "latestWork": "Último trabajo"
+    "latestWork": "Último trabajo",
+    "contactme": "Contáctame"
   },
   "thefooter": {
     "follow": "Sígueme",
@@ -32,9 +33,9 @@
   },
   "about": {
     "title": "Acerca de mí",
-    "from": "CDMX, México",
+    "from": "CDMX",
     "description1": "Soy Andrew, un desarrollador de software de la Ciudad de México 🇲🇽, en estos días, me enfoco en mejorar en el lenguaje Elixir 💧, enriquecer mi portafolio y crear cursos de los cuales otras personas puedan aprender.",
-    "description2": "Durante los últimos 8+ años, he trabajado en diversas áreas del desarrollo de software, incluyendo front-end, back-end y móvil. Estoy orgulloso de haber jugado varios papeles.",
+    "description2": "Durante los últimos 8+ años, he trabajado en diversas áreas del desarrollo de software: front-end, back-end y móvil. Estoy orgulloso de haber jugado varios papeles.",
     "experience": {
       "title": "Experiencia",
       "item": {
@@ -101,7 +102,8 @@
         "thisIsFine": "This is fine 🔥",
         "running": "Corro por las mañanas ☀️🏃🏾"
       }
-    }
+    },
+    "contactme": "Contact me"
   },
   "blog": {
     "title": "Blog",

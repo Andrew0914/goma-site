@@ -9,6 +9,7 @@ import PostItem from "@/components/PostItem/PostItem";
 import Link from "next/link";
 import JobItem from "@/components/JobItem/JobItem";
 import { jobs } from "./work/data";
+import { Button } from "@mui/material";
 
 export default function Home() {
   const t = useTranslations("home");
@@ -39,13 +40,21 @@ export default function Home() {
         <Image
           src="/images/yo_2.png"
           alt="Andrew Gonzalez"
-          width={175}
-          height={175}
-          className={`circle ${styles.photo}`}
+          width={150}
+          height={150}
+          className={styles.photo}
         />
       </Link>
 
-      <p className="text--center">Mira mi trabajo o contactame en:</p>
+      <Button
+        variant="contained"
+        color="error"
+        href="mailto:andrewalangm@gmail.com"
+        className={styles.home_callToAction}
+      >
+        {t("contactme")}
+      </Button>
+
       <div className={styles.home_social}>
         <a href={Links.Github} target="_blak">
           <GitHub />
