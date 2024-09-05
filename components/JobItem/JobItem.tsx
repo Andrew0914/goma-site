@@ -10,14 +10,11 @@ export interface JobItemProps {
 }
 
 export default function JobItem(props: JobItemProps) {
-  const thumbnailClasses = classNames(
-    styles.jobItem_image,
-    styles["work" + props.color]
-  );
-
+  const thumbnailClasses = classNames(styles.jobItem_image);
+  const jobClasses = classNames(styles.jobItem, styles["work" + props.color]);
   return (
     <Link
-      className={styles.jobItem}
+      className={jobClasses}
       href={`/work/items/${props.job.slug}?color=${props.color}`}
     >
       <div className={thumbnailClasses}>
@@ -31,7 +28,7 @@ export default function JobItem(props: JobItemProps) {
       <div className={styles.jobItem_info}>
         <h5 className="heading--5 text--base">{props.job.title}</h5>
         <p className="text--content text--base">{props.job.description}</p>
-        <p className={`text--muted text--sm ${styles.jobItem_meta}`}>
+        <p className={`text--sm ${styles.jobItem_meta}`}>
           {props.job.type} · {props.job.mainTech} · {props.job.date}
         </p>
       </div>

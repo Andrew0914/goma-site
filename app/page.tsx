@@ -12,13 +12,13 @@ import { jobs } from "./work/data";
 
 export default function Home() {
   const t = useTranslations("home");
-  const lastPost = posts.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )[0];
+  const featuredPosts = posts
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 2);
 
-  const lastWork = jobs.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )[0];
+  const featuredWorks = jobs
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 2);
 
   return (
     <PageTransition className={`container ${styles.home}`}>
@@ -64,7 +64,11 @@ export default function Home() {
         <h3 className="heading--3 text--muted text--center">
           {t("latestWork")}
         </h3>
-        <JobItem job={lastWork} color="red" />
+        <div className={styles.home_featuredContent}>
+          {featuredWorks.map((work) => (
+            <JobItem key={work.title} job={work} color="blue" />
+          ))}
+        </div>
       </div>
 
       <span className={styles.verticalLine} />
@@ -73,7 +77,11 @@ export default function Home() {
         <h3 className="heading--3 text--muted text--center">
           {t("latestPost")}
         </h3>
-        <PostItem post={lastPost} />
+        <div className={styles.home_featuredContent}>
+          {featuredPosts.map((post) => (
+            <PostItem key={post.title} post={post} />
+          ))}
+        </div>
       </div>
     </PageTransition>
   );
