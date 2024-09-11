@@ -21,8 +21,8 @@
     }
   },
   "home": {
-    "title": "I'm <div>Andrew Gonzalez</div>, IT engineer, <span>passionated developer</span>, and the Front-End Lead at work.",
-    "more": "I am passionate about crafting experiences through code and unleashing my creativity. I also enjoy video games and food.",
+    "title": "I'm <div>Andrew Gonzalez</div> a dedicated problem-solver, software <span>developer</span>. Passionate about creating things with code.",
+    "more": "Specializing in front-end development. Proficient in JavaScript, TypeScript, HTML, and CSS. Experienced with frameworks like React, Vue, Flutter, and Elixir. Beyond coding, I'm a dedicated gamer and foodie.",
     "latestPost": "Latest post",
     "latestWork": "Latest work",
     "contactme": "Contact me"
