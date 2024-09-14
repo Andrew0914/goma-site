@@ -4,18 +4,25 @@ import { SyntaxHighlighterProps, Prism } from "react-syntax-highlighter";
 
 import styles from "./styles.module.scss";
 import CodeThemeMenu, { codeThemes } from "./CodeThemeMenu";
-import { useColorScheme } from "@mui/material";
+import { Button, useColorScheme } from "@mui/material";
 import Image from "next/image";
 
 interface CodeProps extends SyntaxHighlighterProps {
   className?: string;
 }
 
-// TODO: Make storybook
 export default function Code({ className, ...props }: CodeProps) {
   const [theme, setTheme] = useState<keyof typeof codeThemes>("a11yDark");
   const match = /language-(\w+)/.exec(className || "");
   const { mode: muiMode } = useColorScheme();
+
+  enum CopieLabel {
+    Copy = "Copy",
+    Copied = "Copied!",
+  }
+
+  const [copyButtonDisabled, setCopyButtonDisabled] = useState(false);
+  const [copyLabel, setCopyLabel] = useState(CopieLabel.Copy);
 
   useEffect(() => {
     const isDark =
@@ -24,12 +31,25 @@ export default function Code({ className, ...props }: CodeProps) {
     setTheme(suitableTheme);
   }, [setTheme, muiMode]);
 
+  const onCopy = useCallback(() => {
+    navigator.clipboard.writeText(props.children as string);
+
+    setCopyLabel(CopieLabel.Copied);
+    setCopyButtonDisabled(true);
+
+    setTimeout(() => {
+      setCopyLabel(CopieLabel.Copy);
+      setCopyButtonDisabled(false);
+    }, 2000);
+  }, [props.children]);
+
   const onSetTheme = useCallback(
     (theme: keyof typeof codeThemes) => {
       setTheme(theme);
     },
     [setTheme]
   );
+
   return match ? (
     <div className={styles.codeBox}>
       <div className={styles.codeBox_codeFrame}>
@@ -50,7 +70,12 @@ export default function Code({ className, ...props }: CodeProps) {
           showLineNumbers={true}
           showInlineLineNumbers={true}
         />
-
+        <button
+          className={`${styles.codebox_copyButton} text--sm`}
+          onClick={onCopy}
+        >
+          {copyLabel}
+        </button>
         <Image
           className={styles.codebox_languageIcon}
           src={`/images/technologies/${match[1]}.svg`}
