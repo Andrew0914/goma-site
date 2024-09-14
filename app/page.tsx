@@ -7,7 +7,7 @@ import Image from "next/image";
 import { posts } from "./blog/data";
 import PostItem from "@/components/PostItem/PostItem";
 import Link from "next/link";
-import JobItem from "@/components/JobItem/JobItem";
+import WorkItem from "@/components/WorkItem/WorkItem";
 import { jobs } from "./work/data";
 import { Button } from "@mui/material";
 
@@ -75,7 +75,7 @@ export default function Home() {
         </h3>
         <div className={styles.home_featuredContent}>
           {featuredWorks.map((work) => (
-            <JobItem key={work.title} job={work} color="blue" />
+            <WorkItem key={work.title} job={work} />
           ))}
         </div>
       </div>
