@@ -50,8 +50,9 @@
   background-color: var(--code-topbar);
   color: var(--text);
   cursor: pointer;
+  transition: filter 0.2s;
   &:hover {
-    filter: brightness(1.25);
+    filter: brightness(1.1);
   }
   height: 24px;
 }

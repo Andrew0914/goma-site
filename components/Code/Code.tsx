@@ -1,10 +1,10 @@
 "use client";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SyntaxHighlighterProps, Prism } from "react-syntax-highlighter";
 
 import styles from "./styles.module.scss";
 import CodeThemeMenu, { codeThemes } from "./CodeThemeMenu";
-import { Button, useColorScheme } from "@mui/material";
+import { useColorScheme } from "@mui/material";
 import Image from "next/image";
 
 interface CodeProps extends SyntaxHighlighterProps {
@@ -41,7 +41,7 @@ export default function Code({ className, ...props }: CodeProps) {
       setCopyLabel(CopieLabel.Copy);
       setCopyButtonDisabled(false);
     }, 2000);
-  }, [props.children]);
+  }, [props.children, setCopyLabel, setCopyButtonDisabled]);
 
   const onSetTheme = useCallback(
     (theme: keyof typeof codeThemes) => {

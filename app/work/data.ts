@@ -38,8 +38,8 @@ export const jobs: Job[] = [
     graphic: {
       src: "/images/works/work-1-graphic-phoenix138.png",
       alt: "Refactor/138 reorganize css",
-      width: 1000,
-      height: 644,
+      width: 769,
+      height: 495,
     },
     color: JobColor.Blue,
   }
