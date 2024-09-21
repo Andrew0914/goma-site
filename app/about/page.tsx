@@ -15,6 +15,8 @@ import PageTransition from "@/components/PageTransition/PageTransition";
 import InViewElement from "@/components/InViewElement/InViewElement";
 import { GitHub, LinkedIn, X } from "@mui/icons-material";
 import { Links } from "@/utils/constants";
+import HImage from "@/components/HImage/HImage";
+import photoOfme from "../../public/images/yo_2.png";
 
 function Expirience() {
   const t = useTranslations("about");
@@ -49,7 +51,7 @@ function Expirience() {
                 {jobsMeta
                   .get(key)
                   ?.technologies.map((tech, index) => (
-                    <Image
+                    <HImage
                       key={`tech-${tech}-${index}`}
                       src={`/images/technologies/${tech}.svg`}
                       alt={tech}
@@ -183,7 +185,7 @@ function Skills() {
                 >
                   <div className={styles.skillsList_skillItem}>
                     <span className="text--sm-bold">{skill.name}</span>
-                    <Image
+                    <HImage
                       src={`/images/technologies/${skill.icon}.svg`}
                       alt={skill.name}
                       width={24}
@@ -220,10 +222,12 @@ export default function About() {
         <div>
           <div className={styles.aboutMe_photo}>
             <Image
-              src="/images/yo_2.png"
+              src={photoOfme}
               alt="Andrew Gonzalez"
               width={150}
               height={150}
+              priority
+              placeholder="blur"
             />
           </div>
         </div>

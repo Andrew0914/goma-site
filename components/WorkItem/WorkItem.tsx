@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
+import HImage from "../HImage/HImage";
 
 export interface JobItemProps {
   job: Job;
@@ -17,7 +18,7 @@ export default function WorkItem(props: JobItemProps) {
   return (
     <Link className={jobClasses} href={`/work/items/${props.job.slug}`}>
       <div className={thumbnailClasses}>
-        <Image
+        <HImage
           src={props.job.image}
           alt={props.job.title}
           width={400}

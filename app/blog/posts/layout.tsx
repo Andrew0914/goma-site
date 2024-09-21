@@ -1,3 +1,4 @@
+import HImage from "@/components/HImage/HImage";
 import PageTransition from "@/components/PageTransition/PageTransition";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,7 +7,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <PageTransition className="container">
       <header className="post--header">
-        <Image
+        <HImage
           src="/images/yo_2.png"
           alt="Andrew Gonzalez"
           width={24}

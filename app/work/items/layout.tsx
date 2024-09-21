@@ -9,6 +9,7 @@ import { Job, jobs } from "../data";
 import { Button } from "@mui/material";
 import CallMissedOutgoingRoundedIcon from "@mui/icons-material/CallMissedOutgoingRounded";
 import { useTranslations } from "next-intl";
+import HImage from "@/components/HImage/HImage";
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const params = useSearchParams();
@@ -29,7 +30,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <PageTransition>
       <header className={headerClasses}>
         <div className={`container ${styles.work_headerContent}`}>
-          <Image
+          <HImage
             src={job?.graphic.src ?? ""}
             width={job?.graphic.width ?? 300}
             height={job?.graphic.height ?? 200}

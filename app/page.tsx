@@ -10,6 +10,7 @@ import Link from "next/link";
 import WorkItem from "@/components/WorkItem/WorkItem";
 import { jobs } from "./work/data";
 import { Button } from "@mui/material";
+import photoOfMe from "../public/images/yo_2.png";
 
 export default function Home() {
   const t = useTranslations("home");
@@ -38,8 +39,9 @@ export default function Home() {
 
       <Link href="/about" className={styles.home_photo}>
         <Image
-          src="/images/yo_2.png"
           alt="Andrew Gonzalez"
+          src={photoOfMe}
+          placeholder="blur"
           width={150}
           height={150}
           className={styles.photo}
