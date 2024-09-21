@@ -16,7 +16,7 @@ body {
   background-image: var($--radial-background);
   color: var($--text);
   font-family: var(--font-work-sans);
-  height: fit-content;
+  height: auto;
   min-height: 100vh;
   transition:
     background-color 1s,

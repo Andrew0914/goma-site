@@ -39,7 +39,7 @@ export default function TheNavbar() {
       ([entry]) => {
         setAtTop(!entry.isIntersecting);
       },
-      { threshold: [0] },
+      { threshold: [] }
     );
 
     if (topRef.current) observer.observe(topRef.current);

@@ -7,11 +7,15 @@ interface PageTransitionProps {
 }
 
 const slideFadeIn = {
-  initial: { scale: 0.985, opacity: 0.75 },
+  initial: { scale: 0.99, opacity: 0.5 },
   animate: { scale: 1, opacity: 1 },
   transition: { duration: 0.5 },
 };
 
 export default function PageTransition(props: PageTransitionProps) {
-  return <section className={props.className}>{props.children}</section>;
+  return (
+    <motion.section className={props.className} {...slideFadeIn}>
+      {props.children}
+    </motion.section>
+  );
 }
