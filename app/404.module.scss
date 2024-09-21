@@ -1,0 +1,20 @@
+@import "@/styles/colors";
+
+.container404 {
+  width: 100%;
+  flex-flow: column !important;
+  gap: 48px;
+
+  & > h1 {
+    font-size: 80px;
+  }
+
+  @media screen and (min-width: 1025px) {
+    margin-top: 160px;
+  }
+}
+
+.image404 {
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px 0 var(--drop-shadow);
+}

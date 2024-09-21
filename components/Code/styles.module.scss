@@ -41,6 +41,22 @@
   border-radius: 6px;
 }
 
+.codebox_copyButton {
+  position: absolute;
+  right: 48px;
+  bottom: 16px;
+  border-radius: 2px;
+  border: 1px solid var(--code-topbar-border);
+  background-color: var(--code-topbar);
+  color: var(--text);
+  cursor: pointer;
+  transition: filter 0.2s;
+  &:hover {
+    filter: brightness(1.1);
+  }
+  height: 24px;
+}
+
 .codeBox_topBar_left {
   display: flex;
   align-items: center;

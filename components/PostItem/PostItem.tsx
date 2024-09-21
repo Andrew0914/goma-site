@@ -74,7 +74,7 @@ export default function PostItem({ post }: PostItemProps) {
       <p className="text--content">{post.excerpt}</p>
 
       <Link
-        href={`blog/posts/${post.slug}?id=${post.slug}`}
+        href={`blog/posts/${post.slug}`}
         className={`${styles.postItem_more}`}
       >
         {t("readMore")} &rarr;

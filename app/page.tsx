@@ -7,18 +7,19 @@ import Image from "next/image";
 import { posts } from "./blog/data";
 import PostItem from "@/components/PostItem/PostItem";
 import Link from "next/link";
-import JobItem from "@/components/JobItem/JobItem";
+import WorkItem from "@/components/WorkItem/WorkItem";
 import { jobs } from "./work/data";
+import { Button } from "@mui/material";
 
 export default function Home() {
   const t = useTranslations("home");
-  const lastPost = posts.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )[0];
+  const featuredPosts = posts
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 2);
 
-  const lastWork = jobs.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )[0];
+  const featuredWorks = jobs
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 2);
 
   return (
     <PageTransition className={`container ${styles.home}`}>
@@ -39,13 +40,21 @@ export default function Home() {
         <Image
           src="/images/yo_2.png"
           alt="Andrew Gonzalez"
-          width={175}
-          height={175}
-          className={`circle ${styles.photo}`}
+          width={150}
+          height={150}
+          className={styles.photo}
         />
       </Link>
 
-      <p className="text--center">Mira mi trabajo o contactame en:</p>
+      <Button
+        variant="contained"
+        color="error"
+        href="mailto:andrewalangm@gmail.com"
+        className={styles.home_callToAction}
+      >
+        {t("contactme")}
+      </Button>
+
       <div className={styles.home_social}>
         <a href={Links.Github} target="_blak">
           <GitHub />
@@ -64,7 +73,11 @@ export default function Home() {
         <h3 className="heading--3 text--muted text--center">
           {t("latestWork")}
         </h3>
-        <JobItem job={lastWork} color="red" />
+        <div className={styles.home_featuredContent}>
+          {featuredWorks.map((work) => (
+            <WorkItem key={work.title} job={work} />
+          ))}
+        </div>
       </div>
 
       <span className={styles.verticalLine} />
@@ -73,7 +86,11 @@ export default function Home() {
         <h3 className="heading--3 text--muted text--center">
           {t("latestPost")}
         </h3>
-        <PostItem post={lastPost} />
+        <div className={styles.home_featuredContent}>
+          {featuredPosts.map((post) => (
+            <PostItem key={post.title} post={post} />
+          ))}
+        </div>
       </div>
     </PageTransition>
   );

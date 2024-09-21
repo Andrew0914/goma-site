@@ -13,6 +13,7 @@ body {
   scrollbar-color: var($--text);
   scrollbar-width: thin;
   background-color: var($--background);
+  background-image: var($--radial-background);
   color: var($--text);
   font-family: var(--font-work-sans);
   height: fit-content;

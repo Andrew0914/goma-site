@@ -1,3 +1,10 @@
+export enum JobColor {
+  Blue = "blue",
+  Red = "red",
+  Green = "green",
+  Yellow = "yellow"
+}
+
 export interface JobGraphic {
   src: string
   alt: string
@@ -15,6 +22,7 @@ export interface Job {
   mainTech: string
   date: string
   graphic: JobGraphic
+  color: JobColor
 }
 
 export const jobs: Job[] = [
@@ -30,8 +38,9 @@ export const jobs: Job[] = [
     graphic: {
       src: "/images/works/work-1-graphic-phoenix138.png",
       alt: "Refactor/138 reorganize css",
-      width: 1000,
-      height: 644,
+      width: 769,
+      height: 495,
     },
+    color: JobColor.Blue,
   }
 ]

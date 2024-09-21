@@ -73,7 +73,7 @@ export default async function RootLayout({
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body className="light">
+      <body className="dark">
         <MyThemeProvider>
           <NextIntlClientProvider messages={messages}>
             <TheNavbar />

@@ -21,10 +21,11 @@
     }
   },
   "home": {
-    "title": "Hi! I'm <div>Andrew Gonzalez</div>, a dedicated IT engineer, <span>passionated developer</span>, and the Front-End Lead at work.",
-    "more": "I am passionate about crafting experiences through code and unleashing my creativity. I also enjoy video games and food.",
+    "title": "I'm <div>Andrew Gonzalez</div> a dedicated problem-solver, software <span>developer</span>. Passionate about creating things with code.",
+    "more": "Specializing in front-end development. Proficient in JavaScript, TypeScript, HTML, and CSS. Experienced with frameworks like React, Vue, Flutter, and Elixir. Beyond coding, I'm a dedicated gamer and foodie.",
     "latestPost": "Latest post",
-    "latestWork": "Latest work"
+    "latestWork": "Latest work",
+    "contactme": "Contact me"
   },
   "thefooter": {
     "follow": "Follow me",
@@ -32,9 +33,9 @@
   },
   "about": {
     "title": "About me",
-    "from": "Mexico City, Mexico",
-    "description1": "I am Andrew, a software developer from Mexico City 🇲🇽, These days, I focus on improving at Elixir 💧 language, enrich my portfolio and creating courses from which other people can learn.",
-    "description2": "Over the past 8+ years, I've worked in various areas of software development, including front-end , back end and mobile. I'm proud to have worn many hats.",
+    "from": "Mexico City",
+    "description1": "I am Andrew, a software developer from Mexico City 🇲🇽, These days, I focus on improving at Elixir 💧 language, enrich my portfolio and creating courses.",
+    "description2": "Over the past 8+ years, I've worked in various areas of software development: front-end , back end and mobile. I'm proud to have worn many hats.",
     "experience": {
       "title": "Expirience",
       "item": {
@@ -101,7 +102,8 @@
         "thisIsFine": "This is fine 🔥",
         "running": "Love to run in the mornings ☀️"
       }
-    }
+    },
+    "contactme": "Contact me"
   },
   "blog": {
     "title": "The blog",

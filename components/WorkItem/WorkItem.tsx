@@ -6,20 +6,16 @@ import Link from "next/link";
 
 export interface JobItemProps {
   job: Job;
-  color: "blue" | "green" | "red" | "yellow";
 }
 
-export default function JobItem(props: JobItemProps) {
-  const thumbnailClasses = classNames(
-    styles.jobItem_image,
-    styles["work" + props.color]
+export default function WorkItem(props: JobItemProps) {
+  const thumbnailClasses = classNames(styles.jobItem_image);
+  const jobClasses = classNames(
+    styles.jobItem,
+    styles["work" + props.job.color]
   );
-
   return (
-    <Link
-      className={styles.jobItem}
-      href={`/work/items/${props.job.slug}?color=${props.color}`}
-    >
+    <Link className={jobClasses} href={`/work/items/${props.job.slug}`}>
       <div className={thumbnailClasses}>
         <Image
           src={props.job.image}
@@ -31,7 +27,7 @@ export default function JobItem(props: JobItemProps) {
       <div className={styles.jobItem_info}>
         <h5 className="heading--5 text--base">{props.job.title}</h5>
         <p className="text--content text--base">{props.job.description}</p>
-        <p className={`text--muted text--sm ${styles.jobItem_meta}`}>
+        <p className={`text--sm ${styles.jobItem_meta}`}>
           {props.job.type} · {props.job.mainTech} · {props.job.date}
         </p>
       </div>

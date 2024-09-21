@@ -1,9 +1,9 @@
 "use client";
-import { useSearchParams, usePathname } from "next/navigation";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import PageTransition from "@/components/PageTransition/PageTransition";
 import Image from "next/image";
 import styles from "../page.module.scss";
-import workStyles from "@/components/JobItem/styles.module.scss";
+import workStyles from "@/components/WorkItem/styles.module.scss";
 import classNames from "classnames";
 import { Job, jobs } from "../data";
 import { Button } from "@mui/material";
@@ -14,15 +14,13 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   const params = useSearchParams();
   const name = usePathname();
 
-  const color = params.get("color") || "blue";
+  const job: Job | undefined = jobs.find(
+    (job) => job.slug === name.split("/").pop()
+  );
 
   const headerClasses = classNames(
     styles.work_header,
-    workStyles[`work${color}`]
-  );
-
-  const job: Job | undefined = jobs.find(
-    (job) => job.slug === name.split("/").pop()
+    workStyles[`work${job?.color}`]
   );
 
   const t = useTranslations("work");

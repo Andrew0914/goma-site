@@ -5,6 +5,10 @@
   flex-flow: column;
   gap: 80px;
 
+  @media screen and (width <= 520px) {
+    gap: 48px;
+  }
+
   & > div {
     display: flex;
     flex-flow: column;
@@ -16,15 +20,55 @@
   }
 
   &_photo {
-    background-image: var($--radial-gradient);
+    padding: 4px 4px 16px 4px;
+    transform: rotate3d(1, 1, 1, 5deg);
+    background-color: var($--white);
+    border-radius: 8px;
+    border: 1px solid var($--divider);
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px var($--drop-shadow);
+    box-sizing: border-box;
+
+    margin-right: 16px;
+    @media screen and (width <= 520px) {
+      margin-right: initial;
+      margin-bottom: 16px;
+    }
+
+    > img {
+      background-image: var($--radial-gradient);
+      background-color: var($--info);
+      border-radius: 4px;
+    }
   }
 
-  &_from {
-    align-items: flex-start;
+  &_description {
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    justify-items: center;
+    gap: 32px !important;
+    @media screen and (width <= 520px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      justify-items: center;
+      gap: 16px !important;
+    }
   }
 
   &_brief {
-    max-width: 720px;
+    display: flex;
+    flex-flow: column;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &_contact {
+    display: flex;
+    flex-flow: row;
+    gap: 16px;
+    align-items: center;
+    margin-top: 16px;
   }
 }
 
