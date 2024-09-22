@@ -7,8 +7,6 @@ export const metadata = {
 <small className="text--muted text--sm ml--6">2021-06-18</small>
 
 # Refactorizando para tener pruebas unitarias valiosas
-## Unit testing, principios, prácticas y patrones
-
 
 En el post 1 <Link href="/blog/posts/meta-pruebas-unitarias">La meta de las pruebas unitarias 🧪</Link>, definimos cuáles son las tres características que definen a una buena prueba unitaria, la última de ellas: “Deben ofrecer el máximo valor con el mínimo de costo de mantenimiento“, pero para poder lograr esto necesitamos 2 cosas:
 
@@ -17,10 +15,10 @@ En el post 1 <Link href="/blog/posts/meta-pruebas-unitarias">La meta de las prue
 
 En el post <Link href="/blog/posts/4-pilares-pruebas-unitarias">Los 4 pilares de una buena prueba unitaria</Link> vimos cómo reconocer una prueba unitaria valiosa, pero a lo largo de este post aprenderemos cómo se escriben ese tipo de pruebas, también necesitamos tener habilidades de diseño en nuestro código, ya que sería imposible hacer una prueba valiosa sin poner un poco de esfuerzo en escribir una buena base de código.
 
-### Identificar el código a refactorizar
+## Identificar el código a refactorizar
 Es casi imposible el mejorar una suite de pruebas sin refactorizar nuestra base de código mejorandola también, ya que la suite de pruebas está intrínsecamente conectada a esta base de código.
 
-### Los 4 tipos de código
+## Los 4 tipos de código
 Podemos categorizar nuestro código en función de dos dimensiones:
 
 * 🧩 Complejidad o significancia de dominio.
@@ -57,7 +55,7 @@ Una vez que se hace esta división, nos enfocamos en los algoritmos para solo ob
 ![Estrategia para el código super complicado](/images/posts/estrategia_overcomplicated_code.png)
 <small className="text--sm text--muted">Estrategia para el código super complicado</small>
 
-### Usando el patrón [Humble-object](https://martinfowler.com/bliki/HumbleObject.html) para dividir código super complicado.
+## Usando el patrón [Humble-object](https://martinfowler.com/bliki/HumbleObject.html) para dividir código super complicado.
 
 A menudo nos encontramos con código que es muy difícil de probar por qué porque está muy acoplado a las dependencias de un framework, por ejemplo llamadas asíncronas o ejecuciones multi-thread, interfaces de usuario, comunicación con dependencias out-of-process y más.
 
@@ -85,7 +83,7 @@ En resumen tenemos que separar la lógica de negocios del código de orquestaci�
 
 Es tan importante esta separación, que este patrón es aplicado a muchas de las arquitecturas más populares como: [MVC](https://desarrolloweb.com/articulos/que-es-mvc.html) (Model-View-Controller), [MVP](https://es.wikipedia.org/wiki/Modelo%E2%80%93vista%E2%80%93presentador) (Model-View-Presenter), donde el Controller y Presenter son controladores y a su vez son humble objects que orquestan y ayudan separar la lógica del modelo de la vista o UI.
 
-#### Ejemplo: Refactorizando para obtener pruebas unitarias valiosas.
+### Ejemplo: Refactorizando para obtener pruebas unitarias valiosas.
 
 [refactoring_toward_valuble_tests 👈 🔗](https://github.com/Andrew0914/refactoring_toward_valuble_tests)
 

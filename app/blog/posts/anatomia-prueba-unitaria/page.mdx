@@ -6,13 +6,12 @@ export const metadata = {
 
 <small className="text--muted text--sm ml--6">2020-09-30</small>
 # Anatomía de una prueba unitaria
-## Unit testing, principios, prácticas y patrones | Resumen
-
 
 **¿Cómo escribir una prueba unitara?** A lo largo de este post conoceremos la estructura de una prueba unitaria, usualmente está representada por las fases de: arrange, act y assert (AAA), se abordarán las buenas prácticas para estructurar tus pruebas y para nombrarlas, por último veremos como sacar provecho al framewrok de pruebas que estés utilizando.
 
-### ¿Cómo estructurar una prueba unitaria?
-#### Usando el patrón AAA
+## ¿Cómo estructurar una prueba unitaria?
+
+### Usando el patrón AAA
 El patrón AAA tiene como objetivo dividir cada una de las pruebas en 3 fases: arrange, act y assert, que en español sería: organizar, actuar y verficar, comencemos con un ejemplo para explicar cada una de estas partes:
 
 > Los ejemplos en este post están escritos en javascript usando el framewrok de pruebas JEST.
@@ -52,7 +51,7 @@ En general es común iniciar una prueba por la fase de arrange, sin embargo, aun
 
 > [TDD(test driven developement)](https://es.wikipedia.org/wiki/Desarrollo_guiado_por_pruebas) o desarrollo dirigido por pruebas: es una metodología de desarrollo que consiste en escribir primero la prueba empezando por el resultado que deseas obtener y basado en eso escribir solo el código de producción necesario para satisfacer dicha prueba.
 
-### Evita tener más de una fase de cada tipo
+## Evita tener más de una fase de cada tipo
 
 Debemos evitar tener mas de una de cada una de las fases del patrón, en específico tener mas de una fase **Act** nos indica que se están verificando más de un comportamiento por que se estaría ejecutando más de una acción.
 
@@ -63,7 +62,7 @@ Como ya discutimos en posts pasados, una prueba unitaria verifica una única uni
 ![Evita tener mas de 1 fase de cada tipo](/images/posts/unit_test_phases_avoid.png)
 <small>Evita tener mas de 1 fase de cada tipo</small>
 
-### Evita usar sentencias if dentro de las pruebas
+## Evita usar sentencias if dentro de las pruebas
 Similar a tener muchas fases de **AAA**, podemos encontrarnos una prueba unitaria con una sentencia `if` dentro, pero esto es un atipatrón, ya que una prueba unitaria debe ser una secuencia simple de pasos sin ramificaciones de casos.
 
 Una sentencia `if` indica que se estan verificando más de un comportamiento a la vez, cuando nos encontremos en esta situación, debemos dividir esa prueba en múltiples pruebas que verifiquen cada caso de manera individual.
@@ -71,7 +70,7 @@ Una sentencia `if` indica que se estan verificando más de un comportamiento a l
 A diferencia del punto anterior sobre utilizar multiples fases **AAA**, que está permitido en pruebas de integración, el uso de `if` dentro de pruebas unitarias y de integración no es correcto, ya que no trae ningún beneficio, al contrario, aumenta el costo de mantenimiento y se vuelven mas difíciles de entender.
 
 
-### ¿Cuán larga debe ser cada sección o fase de una prueba unitaria?
+## ¿Cuán larga debe ser cada sección o fase de una prueba unitaria?
 
 Podríamos preguntarnos cual debería ser la extensión de cada una de las fases de nuestra prueba, y que tanto debemos incluir en cada una de las fases.
 
@@ -102,7 +101,7 @@ Podemos ver que en el ejemplo anterior dentro de la fase Act hay 2 líneas que e
 
 Pero dado que estamos verificando una unidad de comportamiento, este puede exhibir más de una salida que nesecite ser veirficada, por tanto mientras se esté probando el mismo comportamiento puedes tener una o más verificaciones en la fase de Assert.
 
-### La cuarta fase de las pruebas unitarias
+## La cuarta fase de las pruebas unitarias
 
 Existe una cuarta fase para las pruebas unitarias no incluida en los ejemplos anteriores, se llama : **“teardown phase“,** o la fase de destrucción o limpieza.
 
@@ -110,7 +109,7 @@ Esta fase se utiliza para destrucir o deshacer los cambios generados tras la eje
 
 Con todo lo anterior, la mayor parte del tiempo no es necesaria esta fase de teardown.
 
-### Estructurar bien la prueba unitaria
+## Estructurar bien la prueba unitaria
 
 Para tener identificado perfectamente cada una de las partes de una prueba unitaria es recomendable primero identificar fácilmente el sistema bajo pruebas o el método bajo prueba que estás verificando, ya que este ocupa uno de los roles más importantes dentro de la prueba, para ello puedes nombrar este sistema bajo pruebas con la variable sut, ejemplo:
 
@@ -135,7 +134,7 @@ it("A unit test 🧪, () => {
 });
 ```
 
-### Buenas prácticas, utilizando tu framewrok de pruebas favorito
+## Buenas prácticas, utilizando tu framewrok de pruebas favorito
 
 Sin importar el framewrok que utilizamos, para el lenguaje que sea, existen ciertas buenas prácticas que en la mayoría de ellos se pueden adoptar, y el framewrok en sí te da herramientas para implementarlas.
 
@@ -168,7 +167,7 @@ En este caso, lo que se recomienda es tener clases factory u objetos madre que c
 
 Otra desventaja de tener test fixtures compartidas para las pruebas y creados en el setup inicial, es que las pruebas se vuelven menos legibles al reducir la fase de arrange usando un setup inicial, ya que tendrías qie buscar fuera de la prueba como es que está configurado el estado inicial de la misma.
 
-### Nombrando tus pruebas unitarias.
+## Nombrando tus pruebas unitarias.
 
 Depende el framework que utilices, tiene distintas maneras de nombrar cada una de tus pruebas unitarias, por ejemplo para java utilizando [Junit](https://junit.org/junit5/), tienes que crear una clase para tu set de pruebas generalmente nombrada igual que la clase bajo pruebas con el sufijo test, ejemplo: `Customer -> CustomerTest`
 
@@ -221,7 +220,7 @@ it('A person under 18 is a minor', () => {...})
 it('A person under the age of 18 should be a minor', () => {...})
 ```
 
-### Más buenas prácticas importantes
+## Más buenas prácticas importantes
 
 En la gran mayoría de frameworks, existe forma de parametrizar tus pruebas, esto es, escribes una única prueba que puede recibir parametros y estar verificando distintos casos, branches o comportamientos por cada conjunto de parametros, asi que es una buena opción aprovechar esta característica si tu framework la ofrece.
 

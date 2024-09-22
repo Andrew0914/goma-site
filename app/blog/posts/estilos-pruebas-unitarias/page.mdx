@@ -7,8 +7,6 @@ export const metadata = {
 <small className="text--muted text--sm ml--6">2021-01-27</small>
 
 # Estilos de pruebas unitarias
-## Unit testing, principios, prácticas y patrones | Resumen
-
 
 Esta vez conoceremos 3 estilos de realizar pruebas unitarias: **output-based, state-based y communication-based**, es decir, estilo basado en las salidas o resultado, el estilo basado en el estado y el estilo basado en las comunicaciones.
 
@@ -18,7 +16,7 @@ Debemos apoyarnos también de los otros estilos, sin embargo es posible orientar
 
 A continuación explicaré más a detalle todo lo anterior.
 
-### Estilo output-based o estilo basado en resultados
+## Estilo output-based o estilo basado en resultados
 
 El primero de los 3 estilos, en este estilo el sistema bajo pruebas es alimentado por una o más entradas conocidas y se verifica a través de la única salida que produce.
 
@@ -71,7 +69,7 @@ public void disccount_of_product_list_with_max_5_percent(){
 
 Este estilo también es conocido como **funcional**, y tiene sus raíces en la programación funcional, que busca o prefiere tener código sin efectos secundarios, de nuevo reitero este estilo debe ser el preferido, sin embargo no siempre va a ser posible aplicarlo.
 
-### Estilo state-based o estilo basado en estado
+## Estilo state-based o estilo basado en estado
 
 Este estilo busca verificar el estado del sistema después de haber realizado una operación completa.
 
@@ -107,7 +105,7 @@ public void add_student_to_a_course(){
 
 En el ejemplo anterior vemos que se está verificando a través del estado en el que se encuentra un atributo de la clase Course y utilizando uno de sus colaboradores, el método que se prueba no retorna nada, pero sí tiene una salida reflejada en el estado de la clase.
 
-### Estilo communication-based o estilo basado en comunicaciones
+## Estilo communication-based o estilo basado en comunicaciones
 
 El último de los 3 estilos, es es el estilo basado en comunicaciones que verifica las pruebas a través de las interacciones de salida entre el SUT y sus colobadores.
 
@@ -129,9 +127,9 @@ Para verificar las interacciones de salida, recordemos que se utilizan los mocks
 
 En el ejemplo anterior se verifica la interacción de salida que tiene el sistema bajo pruebas hacia la base de datos, se está comunicando y se verifica que se haya efectuado dicha comunicación.
 
-### Comparando los 3 estilos
+## Comparando los 3 estilos
 
-#### Con el pilar de protección contra regresiones y la rápida retroalimentación
+### Con el pilar de protección contra regresiones y la rápida retroalimentación
 
 Esta es la comparación más simple por que en realidad ninguno de los 3 estilos provee una ventaja sobre otro para estos 2 pilares, recordemos que para tener el pilar de protección contra las regresiones necesitamos lo siguiente:
 
@@ -143,7 +141,7 @@ En general tu puedes ejecutar tanto o tan poco código tu desees en tus pruebas 
 
 Respecto a la rápida retroalimentación, de igual manera no depende de un estilo en particular, dependerá en si que aisles tus pruebas de dependencias out-of-process.
 
-#### Con el pilar de resistencia al refactoring
+### Con el pilar de resistencia al refactoring
 En general las pruebas deben ser capaces de soportar si los detalles de implementación cambian, por tanto las pruebas no deben estar acopladas a estos, sino a los resultados.
 
 Dicho lo anterior, nos damos cuenta que el primer estilo output-based o estilo basado en salidas es el que mejor resistencia al refactoring presenta ✅, ya que este tipo de pruebas se basa en los resultados.
@@ -152,7 +150,7 @@ El estilo basado en estado, es un poco mas propenso a tener falsos positivos, po
 
 Por último el estilo basado en comunicaciones, puede caer como ya dijimos en pruebas superficiales o frágiles si se abusa de los mocks, recordemos que los mocks solo deben ser para dependencias de fuera de la aplicación y que tengan un efecto secundario, por tanto este estilo es el más propenso a esto.
 
-#### Con el pilar de mantenibilidad
+### Con el pilar de mantenibilidad
 El pilar de la mantenibilidad está altamente relacionado con los estilos de pruebas unitarias, pero a diferencia de la resistencia al refactoring no se puede hacer mucho al respecto, recordemos que las pruebas son mantenibles en medida de:
 
 * 😱 Que tan dificil es entender las pruebas
@@ -164,7 +162,7 @@ Para las pruebas basadas en estado suele tomar más líneas de código verificar
 
 De nuevo (parece que es el peor , pero todavía puede usarse si se lo hace adecuadamente) es el estilo basado en comunicaciones, ya que debido al uso de mocks, dependiendo de qué complejos sean, si los combinamos con stubs y <Link href="mocks-fragilidad-en-las-pruebas">demás cosas</Link>, hace las pruebas mas grandes y más complejas de entender.
 
-### Conclusiones de la comparación
+## Conclusiones de la comparación
 Hemos comparado cada uno de los estilos y su desempeño para cada uno de los 4 pilares de las pruebas unitarias, vimos que para la protección contra regresiones y la rápida retroalimentación califican igual.
 
 En cuanto al pilar de resistencia la refactoring, el estilo **output-based** raramente va a estar acoplado a los detalles de implementación, las pruebas de este estilo son concisas y muy raramente van a utilizar dependencias **out-of-process**, por lo cual son muy rápidas de ejecutar.
@@ -181,7 +179,7 @@ Una vez entendido lo anterior, nos damos cuenta que siempre es preferible utiliz
 
 <small>Comparativa de los 3 estilos</small>
 
-### ¿Que es la programación funcional?
+## ¿Que es la programación funcional?
 Como ya mencioné, el estilo de pruebas basado en salidas, es posible solo si lo que se está probando está escrito en manera puramente funcional, para ello se utiliza la programación funcional.
 
 La programación funcional, es la programación con funciones matemáticas o funciones puras, dichas funciones o métodos no deben tener ninguna entrada o salida oculta, todas deben estar a la vista, es decir, tienen que ser explícitas o expresadas, también una función de este tipo, va a producir el mismo resultado para las mismas entradas siempre.
@@ -208,7 +206,7 @@ Recapitulando un poco, en el estilo output-based las entradas y salidas deben se
 
 Como regla general para determinar si un método es funcional o similar a una función matemática, se debe sustituir fácilmente su llamado por un valor que devolvería y esto no debe cambiar el funcionamiento de tu sistema o programa, por ejemplo,en lugar de invocar wholesaleDiscount con una lista de 2 productos puedo utilizar el valor que devolvería ➡️ 0.02.
 
-### ¿Que es una arquitectura funcional?
+## ¿Que es una arquitectura funcional?
 
 A pesar de las bondades y practicidad que tiene escribir tu sistema en manera, no se puede escribir todo un sistema de esta manera, es decir, no se puede crear una aplicación que no incurra en ninguna side effect, sería totalmente impráctica.
 

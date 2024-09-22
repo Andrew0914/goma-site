@@ -8,12 +8,9 @@ export const metadata = {
 
 # Los 4 pilares de una buena prueba unitaria
 
-## Unit testing, principios, prácticas y patrones | Resumen
-
-
 En este post les voy a compartir 4 aspectos que definen lo que sería una prueba unitaria valiosa, veremos si es posible que exista una prueba unitaria ideal y por último revisaremos conceptos que nos van a ayudar a tener una buena suite de pruebas.
 
-### ¿Que hace buena a una prueba unitaria?
+## ¿Que hace buena a una prueba unitaria?
 En post anteriores vimos que existen 3 características claves que hacen de una prueba unitaria una buena prueba unitaria:
 
 * 💻 Tienen que estar integadas en el ciclo de desarrollo.
@@ -22,7 +19,7 @@ En post anteriores vimos que existen 3 características claves que hacen de una 
 
 Si bien es fácil entender los primeros 2 puntos, es decir, tenemos que incluir pruebas unitarias cada que desarrollamos nuevas funcionalidades o corregimos bugs, y también tenemos que probar solo las partes más importantes de nuestro sistema, que suele ser la lógica de negocio; nos falta saber **¿Cómo hacer valiosa una prueba unitaria?**.
 
-### Conociendo los 4 pilares de una buena prueba unitaria
+## Conociendo los 4 pilares de una buena prueba unitaria
 
 Una prueba unitaria, tiene como pilares o fundamentos lo siguiente:
 
@@ -33,7 +30,7 @@ Una prueba unitaria, tiene como pilares o fundamentos lo siguiente:
 
 Estos cuatro pilares son fundamentales y se pueden utilizar dependiendo el grado que se tenga de cada uno para analizar cualquier tipo de prueba automatizada.
 
-### Protección contra las regresiones
+## Protección contra las regresiones
 
 Una **regresión** es un bug en el software, es cuando una funcionalidad deja de servir como se espera trás una modificación, usualmente cuando se agrega alguna característica nueva.
 
@@ -71,7 +68,7 @@ Por último es importante saber que todo el código que no escribes como las lib
 
 > Para maximizar la protección contra regresiones, las pruebas deben ejecutar la mayor cantidad de código posible tomando en cuenta la significancia que tiene para tu aplicación.
 
-### Resistencia al refactoring
+## Resistencia al refactoring
 
 El segundo pilar es la resistencia al refactoring, que es el grado que puede soportar una prueba tras haber ocurrido un refactoring del código que está probando, sin que la prueba falle.
 
@@ -90,7 +87,7 @@ La pruebas unitarias ofrecen una advertencia temprana de que se rompió algo y l
 * 💀 Si las pruebas dan muchos falsos positivos se pierde la capacidad de reaccionar a los problemas legítimos que sucedan, por que no sabrás si las pruebas estan fallando por una buena razón o no.
 * 😪 Se pierde la confianza de agregar nuevas caracterísitcas o refactorings por el temor que pueden infundir estas falsas alarmas, muchas veces los programadores prefieren no tocar el código.
 
-### ¿Qué produce los falsos positivos?
+## ¿Qué produce los falsos positivos?
 
 El número de falsos positivos que genera una prueba está directamente relacionado con como está estructurada, si una prueba esta altamente acoplada con la implementación del sistema bajo pruebas, mayor cantidad de falsos positivos tendrá.
 
@@ -163,7 +160,7 @@ it("Render markdown message", () => {
   expect(markdownMessage).toBe('#x ##x x');
 });
 ```
-### La conexión entre los primeros 2 pilares y la precisión de las pruebas
+## La conexión entre los primeros 2 pilares y la precisión de las pruebas
 
 Existe una conexión entre los 2 primeros pilares, la protección contra regresiones y la resistencia al refactoring, ya que los dos determinan el nivel de presición de las pruebas.
 
@@ -189,7 +186,7 @@ En conclusión, la presición de una prueba esta determinada por :
 
 Podría parecer que los falsos negativos, son los peores, sin embargo a la larga, los falsos positivos demeritan totalmente las bondades que puede tener una suite de pruebas.
 
-### Los últimos pilares: rápida retro alimentación y la mantenibilidad
+## Los últimos pilares: rápida retro alimentación y la mantenibilidad
 
 Los dos pilares restantes son dos características de las que ya hemos hablado, la rápida retro alimentación y la mantenibilidad, para medirlas se nesecita considerar lo siguiente:
 
@@ -198,7 +195,7 @@ Los dos pilares restantes son dos características de las que ya hemos hablado, 
 
 La rápida retro alimentación es importante por que puede alentar o desanimar el que ejecutes las pruebas, a si mismo, la mantebilidad en las pruebas nos ayuda a estar teniendo una suite de pruebas sana de manera fácil.
 
-### ¿Existe la prueba ideal?
+## ¿Existe la prueba ideal?
 
 La respuesta corta es **NO**, porque siempre va existir un trade off entre los pilares de : protección contra regresiones, resistencia al refactoring y la rápida retro alimentación.
 

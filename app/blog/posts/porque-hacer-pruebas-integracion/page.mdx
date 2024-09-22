@@ -6,11 +6,10 @@ export const metadata = {
 <small className="text--muted text--sm ml--6">2021-03-05</small>
 
 # ¿Por qué hacer pruebas de integración?
-## Unit testing, principios, prácticas y patrones | Resumen
 
 Nunca podremos confiar que un sistema funciona en su totalidad, solo con pruebas unitarias, aunque estas son eficientes para verificar la lógica de negocios no es suficiente.
 
-Se debe verificar como diferentes partes del sistema de integran entre sí y con elementos externos, como una base de datos y para ello tenemos las pruebas de integración.
+Se debe verificar como diferentes partes del sistema dse integran entre sí y con elementos externos, como una base de datos y para ello tenemos las pruebas de integración.
 
 Las pruebas de integración juegan un papel importante en nuestra suite de pruebas, como ya dijimos en el post <Link href="blog/posts/que-es-una-prueba-unitaria">¿Qué es una prueba unitaria? 🧪</Link> las pruebas unitarias deben cumplir los siguientes criterios:
 
@@ -30,7 +29,7 @@ Todavía se pueden realizar pruebas unitarias sobre los controladores, haciendo 
 
 Por último el cuadrante de código trivial no vale la pena ser probado, mientras que el del código super complicado debe ser refactorizado para separarlo en modelos y controladores, como vimos en el <Link href="refactorizando-pruebas-unitarias-valiosas">capítulo anterior</Link>, donde hicimos un ejemplo de este refactor en video 📹.
 
-### Revisando la pirámide de pruebas
+## Revisando la pirámide de pruebas
 
 Es necesario tener un balance entre los 2 tipos de pruebas, ya que trabajar con dependencias out-of-process en la pruebas de integración puede hacer las pruebas lentas y menos mantenibles, ya que:
 
@@ -53,7 +52,7 @@ La regla general se expresa con la pirámide de la imagen anterior, aunque como 
 
 ![Rectangulo de pruebas](/images/posts/rectangle_pruebas.png)
 
-### Pruebas de integración vs [Fail-fast](https://en.wikipedia.org/wiki/Fail-fast)
+## Pruebas de integración vs [Fail-fast](https://en.wikipedia.org/wiki/Fail-fast)
 
 Las pruebas de integración deben verificar al menos el happy path más largo que abarque todas las interacciones con dependencias out-of-process, si no hay un camino que cubra todo, se pueden añadir más pruebas.
 
@@ -73,7 +72,7 @@ changeEmail(newEmail, company) {
 
 > **Fail-fast** principle: Se trata en el principio de detener la ejecución de un programa tan pronto como ocurra un error inesperado, este principio se puede ver aplicado en los lenguajes que ocupan excepciones.
 
-### ¿Qué dependencias out-of-process se deben probar directamente?
+## ¿Qué dependencias out-of-process se deben probar directamente?
 
 Como ya mencionamos hay las pruebas de integración verifican como tú sistemas se integra con dependencias out-of-process, y hay dos maneras de verificar esté: utilizando las dependencias reales o sustituyendolas con mocks, a continuación explico en que momento se debe hacer cada cosa.
 
@@ -84,7 +83,7 @@ Existen 2 tipos de dependencias:
 
 Las dependencias manejadas son detalles de implementación ya que contribuyen a la obtención de un resultado dentro de tu aplicación, mientras que las no manejadas son parte de un comportamiento observable, por lo cual aqui esta el secreto, las primeras las debemos probar directamente en las pruebas de integración mientras que las segundas deben sustituirse por mocks para ser verificadas sin impactar elementos externos.
 
-### Trabajando con ambos tipos de dependencias
+## Trabajando con ambos tipos de dependencias
 A veces podemos encontrarnos con dependencias que sean de los 2 tipos al mismo tiempo, un ejemplo claro es una base de datos que inicialmente solo era accesible desde una aplicación para al paso del tiempo más aplicaciones se conecta a la misma base de datos, aún puede conservar partes que son solo visibles para tu aplicación pero otras ya no.
 
 > ⚠️ El integrar sistemas a través de la base de datos, es una forma muy pobre de hacerlo porque acopla mucho los sistemas y complica desarrollos futuros, una mejor opción sería la creación de un API.
@@ -95,7 +94,7 @@ A veces podemos encontrarnos con dependencias que sean de los 2 tipos al mismo t
 <small>Dependencias manejadas y no manejadas</small>
 
 
-### Ahora un ejemplo de pruebas de integración
+## Ahora un ejemplo de pruebas de integración
 
 En los 2 post anteriores les mostré una parte práctica en video, para esta ocasión volvemos a los ejemplos anterior
 
@@ -141,13 +140,13 @@ El edge case que podemos evaluar es: **[escenario 2🎪] cuando no hay cambios e
 
 2️⃣ Ahora vamos categorizar las dos dependencias out-of-process, la base de datos solo es observable para nuestra aplicación por lo cual podemos verificar su estado de manera directa al ser una dependencia manejada, mientras que el bus mensajes lo que hace es entregar una notificación a un sistema externo por lo cual es una dependencia no manejada que tendremos que verificar a través de un mock.
 
-### ¿Qué hay de las pruebas end to end?
+## ¿Qué hay de las pruebas end to end?
 
 Las pruebas end to end corren deben ejecutarse un ambiente productivo o ya desplegado ya que son pruebas que se ejecutan desde el punto de vista del usuario final, recordemos que son las más lentas y costas y el hacerlas está a discreción.
 
 Ya que las pruebas de integración están probando directamente dependencias out-of-process y haciendo mocks de las dependencias que no son manejadas, ya nos ofrece un buen nivel de protección, por lo cual no sería necesario hacer pruebas end-to-end, quizá si se desea se podría hacer una prueba que siga el camino más largo de ejecución después de un deploy solo para asegurar dicho deploy.
 
-#### Aplicando la primer prueba de integración
+### Aplicando la primer prueba de integración
 
 ```javascript
 const { UserController } = require("../UserController");
@@ -177,7 +176,7 @@ describe("Integration tests 🛰", () => {
 ```
 En esta prueba estamos verificando todas las interacciones con dependencias out-of-process: la base de datos y el bus de mensajes, estamos utilizando directamente la dependencia al base de datos lo cual nos ofrece un alto grado de protección contra regresiones y estamos utilizando un mock para el bus de mensajes.
 
-### Usando interfaces para abstraer dependencias
+## Usando interfaces para abstraer dependencias
 
 Uno de los más grandes malentendidos en el área de pruebas unitarias es el uso de inerfaces, pero existen razones válidas e inválidas para usarlas.
 
@@ -187,7 +186,7 @@ Además estaríamos rompiendo con el principio YAGNI(You aren’t gonna need it)
 
 Por último, todavía hay un caso en el que si es válido utilizar interfaces con solo una implementación, y esto es para poder habilitar el uso de mocks de una manera sencilla,por lo tanto como vimos los mocks solo se le pueden hacer a las dependencias no manejadas, lo que nos da como conclusión que este tipo de dependencias out-of-process pueden implementar interfaces, en la s pruebas podemos utilizar dichas interfaces para hacer los mocks y no tocar la clase concreta y en el código de producción utilizar la clase concreta.
 
-### Mejores prácticas para pruebas de integración
+## Mejores prácticas para pruebas de integración
 
 Existen 3 prácticas generales para ayudar a sacar el máximo provecho a tus pruebas de integración:
 
@@ -226,7 +225,7 @@ class ReportService {
 ```
 Con este tipo de dependencias incrementamos muchismo la carga cognitiva de entender el código, pero también vuelve complejo utilizar o hacer mocks de esas clases en nuestras pruebas.
 
-### Últimas recomendaciones
+## Últimas recomendaciones
 
 En general una prueba de integración también se puede dividir en 3 secciones **Arrange-Act-Assert**, también suele ser un mal olor el tener más de una sección de estas dentro de la misma prueba ya que puede indicar la necesidad de hacer más de una prueba, sin embargo hay casos particulares en las pruebas de integración ya que se necesita verificar las dependencias out-of-process y muchas de estas pueden ser difíciles o costosas de manejar , por ejemplo tener un número limitado de accesos a un API, en este caso es posible tener más de una de estas secciones para reducir la cantidad de llamados.
 

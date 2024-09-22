@@ -14,7 +14,7 @@ Como ya vimos en el primer post de esta serie: <Link href="meta-pruebas-unitaria
 
 En muchos casos se dice que el uso de mocks solo hace más frágiles tus pruebas, pero esto no siempre es así, muchas veces también el uso de mocks es preferible.
 
-### Diferencia entre mocks y stubs
+## Diferencia entre mocks y stubs
 Hasta ahora a lo largo de los posts hemos mencionado los mocks y los tests doubles en general, un mock es un tipo de test double, pero existen otros, por ejemplo: **stub**.
 
 Test double es un término general que proviene de la noción de los dobles de prueba o de acción en las películas, hay varios tipos.
@@ -51,7 +51,7 @@ Un fake por otro lado es el siguiente nivel de complejidad y se usan para rempla
 
 Por último un stub suele ser el más complejo ya que puede ser configurado para agregarle comportamientos que satisfaga distintos escenarios.
 
-### Mock(el test double) vs Mock(la herramienta)
+## Mock(el test double) vs Mock(la herramienta)
 
 El término mock se ha sobrecargado mucho, tanto así que suele ser utilizado como sinónimo de test double, sin embargo este solo es un tipo de test double, asimismo, en muchos frameworks nos encontraremos que las herramientas para crear test doubles contienen la palabra “mock” pero no siempre son utilizadas para crear mocks como tal, si no para crear stubs también.
 
@@ -97,7 +97,7 @@ public class Tests {
 
 }
 ```
-### No verifiques tus pruebas a través de los stubs
+## No verifiques tus pruebas a través de los stubs
 
 Como ya mencionamos, un mock nos sirve para emular y examinar interacciones de salida, que generalmente producen side effects, los cuales pueden ser examinados como el resultado final.
 
@@ -129,7 +129,7 @@ public class Tests {
 }
 ```
 
-### Usando mocks y stubs juntos
+## Usando mocks y stubs juntos
 
 Muchas veces podemos generar un test double que cumpla la función de un mock y un stub al mismo, para fines prácticos y por complejidad se determina que es un mock, veamos un caso de práctico:
 
@@ -157,7 +157,7 @@ public class Tests {
 
 En el código anterior vemos cómo se utiliza un mock de la clase Seats como stub para satisfacer que un asiento esté disponible y un mock para verificar el registro del asiento.
 
-### ¿Cómo se relacionan los mocks y stubs con el patrón de commands and queries?
+## ¿Cómo se relacionan los mocks y stubs con el patrón de commands and queries?
 
 Existe otra forma para determinar cuándo podemos realizar un mock y cuando se debe realizar un stub, en realidad esto empata con un patrón bien conocido llamado [commands & queries](https://martinfowler.com/bliki/CQRS.html).
 
@@ -169,13 +169,13 @@ Lo anterior ayuda a una mejor base de código, facilidad de crear pruebas unitar
 
 ![Tests doubles para command - query](/images/posts/which_test_double_commandquery.png)
 
-### Comportamiento observable vs detalles de implemenación
+## Comportamiento observable vs detalles de implemenación
 
 Recordando el post de <Link href="meta-pruebas-unitarias">los 4 pilares de una prueba unitaria</Link>, vimos que la resistencia al refactoring es un pilar que se tiene o no se tiene, y que es este el que nos ayuda a evitar la fragilidad en las pruebas.
 
 La forma de tener esta resistencia al refactoring es evitar la mayor cantidad de falsos positivos, es decir, concentrarnos en el que y no en el cómo, dicho de una forma más concreta, no debemos verificar nuestras pruebas a través de detalles de implementación si no con el resultado final.
 
-### El API pública debe exponer el comportamiento observable solamente
+## El API pública debe exponer el comportamiento observable solamente
 
 Todo software puede ser categorizado en 2 dimensiones:
 
@@ -188,7 +188,7 @@ Muchos lenguajes de programación, de los más comunes los orientados a objetos,
 
 Public por ejemplo, se utiliza para denotar que el método o miembro de un módulo o clase está expuesto para que lo utilice un cliente, es decir se puede acceder a el, mientras que private denota que es un método o miembro que solo puede ser accedido internamente en la clase o módulo, quedando oculto para clientes externos.
 
-### ¿Cómo podemos distinguir que código forma parte del comportamiento observable y que es un detalle de implementación?
+## ¿Cómo podemos distinguir que código forma parte del comportamiento observable y que es un detalle de implementación?
 
 Un parte de código forma parte del comportamiento observable cuando:
 
@@ -207,7 +207,7 @@ Por otro lado cuando un api no está bien diseñada, suele filtrar detalles de i
 
 ![API observable behaviour ](/images/posts/comportamiento_observable_api2.png)
 
-### Exponiendo detalles de implementación 😱
+## Exponiendo detalles de implementación 😱
 Expliquemos cuál sería una forma de filtrar detalles de implementación al api pública:
 
 
@@ -293,7 +293,7 @@ La encapsulación también nos va a ayudar con la complejidad de nuestro sistema
 
 Con lo anterior, en relación directa, nos ayuda con la mantenibilidad de nuestros sistema y nos facilita hacer pruebas unitarias, ya que sabríamos directamente que estamos probando el comportamiento observable solamente.
 
-### La relación de los mocks y la fragilidad en las pruebas
+## La relación de los mocks y la fragilidad en las pruebas
 
 Para finalizar este post, quiero resaltar que el libro contiene un par de temas mas sobre la relación de los mocks y la fragilidad en las pruebas, explica 3 cosas principalmente:
 
