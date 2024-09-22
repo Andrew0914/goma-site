@@ -8,19 +8,16 @@ export const metadata = {
 
 # ¿Qué es una prueba unitaria?
 
-## Unit testing, principios, prácticas y patrones | Resumen
-
-
 Hay muchas definiciones de prueba unitaria y varias corrientes o escuelas de como se debe ser una prueba unitaria, a lo largo de este post veremos los distinto enfoques, el significado de una prueba unitaria y las diferencias entre los tipos de pruebas mas comunes.
 
-### Definición
+## Definición
 Una prueba unitaria es una forma automatizada de comprobar pequeños pedazos de código (ó unidades, de ahí que se llame prueba unitaria), esta comprobación debe ser rápida y de manera aislada.
 
 Me gusta agregar la razón de ser de un test unitario y es que este debe contar una historia acerca del problema que resuelve la parte del código que se está probando, esta historia debe ser cohesiva y clara, incluso para alguien que no desarrolle.
 
 En general aunque la definición no es difícil de entender, y los distintos enfoques no suelen tener mayor problema en la mayoría de los puntos del concepto, pero sí difieren mucho en que consiste que una prueba unitaria sea de manera **aislada**.
 
-### El problema del aislamiento: El enfoque de la escuela de Londres
+## El problema del aislamiento: El enfoque de la escuela de Londres
 
 Existe dos corrientes o escuelas más populares que tratan de manera diferente el tema del aislamiento o la manera aislada de correr las pruebas unitarias.
 
@@ -78,7 +75,7 @@ Los ejemplos anteriores son demostrativos y están hechos en java y en base a la
 
 También pudimos notar que solo sustituí la clase Store ya que es una dependencia mutable, a diferencia por ejemplo del enumerado Product que solo provee constantes o valores [inmutables](https://es.wikipedia.org/wiki/Inmutabilidad) y por mas veces que lo utilicemos esto no cambia y por tanto no altera el funcionamiento de la prueba.
 
-### El problema del aislamiento: El enfoque tradicional
+## El problema del aislamiento: El enfoque tradicional
 
 Como ya expliqué el enfoque que le da la escuela de Londres a el aislamiento consiste en segregar totalmente el código bajo pruebas de sus colaboradores con ayuda de test dobules, especialmente mocks.
 
@@ -141,7 +138,7 @@ Otra razón de sustituir las dependencias compartidas es aumentar la velocidad d
 
 Como hemos visto este enfoque tradicional no limita a una clase o un método a ser la unidad de código, sino que puede ser un grupo de clases, siempre y cuando ninguna de ellas genere un dependencia compartida.
 
-### Manejo de las dependencias en los 2 enfoques
+## Manejo de las dependencias en los 2 enfoques
 
 A manera de conclusión para el tema de las dependencias y como lo maneja cada uno de los enfoques que hemos hablado, es que para el enfoque de la escuela de Londres se deben sustituir absolutamente todas las dependencias o colaboradores excepto las que sean inmutables, ya que si su valor no cambia no afecta.
 
@@ -151,7 +148,7 @@ Mientras que en el enfoque tradicional (al igual que el autor del libro, es el q
 
 También existen distintos tipos de dependencias que ya vimos, y en general algunas están relacionadas entré si, pero una dependencia adquirirá un tipo específico dependiendo el enfoque, el uso y la forma de sustituirla en tus pruebas.
 
-### Contraste entre los dos enfoques
+## Contraste entre los dos enfoques
 
 Simplifiquemos en 3 grandes puntos, tomando como referencia el enfoque de la escuela de Londres:
 
@@ -165,7 +162,7 @@ El tener la necesidad de recrear un árbol completamente nos está diciendo que 
 
 Por último, el enfoque tradicional nos puede revelar la localización de bugs de mejor manera, ya que el enfoque de la escuela de Londres nos mostrará bugs de SUT solamente, pero en la realidad están sucediendo interacciones entre clases y módulos, y aporta mas valor una prueba que detecte un bug que desencadena problemas en otros lugares, esto es información mas valiosa.
 
-### Pruebas de integración y pruebas end-to-end
+## Pruebas de integración y pruebas end-to-end
 
 Analizaremos brevemente como se ven estos 2 tipos de pruebas desde los dos enfoques y que son cada una.
 

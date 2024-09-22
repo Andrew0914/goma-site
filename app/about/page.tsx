@@ -1,4 +1,4 @@
-import { Avatar, Button, Tooltip, Zoom } from "@mui/material";
+import { Button, Tooltip, Zoom } from "@mui/material";
 import Image from "next/image";
 import styles from "./page.module.scss";
 import {
@@ -203,7 +203,7 @@ function Skills() {
 }
 
 export const metadata = {
-  title: "About",
+  title: "About | andrewgm | software developer",
   description:
     "This is a page where I share my experiences, education, skills, and hobbies.",
 };

@@ -4,6 +4,13 @@ import { Job, jobs } from "./data";
 import styles from "./page.module.scss";
 import { useTranslations } from "next-intl";
 
+export const metadata = {
+  title:
+    "My work | Mis proyectos | Andrew Gonzalez | andrewgm | software developer",
+  description:
+    "My blog where I share my thoughts, software development, creativity, and web development and my lived experiences.",
+};
+
 export default function Work() {
   const worksColum1: Job[] = jobs.slice(0, Math.ceil(jobs.length / 2));
   const worksColum2: Job[] = jobs.slice(Math.ceil(jobs.length / 2));

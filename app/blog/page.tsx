@@ -5,7 +5,7 @@ import PageTransition from "@/components/PageTransition/PageTransition";
 import { useTranslations } from "next-intl";
 
 export const metadata = {
-  title: "Blog",
+  title: "Blog | andrewgm | software developer",
   description:
     "My blog where I share my thoughts, software development, creativity, and web development and my lived experiences.",
 };

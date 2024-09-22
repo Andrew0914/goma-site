@@ -9,6 +9,7 @@ export default function HImage(props: ImageProps) {
       {...props}
       placeholder="blur"
       blurDataURL={grayishTransparentDataURL()}
+      style={{ maxWidth: "100%" }}
     />
   );
 }
