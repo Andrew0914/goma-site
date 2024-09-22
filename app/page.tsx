@@ -59,23 +59,23 @@ export default function Home() {
       </Button>
 
       <div className={styles.home_social}>
-        <a href={Links.Github} target="_blak">
+        <Link href={Links.Github} target="_blak" aria-label="Github">
           <GitHub />
-        </a>
-        <a href={Links.X} target="_blank">
+        </Link>
+        <Link href={Links.X} target="_blank" aria-label="Twitter">
           <X />
-        </a>
-        <a href={Links.LinkedIn} target="_blank">
+        </Link>
+        <Link href={Links.LinkedIn} target="_blank" aria-label="LinkedIn">
           <LinkedIn />
-        </a>
+        </Link>
       </div>
 
       <span className={styles.verticalLine} />
 
       <div className={styles.home_latestWork}>
-        <h3 className="heading--3 text--muted text--center">
+        <h4 className="heading--3 text--muted text--center">
           {t("latestWork")}
-        </h3>
+        </h4>
         <div className={styles.home_featuredContent}>
           {featuredWorks.map((work) => (
             <WorkItem key={work.title} job={work} />
@@ -86,9 +86,9 @@ export default function Home() {
       <span className={styles.verticalLine} />
 
       <div className={styles.home_latestPost}>
-        <h3 className="heading--3 text--muted text--center">
+        <h4 className="heading--3 text--muted text--center">
           {t("latestPost")}
-        </h3>
+        </h4>
         <div className={styles.home_featuredContent}>
           {featuredPosts.map((post) => (
             <PostItem key={post.title} post={post} />
