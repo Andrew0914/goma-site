@@ -114,5 +114,9 @@
     "title": "Mi trabajo",
     "description": "Me gusta crear cosas, dale un vistazo a mi trabajo y hagamos algo juntos.",
     "goToLive": "Ver en vivo"
+  },
+  "themeSelector": {
+    "title": "Slecciona un tema",
+    "description": "Elige un tema para la página"
   }
 }

@@ -6,6 +6,7 @@ import styles from "./styles.module.scss";
 import CodeThemeMenu, { codeThemes } from "./CodeThemeMenu";
 import { useColorScheme } from "@mui/material";
 import Image from "next/image";
+import HImage from "../HImage/HImage";
 
 interface CodeProps extends SyntaxHighlighterProps {
   className?: string;
@@ -76,7 +77,7 @@ export default function Code({ className, ...props }: CodeProps) {
         >
           {copyLabel}
         </button>
-        <Image
+        <HImage
           className={styles.codebox_languageIcon}
           src={`/images/technologies/${match[1]}.svg`}
           alt={match[1]}

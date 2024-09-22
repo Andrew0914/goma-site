@@ -2,6 +2,7 @@ import { Copyright, GitHub, LinkedIn, X, YouTube } from "@mui/icons-material";
 import styles from "./styles.module.scss";
 import { Links } from "@/utils/constants";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export default function TheFooter() {
   const t = useTranslations("thefooter");
@@ -12,18 +13,22 @@ export default function TheFooter() {
       <div className={`${styles.theFooter_content} container`}>
         <div>
           {t("follow")}
-          <a href={Links.Github} target="_blaak">
+          <Link href={Links.Github} target="_blank" aria-label="Github">
             <GitHub fontSize="small" />
-          </a>
-          <a href={Links.LinkedIn} target="_blaak">
+          </Link>
+          <Link href={Links.LinkedIn} target="_blank" aria-label="LinkedIn">
             <LinkedIn fontSize="small" />
-          </a>
-          <a href={Links.YouTube} target="_blaak">
+          </Link>
+          <Link
+            href={Links.YouTube}
+            target="_blank"
+            aria-label="Youtube channel"
+          >
             <YouTube fontSize="small" />
-          </a>
-          <a href={Links.X} target="_blaak">
+          </Link>
+          <Link href={Links.X} target="_blank" aria-label="Twitter">
             <X fontSize="small" />
-          </a>
+          </Link>
         </div>
         <div>
           <span>
@@ -31,7 +36,7 @@ export default function TheFooter() {
           </span>
           <span>
             {t("madeWith", { emoji: "💖" })}{" "}
-            <a href={Links.Github}>@AndrewGM</a>
+            <Link href={Links.Github}>@AndrewGM</Link>
           </span>
         </div>
       </div>

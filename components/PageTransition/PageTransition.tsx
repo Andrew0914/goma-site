@@ -7,7 +7,7 @@ interface PageTransitionProps {
 }
 
 const slideFadeIn = {
-  initial: { scale: 0.985, opacity: 0 },
+  initial: { scale: 0.99, opacity: 0.5 },
   animate: { scale: 1, opacity: 1 },
   transition: { duration: 0.5 },
 };

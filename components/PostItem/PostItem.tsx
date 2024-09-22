@@ -7,6 +7,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import Code from "../Code/Code";
 import VideoPreview from "../VideoPreview/VideoPreview";
 import { CodeOff } from "@mui/icons-material";
+import HImage from "../HImage/HImage";
 
 interface PostItemProps {
   post: Post;
@@ -52,7 +53,7 @@ export default function PostItem({ post }: PostItemProps) {
         </time>
         <span className={styles.postItem_author}>
           {post.author && (
-            <Image
+            <HImage
               src={post.author.avatar}
               alt={post.author.name}
               width={24}

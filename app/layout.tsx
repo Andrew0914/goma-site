@@ -5,6 +5,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import MyThemeProvider from "@/components/ThemeProvider/ThemeProvider";
 import TheNavbar from "@/components/TheNavbar/TheNavbar";
 import TheFooter from "@/components/TheFooter/TheFooter";
+import Script from "next/script";
 
 export const metadata = {
   title: "Andrew Gonzalez's Website",
@@ -67,11 +68,11 @@ export default async function RootLayout({
           type="image/<generated>"
           sizes="<generated>"
         />
-        <script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157092397783632"
           crossOrigin="anonymous"
-        ></script>
+        ></Script>
       </head>
       <body className="dark">
         <MyThemeProvider>

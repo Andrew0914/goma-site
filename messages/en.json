@@ -114,5 +114,9 @@
     "title": "My work",
     "description": "I like to create things, take a look at my work and let's do something together.",
     "goToLive": "Go to live"
+  },
+  "themeSelector": {
+    "title": "Theme selector",
+    "description": "Choose between dark and light mode"
   }
 }

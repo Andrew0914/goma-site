@@ -2,14 +2,16 @@ import classNames from "classnames";
 import Image, { ImageProps } from "next/image";
 import styles from "./styles.module.scss";
 import { Chip } from "@mui/material";
+import HImage from "../HImage/HImage";
 
 export interface SuperImageProps extends ImageProps {}
 
 export default function SuperImage(props: SuperImageProps) {
   const imageClasses = classNames(props.className, styles.superImage_image);
+
   return (
     <figure className={styles.superImage}>
-      <Image
+      <HImage
         src={props.src}
         alt={props.alt}
         width={props.width}
