@@ -134,4 +134,12 @@ public class FileContent implements Comparable<FileContent> {
     slug: "refactorizando-pruebas-unitarias-valiosas",
     thumbnail: { "alt": "amplitud_profundidad", "src": "/images/posts/amplitud_profundidad.png", "width": 432, "height": 227 }
   },
+  {
+    title: "How to use JavaScript Arrays: A Comprehensive Guide",
+    date: "2021-09-30 22:25:00",
+    excerpt: "An array is a data structure that stores a collection of elements. Each element in an array has a unique index that allows you to access it.",
+    slug: "how-to-use-javascript-arrays",
+    author: meAsAuthor,
+    thumbnail: { "alt": "javascript array", "src": "/images/posts/array-concept.png", "width": 300, "height": 150 }
+  }
 ];
