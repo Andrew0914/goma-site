@@ -34,8 +34,8 @@
   "about": {
     "title": "Acerca de mí",
     "from": "CDMX",
-    "description1": "Soy Andrew, un desarrollador de software de la Ciudad de México 🇲🇽, en estos días, me enfoco en mejorar en el lenguaje Elixir 💧, enriquecer mi portafolio y crear cursos de los cuales otras personas puedan aprender.",
-    "description2": "Durante los últimos 8+ años, he trabajado en diversas áreas del desarrollo de software: front-end, back-end y móvil. Estoy orgulloso de haber jugado varios papeles.",
+    "description1": "Soy Andrew, un desarrollador de software de la Ciudad de México 🇲🇽. En estos días, me enfoco en mejorar en el lenguaje Elixir 💧, aprender y dominar Python 🐍, y profundizar mis conocimientos en algoritmos y estructuras de datos.",
+    "description2": "Durante los últimos 7 años, he trabajado en diversas áreas del desarrollo de software: front-end, back-end y móvil. Estoy orgulloso de haber jugado varios papeles y siempre estoy entusiasmado por asumir nuevos desafíos.",
     "experience": {
       "title": "Experiencia",
       "item": {
@@ -58,11 +58,6 @@
           "position": "Desarrollador Java",
           "company": "Wellcom",
           "period": "2017 ~ 2018"
-        },
-        "siweb": {
-          "position": "Desarrollador Java junior",
-          "company": "Siweb",
-          "period": "2016 ~ 2017"
         }
       }
     },

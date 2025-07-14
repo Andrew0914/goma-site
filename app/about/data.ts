@@ -37,10 +37,6 @@ jobs.set("wellcom", {
   technologies: ["java", "javascript", "android", "html5", "css3"],
 });
 
-jobs.set("siweb", {
-  urlCompany: "https://www.solucionesinformaticasweb.com.mx/",
-  technologies: ["java", "javascript", "mysql", "html5", "css3"],
-});
 
 export interface Skill {
   name: string;
@@ -54,13 +50,25 @@ export const skills: Skill[] = [
     name: "javascript",
     icon: "javascript",
     projects: 8,
-    courses: 2,
+    courses: 3,
   },
   {
     name: "typescript",
     icon: "typescript",
-    projects: 4,
-    courses: 2
+    projects: 7,
+    courses: 3
+  },
+  {
+    name: "html5",
+    icon: "html5",
+    projects: 8,
+    courses: 3,
+  },
+  {
+    name: "css3",
+    icon: "css3",
+    projects: 8,
+    courses: 3,
   },
   {
     name: "vuejs",
@@ -71,41 +79,33 @@ export const skills: Skill[] = [
   {
     name: "react",
     icon: "react",
-    projects: 2,
+    projects: 3,
+    courses: 3,
+  },
+  {
+    name: "python",
+    icon: "python",
+    projects: 0,
+    courses: 2,
+  },
+  {
+    name: "elixir",
+    icon: "elixir",
+    projects: 1,
+    courses: 5,
+  },
+  {
+    name: "postgresql",
+    icon: "postgresql",
+    projects: 1,
     courses: 2,
   },
   {
     name: "flutter",
     icon: "flutter",
     projects: 1,
-    courses: 0,
+    courses: 1,
   },
-  {
-    name: "elixir",
-    icon: "elixir",
-    projects: 0,
-    courses: 5,
-  },
-
-  {
-    name: "postgresql",
-    icon: "postgresql",
-    projects: 0,
-    courses: 2,
-  },
-  {
-    name: "html5",
-    icon: "html5",
-    projects: 8,
-    courses: 2,
-  },
-  {
-    name: "css3",
-    icon: "css3",
-    projects: 8,
-    courses: 2,
-  },
-
 ];
 
 export interface Hobby {
