@@ -20,7 +20,7 @@ import photoOfme from "../../public/images/yo_2.png";
 
 function Expirience() {
   const t = useTranslations("about");
-  const jobs = ["bunsan", "myself", "devowrms", "wellcom", "siweb"];
+  const jobs = ["bunsan", "myself", "devowrms", "wellcom"];
 
   return (
     <div>
